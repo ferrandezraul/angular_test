@@ -1,0 +1,623 @@
+<div *ngIf="resultados.length">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+          <div class="jornada-template">
+              <h1>{{ nombre_jornada }}</h1>
+              <!-- DataTales Example -->
+              <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{{ resultados[0].equipoLocal }} - {{ resultados[0].equipoVisitante }}</h6>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive table-equipo">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>Jugador</th>
+                                <th>A</th>
+                                <th>M</th>
+                                <th>PF</th>
+                                <th>J</th>
+                                <th>G</th>
+                                <th>O</th>
+                                <th>T</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ resultados[0].extraLocal }}</td>
+                              </tr>
+                              <tr *ngFor="let puntosJug of resultados[0].puntuacionLocal; let i = index">
+                                <td class={{puntosJug.estado}}><i class={{puntosJug.iconoDemarcacion}} data-toggle="tooltip" data-html="true" title={{puntosJug.demarcacion}}></i> <a data-toggle="tooltip" data-html="true" data-placement="right" title={{puntosJug.equipoLfp}}>{{enfarloparJugador(puntosJug.nombreJugador)}}</a></td>
+                                <td>{{ puntosJug.resultado.puntosAs }}</td>
+                                <td>{{ puntosJug.resultado.puntosMarca }}</td>
+                                <td>{{ puntosJug.puntosCalculados }}</td>
+                                <td>{{ puntosJug.jugado }}</td> 
+                                <td>{{ puntosJug.resultadoPartido }}</td>
+                                <td>{{ puntosJug.otros }}</td>
+                                <td>{{ puntosJug.total }}</td>
+                              </tr>
+                              <tr class="total">
+                                <td class="text-align-right">TOTAL</td>
+                                <td>{{ resultados[0].puntosLocAsTotales }}</td>
+                                <td>{{ resultados[0].puntosLocMarcaTotales }}</td>
+                                <td>{{ resultados[0].puntosLocCalculadosTotales }}</td>
+                                <td>{{ resultados[0].puntosLocJugadoTotales }}</td>
+                                <td>{{ resultados[0].puntosLocResultadoTotales }}</td>
+                                <td>{{ resultados[0].puntosLocOtrosTotales }}</td>
+                                <td>{{ resultados[0].puntosLocalesTotales | number }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                      <div class="table-responsive table-equipo">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>Jugador</th>
+                                <th>A</th>
+                                <th>M</th>
+                                <th>PF</th>
+                                <th>J</th>
+                                <th>G</th>
+                                <th>O</th>
+                                <th>T</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ resultados[0].extraVisitante }}</td>
+                              </tr>                            
+                              <tr *ngFor="let puntosJug of resultados[0].puntuacionVisitante; let i = index">
+                                <td class={{puntosJug.estado}}><i class={{puntosJug.iconoDemarcacion}} data-toggle="tooltip" data-html="true" title={{puntosJug.demarcacion}}></i><a data-toggle="tooltip" data-html="true" data-placement="right" title={{puntosJug.equipoLfp}}>{{enfarloparJugador(puntosJug.nombreJugador)}}</a></td>
+                                <td>{{ puntosJug.resultado.puntosAs }}</td>
+                                <td>{{ puntosJug.resultado.puntosMarca }}</td>
+                                <td>{{ puntosJug.puntosCalculados }}</td>
+                                <td>{{ puntosJug.jugado }}</td>
+                                <td>{{ puntosJug.resultadoPartido }}</td>
+                                <td>{{ puntosJug.otros }}</td>
+                                <td>{{ puntosJug.total }}</td>
+                              </tr>
+                              <tr class="total">
+                                <td class="text-align-right">TOTAL</td>
+                                <td>{{ resultados[0].puntosVisAsTotales }}</td>
+                                <td>{{ resultados[0].puntosVisMarcaTotales }}</td>
+                                <td>{{ resultados[0].puntosVisCalculadosTotales }}</td>
+                                <td>{{ resultados[0].puntosVisJugadoTotales }}</td>
+                                <td>{{ resultados[0].puntosVisResultadoTotales }}</td>
+                                <td>{{ resultados[0].puntosVisOtrosTotales }}</td>
+                                <td>{{ resultados[0].puntosVisitantesTotales | number }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                      <div class="table-responsive table-resultado">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>{{ resultados[0].equipoLocal }}</th>
+                                <th>{{ resultados[0].equipoVisitante }}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <!--
+                                <td><a data-toggle="tooltip" data-html="true" data-placement="right" title="Te faltan 3 puntos para el siguiente gol">{{ resultados[0].golesLocales }}</a></td>
+                                <td><a data-toggle="tooltip" data-html="true"  data-placement="right" title="Te faltan 4 puntos para el siguiente gol">{{ resultados[0].golesVisitantes }}</a></td>
+                                -->
+                                <td>{{ resultados[0].golesLocales }}</td>
+                                <td>{{ resultados[0].golesVisitantes }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+  
+              <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{{ resultados[1].equipoLocal }} - {{ resultados[1].equipoVisitante }}</h6>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive table-equipo">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>Jugador</th>
+                                <th>A</th>
+                                <th>M</th>
+                                <th>PF</th>
+                                <th>J</th>
+                                <th>G</th>
+                                <th>O</th>
+                                <th>T</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ resultados[1].extraLocal }}</td>
+                              </tr>
+                              <tr *ngFor="let puntosJug of resultados[1].puntuacionLocal; let i = index">
+                                <td class={{puntosJug.estado}}><i class={{puntosJug.iconoDemarcacion}} data-toggle="tooltip" data-html="true" title={{puntosJug.demarcacion}}></i><a data-toggle="tooltip" data-html="true" data-placement="right" title={{puntosJug.equipoLfp}}>{{ enfarloparJugador(puntosJug.nombreJugador) }}</a></td>
+                                <td>{{ puntosJug.resultado.puntosAs }}</td>
+                                <td>{{ puntosJug.resultado.puntosMarca }}</td>
+                                <td>{{ puntosJug.puntosCalculados }}</td>
+                                <td>{{ puntosJug.jugado }}</td>
+                                <td>{{ puntosJug.resultadoPartido }}</td>
+                                <td>{{ puntosJug.otros }}</td>
+                                <td>{{ puntosJug.total }}</td>
+                              </tr>
+                              <tr class="total">
+                                <td class="text-align-right">TOTAL</td>
+                                <td>{{ resultados[1].puntosLocAsTotales }}</td>
+                                <td>{{ resultados[1].puntosLocMarcaTotales }}</td>
+                                <td>{{ resultados[1].puntosLocCalculadosTotales }}</td>
+                                <td>{{ resultados[1].puntosLocJugadoTotales }}</td>
+                                <td>{{ resultados[1].puntosLocResultadoTotales }}</td>
+                                <td>{{ resultados[1].puntosLocOtrosTotales }}</td>
+                                <td>{{ resultados[1].puntosLocalesTotales | number }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                      <div class="table-responsive table-equipo">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>Jugador</th>
+                                <th>A</th>
+                                <th>M</th>
+                                <th>PF</th>
+                                <th>J</th>
+                                <th>G</th>
+                                <th>O</th>
+                                <th>T</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ resultados[1].extraVisitante }}</td>
+                              </tr>                            
+                              <tr *ngFor="let puntosJug of resultados[1].puntuacionVisitante; let i = index">
+                                <td class={{puntosJug.estado}}><i class={{puntosJug.iconoDemarcacion}} data-toggle="tooltip" data-html="true" title={{puntosJug.demarcacion}}></i><a data-toggle="tooltip" data-html="true" data-placement="right" title={{puntosJug.equipoLfp}}>{{ enfarloparJugador(puntosJug.nombreJugador) }}</a></td>
+                                <td>{{ puntosJug.resultado.puntosAs }}</td>
+                                <td>{{ puntosJug.resultado.puntosMarca }}</td>
+                                <td>{{ puntosJug.puntosCalculados }}</td>
+                                <td>{{ puntosJug.jugado }}</td>
+                                <td>{{ puntosJug.resultadoPartido }}</td>
+                                <td>{{ puntosJug.otros }}</td>
+                                <td>{{ puntosJug.total }}</td>
+                              </tr>
+                              <tr class="total">
+                                <td class="text-align-right">TOTAL</td>
+                                <td>{{ resultados[1].puntosVisAsTotales }}</td>
+                                <td>{{ resultados[1].puntosVisMarcaTotales }}</td>
+                                <td>{{ resultados[1].puntosVisCalculadosTotales }}</td>
+                                <td>{{ resultados[1].puntosVisJugadoTotales }}</td>
+                                <td>{{ resultados[1].puntosVisResultadoTotales }}</td>
+                                <td>{{ resultados[1].puntosVisOtrosTotales }}</td>
+                                <td>{{ resultados[1].puntosVisitantesTotales | number }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                      <div class="table-responsive table-resultado">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>{{ resultados[1].equipoLocal }}</th>
+                                <th>{{ resultados[1].equipoVisitante }}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{{ resultados[1].golesLocales }}</td>
+                                <td>{{ resultados[1].golesVisitantes }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+  
+              <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{{ resultados[2].equipoLocal }} - {{ resultados[2].equipoVisitante }}</h6>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive table-equipo">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>Jugador</th>
+                                <th>A</th>
+                                <th>M</th>
+                                <th>PF</th>
+                                <th>J</th>
+                                <th>G</th>
+                                <th>O</th>
+                                <th>T</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ resultados[2].extraLocal }}</td>
+                              </tr>
+                              <tr *ngFor="let puntosJug of resultados[2].puntuacionLocal; let i = index">
+                                <td class={{puntosJug.estado}}><i class={{puntosJug.iconoDemarcacion}} data-toggle="tooltip" data-html="true" title={{puntosJug.demarcacion}}></i><a data-toggle="tooltip" data-html="true" data-placement="right" title={{puntosJug.equipoLfp}}>{{ enfarloparJugador(puntosJug.nombreJugador) }}</a></td>
+                                <td>{{ puntosJug.resultado.puntosAs }}</td>
+                                <td>{{ puntosJug.resultado.puntosMarca }}</td>
+                                <td>{{ puntosJug.puntosCalculados }}</td>
+                                <td>{{ puntosJug.jugado }}</td>
+                                <td>{{ puntosJug.resultadoPartido }}</td>
+                                <td>{{ puntosJug.otros }}</td>
+                                <td>{{ puntosJug.total }}</td>
+                              </tr>
+                              <tr class="total">
+                                <td class="text-align-right">TOTAL</td>
+                                <td>{{ resultados[2].puntosLocAsTotales }}</td>
+                                <td>{{ resultados[2].puntosLocMarcaTotales }}</td>
+                                <td>{{ resultados[2].puntosLocCalculadosTotales }}</td>
+                                <td>{{ resultados[2].puntosLocJugadoTotales }}</td>
+                                <td>{{ resultados[2].puntosLocResultadoTotales }}</td>
+                                <td>{{ resultados[2].puntosLocOtrosTotales }}</td>
+                                <td>{{ resultados[2].puntosLocalesTotales | number }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                      <div class="table-responsive table-equipo">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>Jugador</th>
+                                <th>A</th>
+                                <th>M</th>
+                                <th>PF</th>
+                                <th>J</th>
+                                <th>G</th>
+                                <th>O</th>
+                                <th>T</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ resultados[2].extraVisitante }}</td>
+                              </tr>                            
+                              <tr *ngFor="let puntosJug of resultados[2].puntuacionVisitante; let i = index">
+                                <td class={{puntosJug.estado}}><i class={{puntosJug.iconoDemarcacion}} data-toggle="tooltip" data-html="true" title={{puntosJug.demarcacion}}></i><a data-toggle="tooltip" data-html="true" data-placement="right" title={{puntosJug.equipoLfp}}>{{ enfarloparJugador(puntosJug.nombreJugador) }}</a></td>
+                                <td>{{ puntosJug.resultado.puntosAs }}</td>
+                                <td>{{ puntosJug.resultado.puntosMarca }}</td>
+                                <td>{{ puntosJug.puntosCalculados }}</td>
+                                <td>{{ puntosJug.jugado }}</td>
+                                <td>{{ puntosJug.resultadoPartido }}</td>
+                                <td>{{ puntosJug.otros }}</td>
+                                <td>{{ puntosJug.total }}</td>
+                              </tr>
+                              <tr class="total">
+                                <td class="text-align-right">TOTAL</td>
+                                <td>{{ resultados[2].puntosVisAsTotales }}</td>
+                                <td>{{ resultados[2].puntosVisMarcaTotales }}</td>
+                                <td>{{ resultados[2].puntosVisCalculadosTotales }}</td>
+                                <td>{{ resultados[2].puntosVisJugadoTotales }}</td>
+                                <td>{{ resultados[2].puntosVisResultadoTotales }}</td>
+                                <td>{{ resultados[2].puntosVisOtrosTotales }}</td>
+                                <td>{{ resultados[2].puntosVisitantesTotales | number }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                      <div class="table-responsive table-resultado">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>{{ resultados[2].equipoLocal }}</th>
+                                <th>{{ resultados[2].equipoVisitante }}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{{ resultados[2].golesLocales }}</td>
+                                <td>{{ resultados[2].golesVisitantes }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>            
+  
+              <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{{ resultados[3].equipoLocal }} - {{ resultados[3].equipoVisitante }}</h6>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive table-equipo">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>Jugador</th>
+                                <th>A</th>
+                                <th>M</th>
+                                <th>PF</th>
+                                <th>J</th>
+                                <th>G</th>
+                                <th>O</th>
+                                <th>T</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ resultados[3].extraLocal }}</td>
+                              </tr>
+                              <tr *ngFor="let puntosJug of resultados[3].puntuacionLocal; let i = index">
+                                <td class={{puntosJug.estado}}><i class={{puntosJug.iconoDemarcacion}} data-toggle="tooltip" data-html="true" title={{puntosJug.demarcacion}}></i><a data-toggle="tooltip" data-html="true" data-placement="right" title={{puntosJug.equipoLfp}}>{{ enfarloparJugador(puntosJug.nombreJugador) }}</a></td>
+                                <td>{{ puntosJug.resultado.puntosAs }}</td>
+                                <td>{{ puntosJug.resultado.puntosMarca }}</td>
+                                <td>{{ puntosJug.puntosCalculados }}</td>
+                                <td>{{ puntosJug.jugado }}</td>
+                                <td>{{ puntosJug.resultadoPartido }}</td>
+                                <td>{{ puntosJug.otros }}</td>
+                                <td>{{ puntosJug.total }}</td>
+                              </tr>
+                              <tr class="total">
+                                <td class="text-align-right">TOTAL</td>
+                                <td>{{ resultados[3].puntosLocAsTotales }}</td>
+                                <td>{{ resultados[3].puntosLocMarcaTotales }}</td>
+                                <td>{{ resultados[3].puntosLocCalculadosTotales }}</td>
+                                <td>{{ resultados[3].puntosLocJugadoTotales }}</td>
+                                <td>{{ resultados[3].puntosLocResultadoTotales }}</td>
+                                <td>{{ resultados[3].puntosLocOtrosTotales }}</td>
+                                <td>{{ resultados[3].puntosLocalesTotales | number }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                      <div class="table-responsive table-equipo">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>Jugador</th>
+                                <th>A</th>
+                                <th>M</th>
+                                <th>PF</th>
+                                <th>J</th>
+                                <th>G</th>
+                                <th>O</th>
+                                <th>T</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ resultados[3].extraVisitante }}</td>
+                              </tr>                            
+                              <tr *ngFor="let puntosJug of resultados[3].puntuacionVisitante; let i = index">
+                                <td class={{puntosJug.estado}}><i class={{puntosJug.iconoDemarcacion}} data-toggle="tooltip" data-html="true" title={{puntosJug.demarcacion}}></i><a data-toggle="tooltip" data-html="true" data-placement="right" title={{puntosJug.equipoLfp}}>{{ enfarloparJugador(puntosJug.nombreJugador) }}</a></td>
+                                <td>{{ puntosJug.resultado.puntosAs }}</td>
+                                <td>{{ puntosJug.resultado.puntosMarca }}</td>
+                                <td>{{ puntosJug.puntosCalculados }}</td>
+                                <td>{{ puntosJug.jugado }}</td>
+                                <td>{{ puntosJug.resultadoPartido }}</td>
+                                <td>{{ puntosJug.otros }}</td>
+                                <td>{{ puntosJug.total }}</td>
+                              </tr>
+                              <tr class="total">
+                                <td class="text-align-right">TOTAL</td>
+                                <td>{{ resultados[3].puntosVisAsTotales }}</td>
+                                <td>{{ resultados[3].puntosVisMarcaTotales }}</td>
+                                <td>{{ resultados[3].puntosVisCalculadosTotales }}</td>
+                                <td>{{ resultados[3].puntosVisJugadoTotales }}</td>
+                                <td>{{ resultados[3].puntosVisResultadoTotales }}</td>
+                                <td>{{ resultados[3].puntosVisOtrosTotales }}</td>
+                                <td>{{ resultados[3].puntosVisitantesTotales | number }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                      <div class="table-responsive table-resultado">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>{{ resultados[3].equipoLocal }}</th>
+                                <th>{{ resultados[3].equipoVisitante }}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{{ resultados[3].golesLocales }}</td>
+                                <td>{{ resultados[3].golesVisitantes }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>  
+  
+              <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{{ resultados[4].equipoLocal }} - {{ resultados[4].equipoVisitante }}</h6>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive table-equipo">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>Jugador</th>
+                                <th>A</th>
+                                <th>M</th>
+                                <th>PF</th>
+                                <th>J</th>
+                                <th>G</th>
+                                <th>O</th>
+                                <th>T</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ resultados[4].extraLocal }}</td>
+                              </tr>
+                              <tr *ngFor="let puntosJug of resultados[4].puntuacionLocal; let i = index">
+                                <td class={{puntosJug.estado}}><i class={{puntosJug.iconoDemarcacion}} data-toggle="tooltip" data-html="true" title={{puntosJug.demarcacion}}></i><a data-toggle="tooltip" data-html="true" data-placement="right" title={{puntosJug.equipoLfp}}>{{ enfarloparJugador(puntosJug.nombreJugador) }}</a></td>
+                                <td>{{ puntosJug.resultado.puntosAs }}</td>
+                                <td>{{ puntosJug.resultado.puntosMarca }}</td>
+                                <td>{{ puntosJug.puntosCalculados }}</td>
+                                <td>{{ puntosJug.jugado }}</td>
+                                <td>{{ puntosJug.resultadoPartido }}</td>
+                                <td>{{ puntosJug.otros }}</td>
+                                <td>{{ puntosJug.total }}</td>
+                              </tr>
+                              <tr class="total">
+                                <td class="text-align-right">TOTAL</td>
+                                <td>{{ resultados[4].puntosLocAsTotales }}</td>
+                                <td>{{ resultados[4].puntosLocMarcaTotales }}</td>
+                                <td>{{ resultados[4].puntosLocCalculadosTotales }}</td>
+                                <td>{{ resultados[4].puntosLocJugadoTotales }}</td>
+                                <td>{{ resultados[4].puntosLocResultadoTotales }}</td>
+                                <td>{{ resultados[4].puntosLocOtrosTotales }}</td>
+                                <td>{{ resultados[4].puntosLocalesTotales | number }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                      <div class="table-responsive table-equipo">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>Jugador</th>
+                                <th>A</th>
+                                <th>M</th>
+                                <th>PF</th>
+                                <th>J</th>
+                                <th>G</th>
+                                <th>O</th>
+                                <th>T</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ resultados[4].extraVisitante }}</td>
+                              </tr>                            
+                              <tr *ngFor="let puntosJug of resultados[4].puntuacionVisitante; let i = index">
+                                <td class={{puntosJug.estado}}><i class={{puntosJug.iconoDemarcacion}} data-toggle="tooltip" data-html="true" title={{puntosJug.demarcacion}}></i><a data-toggle="tooltip" data-html="true" data-placement="right" title={{puntosJug.equipoLfp}}>{{ enfarloparJugador(puntosJug.nombreJugador) }}</a></td>
+                                <td>{{ puntosJug.resultado.puntosAs }}</td>
+                                <td>{{ puntosJug.resultado.puntosMarca }}</td>
+                                <td>{{ puntosJug.puntosCalculados }}</td>
+                                <td>{{ puntosJug.jugado }}</td>
+                                <td>{{ puntosJug.resultadoPartido }}</td>
+                                <td>{{ puntosJug.otros }}</td>
+                                <td>{{ puntosJug.total }}</td>
+                              </tr>
+                              <tr class="total">
+                                <td class="text-align-right">TOTAL</td>
+                                <td>{{ resultados[4].puntosVisAsTotales }}</td>
+                                <td>{{ resultados[4].puntosVisMarcaTotales }}</td>
+                                <td>{{ resultados[4].puntosVisCalculadosTotales }}</td>
+                                <td>{{ resultados[4].puntosVisJugadoTotales }}</td>
+                                <td>{{ resultados[4].puntosVisResultadoTotales }}</td>
+                                <td>{{ resultados[4].puntosVisOtrosTotales }}</td>
+                                <td>{{ resultados[4].puntosVisitantesTotales | number }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                      <div class="table-responsive table-resultado">
+                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>{{ resultados[4].equipoLocal }}</th>
+                                <th>{{ resultados[4].equipoVisitante }}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{{ resultados[4].golesLocales }}</td>
+                                <td>{{ resultados[4].golesVisitantes }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>  
+  
+          </div>
+      </div>  
+    </div>
+  </div>
+ 
+
+</div>
+
+<div class="row justify-content-center mt-5" [hidden]="resultados.length">
+  <mat-spinner></mat-spinner><h4>Cargando . . . </h4>
+</div>

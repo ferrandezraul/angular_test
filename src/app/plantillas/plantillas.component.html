@@ -1,0 +1,44 @@
+<div *ngIf="plantillas.length">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+          <div class="plantillas-template">
+              <h1>Plantillas</h1>
+              <div class="card shadow mb-4" *ngFor="let equipo of plantillas; let i = index">
+                  <div class="card-header py-3 table-responsive">
+                    <div class="row">
+                      <h4 class="col-sm-6 font-weight-bold text-primary">{{ equipo.nombre }}</h4>
+                      <h6 class="col-sm-6 font-weight-bold text-primary ">{{ equipo.creditos }} Creditos</h6>
+                    </div>
+                    <table class="table table-bordered" id="dataTable" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Jugador</th>
+                          <th>Demarcación</th>
+                          <th>Equipo</th>
+                          <th>Precio</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let jugador of equipo.jugadores; let j = index">
+                          <td>{{ j + 1 }}</td>
+                          <td>{{ jugador.nombreJugador }}</td>
+                          <td>{{ jugador.demarcacion }}</td>
+                          <td>{{ jugador.nombreEquipo }}</td>
+                          <td>{{ jugador.price }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<div class="row justify-content-center mt-5" [hidden]="plantillas.length">
+  <mat-spinner></mat-spinner><h4>Cargando . . . </h4>
+</div>

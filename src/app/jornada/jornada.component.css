@@ -1,0 +1,46 @@
+.jornada-template .table-equipo {
+    display: inline-block;
+    width: 48%;
+    margin-right: 2%
+}
+@media only screen and (max-width: 850px) {
+	.jornada-template .table-equipo {
+		display: block;
+		width: 100%;
+	}
+	.jornada-template .card-body {
+    	padding: 0.5rem !important;
+    }
+    .jornada-template .table th, 
+	.jornada-template .table td {
+		padding: 0.2rem !important;
+	}
+}
+.jornada-template .table-equipo tr td i {
+    margin-right: 5px;
+}
+.jornada-template .table th, 
+.jornada-template .table td {
+	padding: 0.5rem;
+	font-size: 0.9rem;
+}
+.jornada-template .table tr td.chapeco {
+	background-color: #FF000022;
+}
+.jornada-template .table tr td.suplente {
+	background-color: #0000FF22;
+}
+.jornada-template .table tr td.ha-jugado {
+	background-color: #00FF0022;
+}
+.jornada-template .table td a {
+	text-decoration: underline;
+}
+.jornada-template .total {
+	font-weight: bold;
+}
+/* No funcionan aqui pero si en el CSS live editor el navegador ¿PQ?*/
+.jornada-template .bs-tooltip-right { margin-left: 10px; }
+.jornada-template .bs-tooltip-left { margin-right: 10px; }
+.jornada-template .bs-tooltip-top { margin-bottom: 5px; }
+.jornada-template .bs-tooltip-bottom { margin-top: 5px; }

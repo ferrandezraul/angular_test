@@ -1,0 +1,9 @@
+.alinear-template button.suplente {
+	border-color: #ff816b;
+	color: #FF0000aa;
+}
+.alinear-template button.suplente:hover {
+	color: #fff;
+    background-color: #FF0000aa;
+    border-color: #FF0000aa;
+}

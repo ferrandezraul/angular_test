@@ -1,0 +1,44 @@
+<div *ngIf="jugador_resultados.length">
+  
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- Jornada Column -->
+      <ng-container matColumnDef="Jornada">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Jornada </th>
+        <td mat-cell *matCellDef="let row"> {{ row.resultado?.idJornada }} </td>
+      </ng-container>
+  
+      <!-- Marca Column -->
+      <ng-container matColumnDef="Marca">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Marca </th>
+        <td mat-cell *matCellDef="let row"> {{ row.resultado?.puntosMarca }} </td>
+      </ng-container>
+  
+      <!-- As Column -->
+      <ng-container matColumnDef="As">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> As </th>
+        <td mat-cell *matCellDef="let row"> {{ row.resultado?.puntosAs }} </td>
+      </ng-container>
+  
+      <!-- Equipo Column -->
+      <ng-container matColumnDef="AsyMarca">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> As y Marca </th>
+        <td mat-cell *matCellDef="let row"> {{ row.puntosCalculados }} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+
+  <button mat-button (click)="backClicked()">Volver</button>
+  
+</div>
+
+<div class="row justify-content-center mt-5" [hidden]="jugador_resultados.length">
+  <mat-spinner></mat-spinner><h4>Cargando . . . </h4>
+</div>
