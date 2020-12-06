@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
 
@@ -8,43 +9,39 @@ import { AuthenticationService } from '../service/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  modal_resultado = ""
-  username = ''
-  password = ''
-  invalidLogin = false
+
+  errorMessage: string;
+  form: FormGroup;
 
   constructor(private router: Router,
-    private loginservice: AuthenticationService) { }
+    private loginservice: AuthenticationService,
+    private fb: FormBuilder ) { }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
-  checkLogin(content) {
-    (this.loginservice.authenticate(this.username, this.password).subscribe(
-      data => {
-        if (data["error"] != null) {
-          this.invalidLogin = true
-          this.modal_resultado = "Login incorrecto."
-          this.loginservice.logOut()
-          //this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
+  onSubmit() {
+    let username = this.form.get('username').value;
+    let password = this.form.get('password').value;
+
+    this.loginservice.authenticate(username, password)
+      .subscribe( (response) => {
+        console.log('Response to loginService is ', response);
+
+        if (response["error"] != null) {
+          this.errorMessage = "No se pudo hacer login";
         } else {
-          this.router.navigate([''])
-          this.invalidLogin = false
+          this.router.navigate(['']);      
         }
       },
-      error => {
-        this.invalidLogin = true
-        if (error["status"] == 403) {
-          this.modal_resultado = "Acceso denegado."
-          this.loginservice.logOut()
-        } else {
-          this.modal_resultado = "Error desconocido!"
-        }
-        //this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
-      }
-    )
-    );
-
+      err => {
+        this.errorMessage = err;
+        console.log('Error in LoginComponent', err);
+      })
   }
 
 }

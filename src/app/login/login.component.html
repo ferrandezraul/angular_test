@@ -1,39 +1,35 @@
-<ng-template #content let-modal> 
-    <div class="modal-header justify-content-center"> 
-        <h4 class="modal-title" 
-            id="modal-basic-title"> 
-            {{modal_resultado}} 
-        </h4>
-    </div>
-    <div class="modal-footer justify-content-center"> 
-        <button type="button" 
-            class="btn btn-outline-dark" 
-            (click)="modal.close('Save click')"> 
-            Cerrar 
-        </button> 
-    </div> 
-</ng-template>
+<mat-card>
+  <mat-card-content>
 
-<div class="container">
-    <div class="row justify-content-center mt-5">
-      <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-      <div class="col-lg-6">
-        <div class="p-2">
-          <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">Identifíquese</h1>
-          </div>
-          <form class="user">
-            <div class="form-group">
-              <input type="text" class="form-control form-control-user" name="username" placeholder="Su nombre de usuario" [(ngModel)]="username">
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control form-control-user" name="password" placeholder="Su contraseña" [(ngModel)]="password">
-            </div>
-            <button (click)=checkLogin(content) class="btn btn-primary btn-user btn-block">
-              Login
-            </button>
-          </form>
-        </div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <h2>Log In</h2>
+          <mat-form-field>
+              <input matInput type="text" formControlName="username" placeholder="Username" required>
+              <mat-error>
+                  Please provide a valid username
+              </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+              <input matInput type="password" formControlName="password" placeholder="Password" required>
+              <mat-error>
+                  Please provide a valid password
+              </mat-error>
+          </mat-form-field>
+          
+          <button mat-raised-button color="primary" type="submit">Login</button>
+      </form>
+<!--
+      <div fxFlex *ngIf="errorMessage">
+          <mat-card>
+              <mat-card-title>
+                  Error
+              </mat-card-title>
+              <mat-card-subtitle>
+                  Error received: {{ errorMessage }}
+              </mat-card-subtitle>
+          </mat-card>
       </div>
-    </div>
-</div>
+-->
+  </mat-card-content>
+</mat-card>
