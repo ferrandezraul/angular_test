@@ -1,3 +1,5 @@
+import { MatTableDataSource } from '@angular/material/table';
+
 // resultado de un jugador una jornada
 export class Resultado {
     jornada: string;
@@ -43,3 +45,19 @@ export class ResultadoJugador {
     golesEncajados: number;
 }
 
+export interface Plantilla {
+    nombre: string;
+    creditos: number;
+    jugadores: Jugador[] | MatTableDataSource<Jugador>;
+}
+
+export interface Jugador {
+    demarcacion: string;
+    id: number;
+    idDemarcacion: number;
+    idEquipoFb: number;
+    nombreEquipo: string
+    nombreJugador: string
+    price: number
+    url: string
+}

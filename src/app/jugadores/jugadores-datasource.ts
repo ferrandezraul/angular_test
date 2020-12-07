@@ -6,7 +6,7 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 import { JugadoresService } from './jugadores.service';
 
 export interface JugadorLFP {
-    demarcacion: string;
+  demarcacion: string;
 	equipoFb: string;
 	puntosTotal: number;
 	puntosMarca: number;

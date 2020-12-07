@@ -30,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSortModule } from '@angular/material/sort';
 import { PlayersComponent } from './players/players.component';
+import { PlantillaComponent } from './plantilla/plantilla.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { PlayersComponent } from './players/players.component';
     NormasComponent,
     JornadaComponent,
     PlayersComponent,
+    PlantillaComponent,
   ],
   imports: [
     AppRoutingModule,
