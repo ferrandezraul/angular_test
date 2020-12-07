@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChildren, QueryList, ViewChild } from '@angular/core';
 import { PlantillasService } from './plantillas.service';
 import { Jugador, Plantilla } from '../shared/shared';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -18,22 +18,16 @@ import { MatSort } from '@angular/material/sort';
   ],
 })
 export class PlantillasComponent {
-  plantillas2: Plantilla[] = [];
-  plantillas = [];
+  plantillas: Plantilla[] = [];
   errorMessage: string;
-  demarcaciones = ['Todos', 'Portero', 'Defensa', 'Medio', 'Delantero']
-  headers_jugadores = ['Equipo Fantasbeka', 'Demarcación', 'Nombre', 'Equipo', 'Precio'];
 
   columnsToDisplay = ['nombre', 'creditos', 'jugadores'];
   innerDisplayedColumns = ['nombreJugador', 'demarcacion', 'nombreEquipo', 'price'];
   expandedElement: Plantilla | null;
 
-  displayedColumns: string[] = ['nombre',
-                                'creditos',
-                                'jugadores'];
-
   dataSource = new MatTableDataSource<Plantilla>();
 
+  @ViewChild('outerSort', { static: true }) sort: MatSort;
   @ViewChildren('innerTables') innerTables: QueryList<MatTable<Jugador>>;
   @ViewChildren('innerSort') innerSort: QueryList<MatSort>;
 
@@ -43,21 +37,15 @@ export class PlantillasComponent {
   }
 
   async init(){
-    this.plantillasService.getPlantillasAsync().then((plantillas) => {
-      console.log("Plantillas ", plantillas);
-      for (const [key, value] of Object.entries(plantillas)) {
-        this.plantillas.push({"nombre": key, "jugadores": value["plantilla"], "creditos": value["creditos"]})
-      }
-    });
 
     this.plantillasService.getPlantillasAsync().then((data) => {
       console.log("Plantillas ", data);
       for (const [key, value] of Object.entries(data)) {
-        this.plantillas2.push( {"nombre": key, "jugadores": new MatTableDataSource(value["plantilla"]), "creditos": value["creditos"]})
+        this.plantillas.push( {"nombre": key, "jugadores": new MatTableDataSource(value["plantilla"]), "creditos": value["creditos"]})
       }
-      console.log("Plantillas 2 ", this.plantillas2);
 
-      this.dataSource.data = this.plantillas2;
+      this.dataSource.data = this.plantillas;
+      this.dataSource.sort = this.sort;
     });
   }
 

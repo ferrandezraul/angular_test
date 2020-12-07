@@ -5,30 +5,30 @@
     <!-- Column nombre -->
     <ng-container matColumnDef="nombre">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
-      <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
+      <td mat-cell *matCellDef="let plantilla">{{plantilla.nombre}}</td>
     </ng-container>
 
     <!-- Column creditos -->
     <ng-container matColumnDef="creditos">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Creditos</th>
-      <td mat-cell *matCellDef="let row">{{row.creditos}}</td>
+      <td mat-cell *matCellDef="let plantilla">{{plantilla.creditos}}</td>
     </ng-container>
 
     <!-- Column jugadores -->
     <ng-container matColumnDef="jugadores">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Jugadores</th>
-      <td mat-cell *matCellDef="let row">{{row.jugadores.data.length}}</td>
+      <td mat-cell *matCellDef="let plantilla">{{plantilla.jugadores.data.length}}</td>
     </ng-container>
 
     <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
     <ng-container matColumnDef="expandedDetail">
-      <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-        <div class="example-element-detail" *ngIf="element.jugadores?.data.length" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+      <td mat-cell *matCellDef="let plantilla" [attr.colspan]="columnsToDisplay.length">
+        <div class="example-element-detail" *ngIf="plantilla.jugadores?.data.length" [@detailExpand]="plantilla == expandedElement ? 'expanded' : 'collapsed'">
           <div class="inner-table" *ngIf="expandedElement">
             <mat-form-field>
               <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
             </mat-form-field>
-            <table #innerTables mat-table #innerSort="matSort" [dataSource]="element.jugadores" matSort>
+            <table #innerTables mat-table #innerSort="matSort" [dataSource]="plantilla.jugadores" matSort>
               <ng-container matColumnDef="{{innerColumn}}" *ngFor="let innerColumn of innerDisplayedColumns">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> {{innerColumn}} </th>
                 <td mat-cell *matCellDef="let element"> {{element[innerColumn]}} </td>
