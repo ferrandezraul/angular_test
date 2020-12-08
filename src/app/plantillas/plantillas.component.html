@@ -22,7 +22,7 @@
 
     <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
     <ng-container matColumnDef="expandedDetail">
-      <td mat-cell *matCellDef="let plantilla" [attr.colspan]="columnsToDisplay.length">
+      <td mat-cell *matCellDef="let plantilla" [attr.colspan]="columnsAttributes.length">
         <div class="example-element-detail" *ngIf="plantilla.jugadores?.data.length" [@detailExpand]="plantilla == expandedElement ? 'expanded' : 'collapsed'">
           <div class="inner-table" *ngIf="expandedElement">
             <mat-form-field>
@@ -41,8 +41,8 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let plantilla; columns: columnsToDisplay;" [class.example-element-row]="plantilla.jugadores?.data.length"
+    <tr mat-header-row *matHeaderRowDef="columnsAttributes"></tr>
+    <tr mat-row *matRowDef="let plantilla; columns: columnsAttributes;" [class.example-element-row]="plantilla.jugadores?.data.length"
     [class.example-expanded-row]="expandedElement === plantilla" (click)="toggleRow(plantilla)">
     </tr>
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>

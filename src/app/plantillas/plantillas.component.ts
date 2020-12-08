@@ -22,6 +22,7 @@ export class PlantillasComponent {
   errorMessage: string;
 
   columnsToDisplay = ['nombre', 'creditos', 'jugadores'];
+  columnsAttributes = ['nombre', 'creditos', 'jugadores'];
   innerColumnsAttributes = ['nombreJugador', 'demarcacion', 'nombreEquipo', 'price'];
   innerColumnsDisplayed = ['Jugador', 'Demarcacion', 'Equipo', 'Precio'];
   expandedElement: Plantilla | null;
@@ -29,8 +30,8 @@ export class PlantillasComponent {
   dataSource = new MatTableDataSource<Plantilla>();
 
   @ViewChild('outerSort', { static: true }) sort: MatSort;
-  @ViewChildren('innerTables') innerTables: QueryList<MatTable<Jugador>>;
   @ViewChildren('innerSort') innerSort: QueryList<MatSort>;
+  @ViewChildren('innerTables') innerTables: QueryList<MatTable<Jugador>>;
 
   constructor(private plantillasService: PlantillasService,
     private cd: ChangeDetectorRef ) {
