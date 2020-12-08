@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { JornadaJugador } from '../shared/shared';
+import { JornadaJugador } from '../../shared/shared';
 import { JugadorService } from './jugador.service';
 import { ActivatedRoute } from "@angular/router";
 import { Location } from '@angular/common';

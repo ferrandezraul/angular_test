@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Resultado } from '../shared/shared';
+import { Resultado } from '../../shared/shared';
 import { Observable } from 'rxjs';
 import { AlinearComponent } from './alinear.component';
 

@@ -4,15 +4,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PlantillasComponent } from './plantillas/plantillas.component';
-import { JugadoresComponent } from './jugadores/jugadores.component';
-import { AlinearComponent } from './alinear/alinear.component';
+import { PlantillasComponent } from './components/plantillas/plantillas.component';
+import { JugadoresComponent } from './components/jugadores/jugadores.component';
+import { AlinearComponent } from './components/alinear/alinear.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { LoginComponent } from './login/login.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { JugadorComponent } from './jugador/jugador.component';
-import { NormasComponent } from './normas/normas.component';
-import { JornadaComponent } from './jornada/jornada.component';
+import { LoginComponent } from './components/login/login.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { JugadorComponent } from './components/jugador/jugador.component';
+import { NormasComponent } from './components/normas/normas.component';
+import { JornadaComponent } from './components/jornada/jornada.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './service/auth-interceptor';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,8 +30,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSortModule } from '@angular/material/sort';
-import { PlayersComponent } from './players/players.component';
-import { PlantillaComponent } from './plantilla/plantilla.component';
 
 @NgModule({
   declarations: [
@@ -44,8 +42,6 @@ import { PlantillaComponent } from './plantilla/plantilla.component';
     JugadorComponent,
     NormasComponent,
     JornadaComponent,
-    PlayersComponent,
-    PlantillaComponent,
   ],
   imports: [
     AppRoutingModule,

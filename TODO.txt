@@ -1,4 +1,4 @@
-- Move components to components folder
+- Move existing services in components folder to a new service (ApiService) in service folder
 - Toolbar
 - Order table jugadores
 - Review login and auth service

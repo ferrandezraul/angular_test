@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PlantillasComponent } from './plantillas/plantillas.component';
-import { JugadoresComponent } from './jugadores/jugadores.component';
-import { AlinearComponent } from './alinear/alinear.component';
-import { LoginComponent } from './login/login.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { JugadorComponent } from './jugador/jugador.component';
-import { NormasComponent } from './normas/normas.component';
-import { JornadaComponent } from './jornada/jornada.component';
+import { PlantillasComponent } from './components/plantillas/plantillas.component';
+import { JugadoresComponent } from './components/jugadores/jugadores.component';
+import { AlinearComponent } from './components/alinear/alinear.component';
+import { LoginComponent } from './components/login/login.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { JugadorComponent } from './components/jugador/jugador.component';
+import { NormasComponent } from './components/normas/normas.component';
+import { JornadaComponent } from './components/jornada/jornada.component';
 
 
 const routes: Routes = [

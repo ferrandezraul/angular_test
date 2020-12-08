@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChildren, QueryList, ViewChild } from '@angular/core';
 import { PlantillasService } from './plantillas.service';
-import { Jugador, Plantilla } from '../shared/shared';
+import { Jugador, Plantilla } from '../../shared/shared';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatSort } from '@angular/material/sort';
