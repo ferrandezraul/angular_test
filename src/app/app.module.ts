@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { PlantillasComponent } from './plantillas/plantillas.component';
 import { JugadoresComponent } from './jugadores/jugadores.component';
 import { AlinearComponent } from './alinear/alinear.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { JugadorComponent } from './jugador/jugador.component';
@@ -50,6 +51,7 @@ import { PlantillaComponent } from './plantilla/plantilla.component';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     FormsModule,
     HttpClientModule,
     MatButtonModule,

@@ -42,16 +42,18 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" [class.example-element-row]="element.jugadores?.data.length"
-    [class.example-expanded-row]="expandedElement === element" (click)="toggleRow(element)">
+    <tr mat-row *matRowDef="let plantilla; columns: columnsToDisplay;" [class.example-element-row]="plantilla.jugadores?.data.length"
+    [class.example-expanded-row]="expandedElement === plantilla" (click)="toggleRow(plantilla)">
     </tr>
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
   </table>
 
 </div>
 
-<div class="row justify-content-center mt-5" [hidden]="plantillas.length">
-  <mat-spinner></mat-spinner><h4>Cargando . . . </h4>
+<div [hidden]="plantillas.length">
+  <div fxLayoutAlign="center center">
+    <mat-spinner></mat-spinner><h4>Cargando . . . </h4>
+  </div>
 </div>
 
 
