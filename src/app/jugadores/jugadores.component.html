@@ -97,8 +97,10 @@
 
 </div>
 
-<div class="row justify-content-center mt-5" [hidden]="dataSource?.data.length">
-  <mat-spinner></mat-spinner><h4>Cargando . . . </h4>
+<div [hidden]="dataSource?.data.length">
+  <div fxLayoutAlign="center center">
+    <mat-spinner></mat-spinner><h4>Cargando . . . </h4>
+  </div>
 </div>
 
 
