@@ -1,5 +1,4 @@
 - Move existing services in components folder to a new service (ApiService) in service folder
-- Toolbar
 - Order table jugadores
 - Review login and auth service
 - Store token in localStorage to avoid having to log in every time

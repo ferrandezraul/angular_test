@@ -1,4 +1,4 @@
-import { Component , OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -11,8 +11,4 @@ export class AppComponent {
   nombre_equipo_fb: String = String();
 
   constructor(){}
-
-  ngOnInit(){
-    this.nombre_equipo_fb = sessionStorage.getItem('equipoFb'); 
-  }
 }

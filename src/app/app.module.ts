@@ -30,6 +30,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSortModule } from '@angular/material/sort';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatSortModule } from '@angular/material/sort';
     JugadorComponent,
     NormasComponent,
     JornadaComponent,
+    ToolbarComponent,
   ],
   imports: [
     AppRoutingModule,
