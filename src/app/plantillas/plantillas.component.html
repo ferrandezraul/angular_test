@@ -29,12 +29,12 @@
               <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
             </mat-form-field>
             <table #innerTables mat-table #innerSort="matSort" [dataSource]="plantilla.jugadores" matSort>
-              <ng-container matColumnDef="{{innerColumn}}" *ngFor="let innerColumn of innerDisplayedColumns">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{innerColumn}} </th>
-                <td mat-cell *matCellDef="let element"> {{element[innerColumn]}} </td>
+              <ng-container matColumnDef="{{innerColumn}}" *ngFor="let innerColumn of innerColumnsAttributes; let indice=index">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{innerColumnsDisplayed[indice]}} </th>
+                <td mat-cell *matCellDef="let jugador"> {{jugador[innerColumn]}} </td>
               </ng-container>
-              <tr mat-header-row *matHeaderRowDef="innerDisplayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: innerDisplayedColumns;"></tr>
+              <tr mat-header-row *matHeaderRowDef="innerColumnsAttributes"></tr>
+              <tr mat-row *matRowDef="let row; columns: innerColumnsAttributes;"></tr>
             </table>
           </div>
         </div>

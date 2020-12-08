@@ -22,7 +22,8 @@ export class PlantillasComponent {
   errorMessage: string;
 
   columnsToDisplay = ['nombre', 'creditos', 'jugadores'];
-  innerDisplayedColumns = ['nombreJugador', 'demarcacion', 'nombreEquipo', 'price'];
+  innerColumnsAttributes = ['nombreJugador', 'demarcacion', 'nombreEquipo', 'price'];
+  innerColumnsDisplayed = ['Jugador', 'Demarcacion', 'Equipo', 'Precio'];
   expandedElement: Plantilla | null;
 
   dataSource = new MatTableDataSource<Plantilla>();
