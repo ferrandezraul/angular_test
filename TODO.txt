@@ -1,0 +1,9 @@
+- Move components to components folder
+- Toolbar
+- Order table jugadores
+- Review login and auth service
+- Store token in localStorage to avoid having to log in every time
+- Create jornada view
+- Create alinear view
+- Style normas view
+
