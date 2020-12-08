@@ -14,10 +14,14 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
 
   constructor(private router: Router,
-    private loginservice: AuthenticationService,
-    private fb: FormBuilder ) { }
+              private authService: AuthenticationService,
+              private fb: FormBuilder ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    if (this.authService.isUserLoggedIn()) {
+      this.router.navigate(['/jugadores']);
+    }
+
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -28,9 +32,9 @@ export class LoginComponent implements OnInit {
     let username = this.form.get('username').value;
     let password = this.form.get('password').value;
 
-    this.loginservice.authenticate(username, password)
+    this.authService.authenticate(username, password)
       .subscribe( (response) => {
-        console.log('Response to loginService is ', response);
+        console.log('Response to Auth Service is ', response);
 
         if (response["error"] != null) {
           this.errorMessage = "No se pudo hacer login";

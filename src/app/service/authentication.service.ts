@@ -21,27 +21,27 @@ export class AuthenticationService {
 
   constructor(private httpClient:HttpClient) {}
 
-    authenticate(username, password) {
-      let params = new HttpParams();
-      params = params.append('user', username);
-      params = params.append('password', password);
+  authenticate(username, password) {
+    let params = new HttpParams();
+    params = params.append('user', username);
+    params = params.append('password', password);
 
-      return this.httpClient.get<Token>(`${this.apiURL}/user/login`, {params: params}).pipe(
-         map(
-           tokenData => {
-            sessionStorage.setItem('token', tokenData.token);
-            sessionStorage.setItem('idEquipoFb', tokenData.idEquipoFb);
-            sessionStorage.setItem('equipoFb', tokenData.equipoFb);
-            if (tokenData.equiposFb != null && tokenData.equiposLfp != null) {
-              sessionStorage.setItem('equiposFb', tokenData.equiposFb.join());
-              sessionStorage.setItem('equiposLfp', tokenData.equiposLfp.join());
-            }
-            return tokenData;
-           }
-         )
-  
-      );
-    }
+    return this.httpClient.get<Token>(`${this.apiURL}/user/login`, {params: params}).pipe(
+        map(
+          tokenData => {
+          sessionStorage.setItem('token', tokenData.token);
+          sessionStorage.setItem('idEquipoFb', tokenData.idEquipoFb);
+          sessionStorage.setItem('equipoFb', tokenData.equipoFb);
+          if (tokenData.equiposFb != null && tokenData.equiposLfp != null) {
+            sessionStorage.setItem('equiposFb', tokenData.equiposFb.join());
+            sessionStorage.setItem('equiposLfp', tokenData.equiposLfp.join());
+          }
+          return tokenData;
+          }
+        )
+
+    );
+  }
   
 
   isUserLoggedIn() {
