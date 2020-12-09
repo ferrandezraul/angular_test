@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { JugadorLFP } from '../components/jugadores/jugadores-datasource';
+import { JugadorLFP } from '../shared/shared';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  get(url: 'jugadores'): Observable<any> {
+  get(url: 'jugadores'): Observable<JugadorLFP[]> {
     let finalUrl = `${this.apiURL}/user/${url}`;
 
     console.log("Http get request to ", finalUrl);

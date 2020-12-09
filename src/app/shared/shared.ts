@@ -61,3 +61,20 @@ export interface Jugador {
     price: number
     url: string
 }
+
+export interface JugadorLFP {
+    demarcacion: string;
+    equipoFb: string;
+    puntosTotal: number;
+    puntosMarca: number;
+    puntosAs: number;
+    nombre: string;
+    puntosOtros: number;
+    url: string;
+    precio: number;
+    puntosGanados: number;
+    id: number;
+    puntosJugados: number;
+    puntosCalculados: number;
+    equipoLfp: string
+  }

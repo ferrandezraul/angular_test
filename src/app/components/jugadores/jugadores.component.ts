@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { JugadorLFP, JugadorLFPDataSource } from './jugadores-datasource';
+import { JugadorLFP } from '../../shared/shared';
 import { ApiService } from '../../service/api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
