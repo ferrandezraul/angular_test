@@ -8,4 +8,6 @@
 - Create jornada view
 - Create alinear view
 - Style normas view
+- Falta la vista resultados de jugador por jornada.
+
 

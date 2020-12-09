@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { JornadaJugador } from '../../shared/shared';
-import { JugadorService } from './jugador.service';
+import { ApiService } from '../../service/api.service';
 import { ActivatedRoute } from "@angular/router";
 import { Location } from '@angular/common';
 import { MatPaginator } from '@angular/material/paginator';
@@ -23,7 +23,9 @@ export class JugadorComponent implements OnInit {
   headers_resultados = ['Jornada', 'Marca', 'As', 'Media As y Marca', 'Jugado', 'Ganado', 'Otros', 'Total'];
   headers_sortings = ['resultado.idJornada', 'resultado.puntosMarca', 'resultado.puntosAs', 'puntosCalculados', 'jugado', 'resultadoPartido', 'otros', 'total'];
 
-  constructor(private jugadorService: JugadorService, private route: ActivatedRoute, private _location: Location) {
+  constructor(private apiService: ApiService, 
+              private route: ActivatedRoute, 
+              private _location: Location) {
     this.dataSource = new MatTableDataSource(this.jugador_resultados);
    }
   
@@ -38,7 +40,7 @@ export class JugadorComponent implements OnInit {
   }
 
   fill(jugadorId:string){
-    this.jugadorService.getResultados(jugadorId).subscribe( (response) => {
+    this.apiService.getResultadoByJugadorId(jugadorId).subscribe( (response) => {
       this.jugador_resultados = Object.values<JornadaJugador>(response[jugadorId]);
     });
   }

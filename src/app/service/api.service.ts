@@ -29,6 +29,14 @@ export class ApiService {
               .pipe(catchError(err => { return this.handleError(err) }));
   }
 
+  getResultadoByJugadorId(id: string): Observable<any> {
+    let finalUrl = `${this.apiURL}/user/jugador?jugadorId=${id}`;
+    console.log("Http get request to ", finalUrl);
+
+    return this.http.get<any>(finalUrl)
+              .pipe(catchError(err => { return this.handleError(err) }));
+  }
+
   private handleError(error: HttpErrorResponse | any): Observable<any>{
     let errMsg: string;
 
