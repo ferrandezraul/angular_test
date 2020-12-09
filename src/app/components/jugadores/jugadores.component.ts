@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { JugadorLFP, JugadorLFPDataSource } from './jugadores-datasource';
-import { JugadoresService } from './jugadores.service';
+import { ApiService } from '../../service/api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -17,10 +17,10 @@ export class JugadoresComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource = new MatTableDataSource<JugadorLFP>();
 
-  constructor(private jugService: JugadoresService) {}
+  constructor(private apiService: ApiService) {}
   
   ngOnInit(){
-    this.jugService.getJugadores().subscribe((jugadores) => {
+    this.apiService.get('jugadores').subscribe((jugadores) => {
       this.dataSource.data = jugadores;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
