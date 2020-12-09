@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { JugadorLFP } from '../shared/shared';
+import { JugadorLFP, Plantilla } from '../shared/shared';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,19 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  get(url: 'jugadores'): Observable<JugadorLFP[]> {
-    let finalUrl = `${this.apiURL}/user/${url}`;
-
+  getJugadores(): Observable<JugadorLFP[]> {
+    let finalUrl = `${this.apiURL}/user/jugadores`;
     console.log("Http get request to ", finalUrl);
 
     return this.http.get<JugadorLFP[]>(finalUrl)
+              .pipe(catchError(err => { return this.handleError(err) }));
+  }
+
+  getPlantillas(): Observable<Plantilla[]> {
+    let finalUrl = `${this.apiURL}/user/plantillas`;
+    console.log("Http get request to ", finalUrl);
+
+    return this.http.get<Plantilla[]>(finalUrl)
               .pipe(catchError(err => { return this.handleError(err) }));
   }
 

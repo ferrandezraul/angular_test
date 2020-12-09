@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChildren, QueryList, ViewChild } from '@angular/core';
-import { PlantillasService } from './plantillas.service';
+import { ApiService } from '../../service/api.service';
 import { Jugador, Plantilla } from '../../shared/shared';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -33,14 +33,14 @@ export class PlantillasComponent {
   @ViewChildren('innerSort') innerSort: QueryList<MatSort>;
   @ViewChildren('innerTables') innerTables: QueryList<MatTable<Jugador>>;
 
-  constructor(private plantillasService: PlantillasService,
+  constructor(private apiService: ApiService,
     private cd: ChangeDetectorRef ) {
     this.init();
   }
 
   async init(){
 
-    this.plantillasService.getPlantillasAsync().then((data) => {
+    this.apiService.getPlantillas().subscribe((data) => {
       console.log("Plantillas ", data);
       for (const [key, value] of Object.entries(data)) {
         this.plantillas.push( {"nombre": key, "jugadores": new MatTableDataSource(value["plantilla"]), "creditos": value["creditos"]})

@@ -20,7 +20,7 @@ export class JugadoresComponent implements AfterViewInit, OnInit {
   constructor(private apiService: ApiService) {}
   
   ngOnInit(){
-    this.apiService.get('jugadores').subscribe((jugadores) => {
+    this.apiService.getJugadores().subscribe((jugadores) => {
       this.dataSource.data = jugadores;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
