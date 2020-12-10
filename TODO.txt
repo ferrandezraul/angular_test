@@ -1,4 +1,6 @@
-- Refactorizar el authService y crear el ApiService.
+- Acabar el ApiService (falta AlinearService y JornadaService).
+- Crear dialogo que confirma alineacion enviada correctamente.
+- Refactorizar el authService 
 - Esconder el icono de equipo si no hay un usuario logeado, y mostrar opcion Login. 
   Esconder icono login si usuario entrado y mostrar icono logout.
 - Move existing services in components folder to a new service (ApiService) in service folder
@@ -9,5 +11,8 @@
 - Create alinear view
 - Style normas view
 - Falta la vista resultados de jugador por jornada.
+
+- Bug: la primera vez que hago login, no muestra el nombre de usuario en el toolbar porque no hay una subscripcion a un cambio ...
+  si hago login y refresco la pagina, si muestra el nombre.
 
 

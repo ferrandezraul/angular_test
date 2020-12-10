@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AlinearService } from './alinear.service';
 import { JornadaService } from '../jornada/jornada.service';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-plantillas',
@@ -16,10 +16,8 @@ export class AlinearComponent {
     nombres_jugadores = []
     selected_jugador: String[] = []
 
-  constructor(
-    private alinearService: AlinearService, 
-    private jorService: JornadaService) { 
-
+  constructor(private apiService: ApiService,
+              private jorService: JornadaService) { 
     for(var i =1; i <= 12; i++) {
       this.selected_jugador.push("Jugador " + i)
     }
@@ -28,25 +26,24 @@ export class AlinearComponent {
 
   async init() {
     //{"id":"1", "name":"jornada 1"}
-    this.alinearService.getJornadaAlineable().then((response) => {
+    this.apiService.getJornadaAlineable().subscribe((response) => {
       this.nombre_jornada = response.name
       this.id_jornada = response.id
 
       if (this.id_jornada != null) {
-        this.alinearService.getPlantilla().then((response: any[]) => {
+        this.apiService.getPlantillaFromCurrentUser().subscribe((response: any[]) => {
           for (var i = 0; i < response.length; i++) {
             var j = response[i]
             this.plantilla[j["id"]] = j["nombreJugador"]
             this.nombres_jugadores.push(j["nombreJugador"])
           }
-          this.alinearService.getAlineacion(this.id_jornada)
-          .then((ultima_alineacion: any[]) => {
+
+          this.apiService.getAlineacionByJornada(this.id_jornada).subscribe((ultima_alineacion: any[]) => {
             if (ultima_alineacion.length == 12) {
               this.cargarAlineacion(ultima_alineacion)
             } else {
               this.jorService.getUltimaJornadaTerminada().then((response) => {
-                this.alinearService.getAlineacion(response.id)
-                .then((ultima_alineacion_ter: any[]) => {
+                this.apiService.getAlineacionByJornada(response.id).subscribe((ultima_alineacion_ter: any[]) => {
                     this.cargarAlineacion(ultima_alineacion_ter)
                 });
               });
@@ -65,16 +62,7 @@ export class AlinearComponent {
     for(var i =0; i < 12; i++) {
       alineacion.push(this.getIdJugadorByValue(this.selected_jugador[i]))
     }
-    this.alinearService.sendAlineacion(alineacion, this.id_jornada, this)
-  }
-
-  open(result, error) {
-    if (error != null) {
-      this.modal_resultado = error
-    } else {
-      this.modal_resultado = "Alineacion correcta."
-    }
-    //this.modalService.open(this.content, {ariaLabelledBy: 'modal-basic-title'})
+    this.apiService.sendAlineacion(alineacion, this.id_jornada);
   }
 
   select_jugador(jugador: string, i: number) {

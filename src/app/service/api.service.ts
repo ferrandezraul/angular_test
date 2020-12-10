@@ -37,6 +37,49 @@ export class ApiService {
               .pipe(catchError(err => { return this.handleError(err) }));
   }
 
+  getPlantillaFromEquipoFbWithId( id :string): Observable<any> {
+    let finalUrl = `${this.apiURL}/user/equipo?equipoId=${id}`;
+    console.log("Http get request to ", finalUrl);
+
+    return this.http.get<any>(finalUrl)
+              .pipe(catchError(err => { return this.handleError(err) }));
+  }
+
+  getPlantillaFromCurrentUser(): Observable<any> {
+    let id = sessionStorage.getItem('idEquipoFb');
+    return this.getPlantillaFromEquipoFbWithId(id);
+  }
+
+  getAlineacionByJornada(jornada: string): Observable<any> {
+    let id = sessionStorage.getItem('idEquipoFb');
+    let finalUrl = `${this.apiURL}/user/alineacion?equipoId=${id}&jornadaId=${jornada}`;
+    console.log("Http get request to ", finalUrl);
+
+    return this.http.get<any>(finalUrl)
+              .pipe(catchError(err => { return this.handleError(err) }));
+  }
+
+  getJornadaAlineable(): Observable<any> {
+    let finalUrl = `${this.apiURL}/user/jornadas/alineable`;
+    console.log("Http get request to ", finalUrl);
+
+    return this.http.get<any>(finalUrl)
+              .pipe(catchError(err => { return this.handleError(err) }));
+  }
+
+  sendAlineacion(alineacion: String[], idJornada: string):  Observable<any>  {
+    var body = new Object();
+    body["alineacion"] = alineacion;
+    body["jornadaId"] = idJornada;
+    body["equipoId"] = sessionStorage.getItem('idEquipoFb');
+
+    let finalUrl = `${this.apiURL}/user/alineacion`;
+    console.log("Http post request to ", finalUrl);
+    console.log("with body ", body);
+
+    return this.http.post<any>(finalUrl, body);
+  }
+
   private handleError(error: HttpErrorResponse | any): Observable<any>{
     let errMsg: string;
 
