@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JornadaService } from './jornada.service';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-jornada',
@@ -12,33 +12,32 @@ export class JornadaComponent {
   id_jornada: String = null
   resultados = []
 
-  constructor(private jorService: JornadaService) { 
+  constructor(private apiService: ApiService ) { 
   	this.init();
   }
 
   async init() {
-    this.jorService.getJornadaJugandose().then((response) => {
-      this.nombre_jornada = response.name;
-      this.id_jornada = response.id;
+    this.apiService.getJornadaJugandose().subscribe((response) => {
+      if (response.length == 0) {
+        this.apiService.getUltimaJornadaTerminada().subscribe((response) => {
+          this.nombre_jornada = response.name;
+          this.id_jornada = response.id;
+  
+          this.apiService.getResultadosByJornada(this.id_jornada).subscribe((_resultados) => {
+            this.resultados = _resultados["resultado"];
+          });
+        });
 
-      // console.log("JORNADA: " + this.id_jornada)
-
-      if (this.id_jornada == null) {
-	    this.jorService.getUltimaJornadaTerminada().then((response) => {
-	      this.nombre_jornada = response.name;
-	      this.id_jornada = response.id;
-
-	      this.jorService.getResultadosAsync(this.id_jornada).then((_resultados) => {
-	        this.resultados = _resultados;
-	        // console.log(_resultados[0])
-	      });
-	    });
-	  } else {
-	    this.jorService.getResultadosAsync(this.id_jornada).then((_resultados) => {
-	      this.resultados = _resultados;
-	      // console.log(_resultados[0])
-	    });
+        return;
       }
+
+      this.nombre_jornada = response[0].name;
+      this.id_jornada = response[0].id;
+	    
+	    this.apiService.getResultadosByJornada(this.id_jornada).subscribe((_resultados) => {
+	      this.resultados = _resultados["resultado"];
+	    });
+
     });
   }
 

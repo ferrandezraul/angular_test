@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { JugadorLFP, Plantilla } from '../shared/shared';
 
 @Injectable({
@@ -78,6 +78,36 @@ export class ApiService {
     console.log("with body ", body);
 
     return this.http.post<any>(finalUrl, body);
+  }
+
+  getResultadosByJornada(jornadaId: String): Observable<any>{
+    let finalUrl = `${this.apiURL}/user/resultados?jornadaId=${jornadaId}`;
+    console.log("Http get request to ", finalUrl);
+
+    return this.http.get<any>(finalUrl)
+              .pipe(catchError(err => { return this.handleError(err) }));
+  }
+
+  getJornadaJugandose(): Observable<any> {
+    let finalUrl = `${this.apiURL}/user/jornadas/jugandose`;
+    console.log("Http get request to ", finalUrl);
+
+    return this.http.get<any>(finalUrl)
+              .pipe(catchError(err => { return this.handleError(err) }));
+  }
+
+  getJornadasTerminadas(): Observable<any> {
+    let finalUrl = `${this.apiURL}/user/jornadas/terminada`;
+    console.log("Http get request to ", finalUrl);
+
+    return this.http.get<any>(finalUrl)
+              .pipe(catchError(err => { return this.handleError(err) }));
+  }
+
+  getUltimaJornadaTerminada(): Observable<any> {
+    return this.getJornadasTerminadas()
+              .pipe( map( res => res[0].json()), 
+                     catchError(err => { return this.handleError(err) }));
   }
 
   private handleError(error: HttpErrorResponse | any): Observable<any>{

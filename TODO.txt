@@ -1,4 +1,5 @@
-- Acabar el ApiService (falta AlinearService y JornadaService).
+- Test pipe and map as in getUltimaJornadaTerminada by using console.log and use it in other cases (see usage of apiService everywhere)
+
 - Crear dialogo que confirma alineacion enviada correctamente.
 - Refactorizar el authService 
 - Esconder el icono de equipo si no hay un usuario logeado, y mostrar opcion Login. 
