@@ -78,3 +78,55 @@ export interface JugadorLFP {
     puntosCalculados: number;
     equipoLfp: string
   }
+
+export interface PuntuacionJugador {
+    nombreJugador: string;
+    demarcacion: string;
+    resultado: ResultadoJugador;
+    puntosCalculados: number; 
+    resultadoPartido: number;
+    jugado: number;
+    otros: number;
+    total: number;
+    chapeco: boolean;
+    suplente: boolean;
+    estado: string;
+    iconoDemarcacion: string;
+    equipoLfp: string;
+}
+
+export interface ResultadoPartido {
+    equipoLocal: string;
+    equipoVisitante: string;
+    puntuacionLocal: PuntuacionJugador[];
+    puntuacionVisitante: PuntuacionJugador[];
+    puntosLocalesTotales: number;
+    puntosVisitantesTotales: number;
+    golesLocales: number;
+    golesVisitantes: number;
+    useSuplenteLocal: boolean;
+    useSuplenteVisitante: true;
+    extraLocal: number;
+    extraVisitante: number;
+    puntosLocMarcaTotales: number;
+    puntosLocAsTotales: number;
+    puntosLocCalculadosTotales: number;
+    puntosLocJugadoTotales: number;
+    puntosLocResultadoTotales: number;
+    puntosLocOtrosTotales: number;
+    puntosVisMarcaTotales: number;
+    puntosVisAsTotales: number;
+    puntosVisCalculadosTotales: number;
+    puntosVisJugadoTotales: number;
+    puntosVisResultadoTotales: number;
+    puntosVisOtrosTotales: number;
+}
+
+export interface Jornada {
+    id: number;
+    idCampeonato: number;
+    name: string;
+    jornadaLfp: number;
+    state: string;
+}
+  

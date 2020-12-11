@@ -45,7 +45,7 @@ export class AlinearComponent {
             this.cargarAlineacion(ultima_alineacion)
           } else {
             this.apiService.getUltimaJornadaTerminada().subscribe((response) => {
-              this.apiService.getAlineacionByJornada(response.id).subscribe((ultima_alineacion_ter: any[]) => {
+              this.apiService.getAlineacionByJornada(response.id.toString()).subscribe((ultima_alineacion_ter: any[]) => {
                   this.cargarAlineacion(ultima_alineacion_ter)
               });
             });

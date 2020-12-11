@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
+import { ResultadoPartido } from 'src/app/shared/shared';
 
 @Component({
   selector: 'app-jornada',
@@ -8,34 +9,36 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class JornadaComponent {
 
-  nombre_jornada: String = null
-  id_jornada: String = null
-  resultados = []
+  nombreJornada: String;
+  idJornada: number;
+  resultados: ResultadoPartido[] = [];
 
   constructor(private apiService: ApiService ) { 
   	this.init();
   }
 
   async init() {
-    this.apiService.getJornadaJugandose().subscribe((response) => {
-      if (response.length == 0) {
-        this.apiService.getUltimaJornadaTerminada().subscribe((response) => {
-          this.nombre_jornada = response.name;
-          this.id_jornada = response.id;
+    this.apiService.getJornadaJugandose().subscribe((jornadaJugandose) => {
+      if (jornadaJugandose.length == 0) {
+        this.apiService.getUltimaJornadaTerminada().subscribe((jornadaTerminada) => {
+          this.nombreJornada = jornadaTerminada.name;
+          this.idJornada = jornadaTerminada.id;
   
-          this.apiService.getResultadosByJornada(this.id_jornada).subscribe((_resultados) => {
-            this.resultados = _resultados["resultado"];
+          this.apiService.getResultadosByJornada(this.idJornada.toString()).subscribe((_resultados) => {
+            console.log("Resultado ultima jornada terminada es ", _resultados);
+            this.resultados = _resultados;
           });
         });
 
         return;
       }
 
-      this.nombre_jornada = response[0].name;
-      this.id_jornada = response[0].id;
+      this.nombreJornada = jornadaJugandose[0].name;
+      this.idJornada = jornadaJugandose[0].id;
 	    
-	    this.apiService.getResultadosByJornada(this.id_jornada).subscribe((_resultados) => {
-	      this.resultados = _resultados["resultado"];
+	    this.apiService.getResultadosByJornada(this.idJornada.toString()).subscribe((_resultados) => {
+        console.log("Resultado jornada jugandose es ", _resultados);
+	      this.resultados = _resultados;
 	    });
 
     });

@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { JugadorLFP, Plantilla } from '../shared/shared';
+import { Jornada, JugadorLFP, Plantilla, ResultadoPartido } from '../shared/shared';
 
 @Injectable({
   providedIn: 'root'
@@ -80,15 +80,15 @@ export class ApiService {
     return this.http.post<any>(finalUrl, body);
   }
 
-  getResultadosByJornada(jornadaId: String): Observable<any>{
+  getResultadosByJornada(jornadaId: String): Observable<ResultadoPartido[]>{
     let finalUrl = `${this.apiURL}/user/resultados?jornadaId=${jornadaId}`;
     console.log("Http get request to ", finalUrl);
 
     return this.http.get<any>(finalUrl)
-              .pipe(catchError(err => { return this.handleError(err) }));
+              .pipe(map( response => response["resultado"]), catchError(err => { return this.handleError(err) }));
   }
 
-  getJornadaJugandose(): Observable<any> {
+  getJornadaJugandose(): Observable<Jornada[]> {
     let finalUrl = `${this.apiURL}/user/jornadas/jugandose`;
     console.log("Http get request to ", finalUrl);
 
@@ -96,7 +96,7 @@ export class ApiService {
               .pipe(catchError(err => { return this.handleError(err) }));
   }
 
-  getJornadasTerminadas(): Observable<any> {
+  getJornadasTerminadas(): Observable<Jornada[]> {
     let finalUrl = `${this.apiURL}/user/jornadas/terminada`;
     console.log("Http get request to ", finalUrl);
 
@@ -104,9 +104,9 @@ export class ApiService {
               .pipe(catchError(err => { return this.handleError(err) }));
   }
 
-  getUltimaJornadaTerminada(): Observable<any> {
+  getUltimaJornadaTerminada(): Observable<Jornada> {
     return this.getJornadasTerminadas()
-              .pipe( map( res => res[0].json()), 
+              .pipe( map( jornadas => jornadas[0]), 
                      catchError(err => { return this.handleError(err) }));
   }
 
