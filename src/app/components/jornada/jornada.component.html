@@ -1,18 +1,40 @@
 <div *ngIf="resultados.length">
+  <h1 fxLayoutAlign="center">{{ nombreJornada | titlecase }}</h1>
+  <div *ngFor="let resultado of resultados; let indice=index">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <div fxLayout>
+          <mat-panel-title>
+            {{ resultado.equipoLocal }} <br> {{ resultado.equipoVisitante }}
+          </mat-panel-title>
+        </div>
+        <div fxLayout>
+          <mat-panel-description>
+            {{ resultado.golesLocales }} <br> {{ resultado.golesVisitantes }}
+          </mat-panel-description>
+        </div>
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+
+  </div>
+</div>
+
+<div *ngIf="resultados.length">
 
   <div class="container">
     <div>
       <div>
           <div class="jornada-template">
-              <h1>{{ nombreJornada }}</h1>
+              <h1>{{ nombreJornada  }}</h1>
               <!-- DataTales Example -->
               <div>
                   <div>
                     <h6>{{ resultados[0].equipoLocal }} - {{ resultados[0].equipoVisitante }}</h6>
                   </div>
                   <div>
-                      <div class="table-responsive table-equipo">
-                          <table class="table table-bordered" id="dataTable" cellspacing="0">
+                      <div>
+                          <table id="dataTable" cellspacing="0">
                             <thead>
                               <tr>
                                 <th>Jugador</th>
@@ -59,7 +81,7 @@
                             </tbody>
                           </table>
                       </div>
-                      <div class="table-responsive table-equipo">
+                      <div>
                           <table class="table table-bordered" id="dataTable" cellspacing="0">
                             <thead>
                               <tr>

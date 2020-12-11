@@ -1,4 +1,4 @@
-- Test pipe and map as in getUltimaJornadaTerminada by using console.log and use it in other cases (see usage of apiService everywhere)
+- Continue with Jornada view
 
 - Crear dialogo que confirma alineacion enviada correctamente.
 - Refactorizar el authService 

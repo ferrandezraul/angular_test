@@ -15,6 +15,7 @@ import { NormasComponent } from './components/normas/normas.component';
 import { JornadaComponent } from './components/jornada/jornada.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './service/auth-interceptor';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -54,6 +55,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     HttpClientModule,
     MatButtonModule,
     MatCardModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,

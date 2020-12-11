@@ -9,7 +9,7 @@ import { ResultadoPartido } from 'src/app/shared/shared';
 })
 export class JornadaComponent {
 
-  nombreJornada: String;
+  nombreJornada: string;
   idJornada: number;
   resultados: ResultadoPartido[] = [];
 
