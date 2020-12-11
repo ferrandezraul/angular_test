@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
 import { ResultadoPartido } from 'src/app/shared/shared';
 
@@ -13,11 +13,9 @@ export class JornadaComponent {
   idJornada: number;
   resultados: ResultadoPartido[] = [];
 
-  constructor(private apiService: ApiService ) { 
-  	this.init();
-  }
+  constructor(private apiService: ApiService ) {}
 
-  async init() {
+  ngOnInit(){
     this.apiService.getJornadaJugandose().subscribe((jornadaJugandose) => {
       if (jornadaJugandose.length == 0) {
         this.apiService.getUltimaJornadaTerminada().subscribe((jornadaTerminada) => {
