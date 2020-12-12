@@ -13,8 +13,8 @@ export class JornadaComponent {
   idJornada: number;
   resultados: ResultadoPartido[] = [];
   // columnsPuntuacionJugador = ['nombreJugador', 'demarcacion', 'resultado', 'puntosCalculados', 'resultadoPartido', 'jugado', 'otros', 'total', 'chapeco', 'suplente', 'estado', 'iconoDemarcacion', 'equipoLfp'];
-  columnsPuntuacionJugador = ['nombreJugador', 'resultado.puntosAs', 'resultado.puntosMarca'];
-  columnsPuntuacionJugadorDisplayed = ['Jugador', 'As', 'Marca'];
+  columnsPuntuacionJugador = ['nombreJugador', 'resultado.puntosAs', 'resultado.puntosMarca', 'puntosCalculados', 'jugado', 'resultadoPartido'];
+  columnsPuntuacionJugadorDisplayed = ['Jugador', 'As', 'Marca', 'FM', 'Jugado', 'Ganado'];
 
   constructor(private apiService: ApiService ) {}
 

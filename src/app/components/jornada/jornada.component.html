@@ -38,6 +38,27 @@
           <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocMarcaTotales}} </td>
         </ng-container>
 
+        <!-- Column FM -->
+        <ng-container matColumnDef="puntosCalculados">
+          <th mat-header-cell *matHeaderCellDef>FM</th>
+          <td mat-cell *matCellDef="let jugador"> {{jugador.puntosCalculados}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocCalculadosTotales}} </td>
+        </ng-container>
+
+        <!-- Column Jugado -->
+        <ng-container matColumnDef="jugado">
+          <th mat-header-cell *matHeaderCellDef>J</th>
+          <td mat-cell *matCellDef="let jugador"> {{jugador.jugado}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocJugadoTotales}} </td>
+        </ng-container>
+
+        <!-- Column Resultado Partido -->
+        <ng-container matColumnDef="resultadoPartido">
+          <th mat-header-cell *matHeaderCellDef>G</th>
+          <td mat-cell *matCellDef="let jugador"> {{jugador.resultadoPartido}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocResultadoTotales}} </td>
+        </ng-container>
+
         <!-- 
         <tr *ngFor="let puntosJug of resultados[0].puntuacionLocal; let i = index">
           <td class={{puntosJug.estado}}><i class={{puntosJug.iconoDemarcacion}} data-toggle="tooltip" data-html="true" title={{puntosJug.demarcacion}}></i> <a data-toggle="tooltip" data-html="true" data-placement="right" title={{puntosJug.equipoLfp}}>{{enfarloparJugador(puntosJug.nombreJugador)}}</a></td>
