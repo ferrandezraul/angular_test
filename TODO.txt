@@ -1,14 +1,13 @@
 - Continue with Jornada view
+- Hacer tablas jornada friendly mobile.
 
 - Crear dialogo que confirma alineacion enviada correctamente.
 - Refactorizar el authService 
 - Esconder el icono de equipo si no hay un usuario logeado, y mostrar opcion Login. 
   Esconder icono login si usuario entrado y mostrar icono logout.
-- Move existing services in components folder to a new service (ApiService) in service folder
 - Order table jugadores
 - Review login and auth service
 - Store token in localStorage to avoid having to log in every time
-- Create jornada view
 - Create alinear view
 - Style normas view
 - Falta la vista resultados de jugador por jornada.
