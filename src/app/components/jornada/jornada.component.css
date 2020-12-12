@@ -1,3 +1,19 @@
 .full-width-table {
     width: 100%;
   }
+
+  tr.mat-footer-row {
+    font-weight: bold;
+  }
+
+td.chapeco {
+	background-color: #FF000022;
+}
+
+td.suplente {
+	background-color: #0000FF22;
+}
+
+td.ha-jugado {
+	background-color: #00FF0022;
+}
