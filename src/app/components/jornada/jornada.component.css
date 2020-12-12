@@ -2,6 +2,11 @@ tr.mat-footer-row {
     font-weight: bold;
 }
 
+tr.footer-next-goal {
+    border-bottom: none;
+    font-weight: lighter;
+}
+
 td.chapeco {
 	background-color: #FF000022;
 }

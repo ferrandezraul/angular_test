@@ -73,10 +73,18 @@
             <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.total}} </td>
             <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocalesTotales}} </td>
           </ng-container>
+
+          <!-- Column/Footer Siguiente Gol a tantos puntos -->
+          <ng-container matColumnDef="nextGoal">
+            <td mat-footer-cell *matFooterCellDef colspan="8">
+              Siguiente gol se consigue con {{siguienteGol(resultado.puntosLocalesTotales)}} puntos
+            </td>
+          </ng-container>
   
           <tr mat-header-row *matHeaderRowDef="columnsPuntuacionJugador"></tr>
           <tr mat-row *matRowDef="let row; columns: columnsPuntuacionJugador;"></tr>
           <tr mat-footer-row *matFooterRowDef="columnsPuntuacionJugador"></tr>
+          <tr mat-footer-row *matFooterRowDef="['nextGoal']" class="footer-next-goal"></tr>
         </table>
 
         <mat-divider vertical></mat-divider>
@@ -137,10 +145,18 @@
             <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.total}} </td>
             <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisitantesTotales}} </td>
           </ng-container>
+
+          <!-- Column/Footer Siguiente Gol a tantos puntos -->
+          <ng-container matColumnDef="nextGoal">
+            <td mat-footer-cell *matFooterCellDef colspan="8">
+              Siguiente gol se consigue con {{siguienteGol(resultado.puntosVisitantesTotales)}} puntos
+            </td>
+          </ng-container>
   
           <tr mat-header-row *matHeaderRowDef="columnsPuntuacionJugador"></tr>
           <tr mat-row *matRowDef="let row; columns: columnsPuntuacionJugador;"></tr>
           <tr mat-footer-row *matFooterRowDef="columnsPuntuacionJugador"></tr>
+          <tr mat-footer-row *matFooterRowDef="['nextGoal']" class="footer-next-goal"></tr>
         </table>
       </div>
 

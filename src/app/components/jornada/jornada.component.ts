@@ -57,4 +57,37 @@ export class JornadaComponent {
     }
     return resultado;
   }
+
+  siguienteGol(puntos: number) {
+    if (puntos < 28 ) return 28;
+
+    if (puntos < 36 ) return 36;
+
+    if (puntos < 43 ){
+      return 43;
+    }
+
+    if (puntos < 49 ){
+      return 49;
+    }
+
+    if (puntos < 54 ){
+      return 54;
+    }
+
+    if (puntos < 58 ){
+      return 58;
+    }
+
+    if (puntos < 61 ){
+      return 61;
+    }
+
+    if (puntos < 64 ){
+      return 64;
+    }
+
+    return puntos + 1;
+  }
+
 }
