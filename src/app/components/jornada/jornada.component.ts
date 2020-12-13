@@ -72,9 +72,9 @@ export class JornadaComponent {
 
   getIconPosicion(demarcacion: string) {
     if (demarcacion == 'Portero') return 'sports_handball';
-    if (demarcacion == 'Defensa') return 'self_improvement';
-    if (demarcacion == 'Medio') return 'directions_walk';
-    if (demarcacion == 'Delantero') return 'directions_run';
+    if (demarcacion == 'Defensa') return 'directions_walk';
+    if (demarcacion == 'Medio') return 'directions_run';
+    if (demarcacion == 'Delantero') return 'self_improvement';
 
     return 'accessible_forward';
 
