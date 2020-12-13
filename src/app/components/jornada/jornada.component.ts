@@ -38,7 +38,6 @@ export class JornadaComponent {
       this.idJornada = jornadaJugandose[0].id;
 	    
 	    this.apiService.getResultadosByJornada(this.idJornada.toString()).subscribe((_resultados) => {
-        console.log("Resultado jornada jugandose es ", _resultados);
 	      this.resultados = _resultados;
 	    });
 
@@ -72,12 +71,13 @@ export class JornadaComponent {
   }
 
   getIconPosicion(demarcacion: string) {
-    if (demarcacion == 'Portero') return 'accessible_forward';
-    if (demarcacion == 'Defensa') return 'accessible_forward';
-    if (demarcacion == 'Medio') return 'accessible_forward';
-    if (demarcacion == 'Delantero') return 'accessible_forward';
+    if (demarcacion == 'Portero') return 'sports_handball';
+    if (demarcacion == 'Defensa') return 'self_improvement';
+    if (demarcacion == 'Medio') return 'directions_walk';
+    if (demarcacion == 'Delantero') return 'directions_run';
 
     return 'accessible_forward';
+
   }
 
 }
