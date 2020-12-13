@@ -1,12 +1,3 @@
-tr.mat-footer-row {
-    font-weight: bold;
-}
-
-tr.footer-next-goal {
-    border-bottom: none;
-    font-weight: lighter;
-}
-
 td.chapeco {
 	background-color: #FF000022;
 }
@@ -18,3 +9,17 @@ td.suplente {
 td.ha-jugado {
 	background-color: #00FF0022;
 }
+
+tr.mat-footer-row {
+    font-weight: bold;
+}
+
+tr.next-goal {
+    border-bottom: none;
+    font-weight: lighter;
+}
+
+td.next-goal {
+    text-align: right;
+    border-bottom: none;
+  }
