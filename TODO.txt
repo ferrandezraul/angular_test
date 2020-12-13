@@ -1,4 +1,4 @@
-- Continue with Jornada view
+- Continue with Jornada view (Anyadir tooltip equipo LFP)
 - Hacer tablas jornada friendly mobile.
 
 - Crear dialogo que confirma alineacion enviada correctamente.

@@ -13,8 +13,8 @@ export class JornadaComponent {
   idJornada: number;
   resultados: ResultadoPartido[] = [];
   // columnsPuntuacionJugador = ['nombreJugador', 'demarcacion', 'resultado', 'puntosCalculados', 'resultadoPartido', 'jugado', 'otros', 'total', 'chapeco', 'suplente', 'estado', 'iconoDemarcacion', 'equipoLfp'];
-  columnsPuntuacionJugador = ['nombreJugador', 'resultado.puntosAs', 'resultado.puntosMarca', 'puntosCalculados', 'jugado', 'resultadoPartido', 'otros', 'total'];
-  columnsPuntuacionJugadorDisplayed = ['Jugador', 'As', 'Marca', 'FM', 'Jugado', 'Ganado', 'Otros'];
+  columnsPuntuacionJugador = ['demarcacion', 'nombreJugador', 'resultado.puntosAs', 'resultado.puntosMarca', 'puntosCalculados', 'jugado', 'resultadoPartido', 'otros', 'total'];
+  columnsPuntuacionJugadorDisplayed = ['demarcacion', 'Jugador', 'As', 'Marca', 'FM', 'Jugado', 'Ganado', 'Otros'];
 
   constructor(private apiService: ApiService ) {}
 
@@ -60,34 +60,24 @@ export class JornadaComponent {
 
   siguienteGol(puntos: number) {
     if (puntos < 28 ) return 28;
-
     if (puntos < 36 ) return 36;
-
-    if (puntos < 43 ){
-      return 43;
-    }
-
-    if (puntos < 49 ){
-      return 49;
-    }
-
-    if (puntos < 54 ){
-      return 54;
-    }
-
-    if (puntos < 58 ){
-      return 58;
-    }
-
-    if (puntos < 61 ){
-      return 61;
-    }
-
-    if (puntos < 64 ){
-      return 64;
-    }
+    if (puntos < 43 ) return 43;
+    if (puntos < 49 ) return 49;
+    if (puntos < 54 ) return 54;
+    if (puntos < 58 ) return 58;
+    if (puntos < 61 ) return 61;
+    if (puntos < 64 ) return 64;
 
     return puntos + 1;
+  }
+
+  getIconPosicion(demarcacion: string) {
+    if (demarcacion == 'Portero') return 'accessible_forward';
+    if (demarcacion == 'Defensa') return 'accessible_forward';
+    if (demarcacion == 'Medio') return 'accessible_forward';
+    if (demarcacion == 'Delantero') return 'accessible_forward';
+
+    return 'accessible_forward';
   }
 
 }
