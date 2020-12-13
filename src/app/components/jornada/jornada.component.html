@@ -1,210 +1,212 @@
 <div *ngIf="resultados.length">
   <h1 fxLayoutAlign="center">{{ nombreJornada | titlecase }}</h1>
   <div *ngFor="let resultado of resultados; let indice=index">
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <div fxLayout>
-          <mat-panel-title>
-            {{ resultado.equipoLocal }} <br> {{ resultado.equipoVisitante }}
-          </mat-panel-title>
-        </div>
-        <div fxLayout>
-          <mat-panel-description>
-            {{ resultado.golesLocales }} <br> {{ resultado.golesVisitantes }}
-          </mat-panel-description>
-        </div>
-      </mat-expansion-panel-header>
 
-      <div fxLayout="row wrap" fxLayoutAlign="flex-start">
-
-        <table fxFlex mat-table [dataSource]="resultado.puntuacionLocal">
-          <!-- Column icono posicion Jugador -->
-          <ng-container matColumnDef="demarcacion">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}} title={{jugador.demarcacion}}> 
-              <mat-icon inline="true"> {{getIconPosicion(jugador.demarcacion)}}</mat-icon>
-            </td>
-            <td mat-footer-cell *matFooterCellDef></td>
-          </ng-container>
-
-          <!-- Column Nombre Jugador -->
-          <ng-container matColumnDef="nombreJugador">
-            <th mat-header-cell *matHeaderCellDef>Jugador</th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}} title={{jugador.equipoLfp}}> {{enfarloparJugador(jugador.nombreJugador)}} </td>
-            <td mat-footer-cell *matFooterCellDef>Total</td>
-          </ng-container>
-        
-          <!-- Column Puntos As -->
-          <ng-container matColumnDef="resultado.puntosAs">
-            <th mat-header-cell *matHeaderCellDef> As </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.resultado.puntosAs}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocAsTotales}} </td>
-          </ng-container>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <div fxLayout>
+            <mat-panel-title>
+              {{ resultado.equipoLocal }} <br> {{ resultado.equipoVisitante }}
+            </mat-panel-title>
+          </div>
+          <div fxLayout>
+            <mat-panel-description>
+              {{ resultado.golesLocales }} <br> {{ resultado.golesVisitantes }}
+            </mat-panel-description>
+          </div>
+        </mat-expansion-panel-header>
   
-          <!-- Column Puntos Marca -->
-          <ng-container matColumnDef="resultado.puntosMarca">
-            <th mat-header-cell *matHeaderCellDef> Marca </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.resultado.puntosMarca}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocMarcaTotales}} </td>
-          </ng-container>
+        <div fxLayout="row wrap" fxLayoutAlign="flex-start">
   
-          <!-- Column FM -->
-          <ng-container matColumnDef="puntosCalculados">
-            <th mat-header-cell *matHeaderCellDef> FM </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.puntosCalculados}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocCalculadosTotales}} </td>
-          </ng-container>
+          <table fxFlex mat-table [dataSource]="resultado.puntuacionLocal">
+            <!-- Column icono posicion Jugador -->
+            <ng-container matColumnDef="demarcacion">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}} title={{jugador.demarcacion}}> 
+                <mat-icon inline="true"> {{getIconPosicion(jugador.demarcacion)}}</mat-icon>
+              </td>
+              <td mat-footer-cell *matFooterCellDef></td>
+            </ng-container>
   
-          <!-- Column Jugado -->
-          <ng-container matColumnDef="jugado">
-            <th mat-header-cell *matHeaderCellDef> Jugado </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.jugado}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocJugadoTotales}} </td>
-          </ng-container>
-  
-          <!-- Column Resultado Partido -->
-          <ng-container matColumnDef="resultadoPartido">
-            <th mat-header-cell *matHeaderCellDef> Ganado </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.resultadoPartido}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocResultadoTotales}} </td>
-          </ng-container>
-  
-          <!-- Column Resultado Otros -->
-          <ng-container matColumnDef="otros">
-            <th mat-header-cell *matHeaderCellDef> Otros </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.otros}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocOtrosTotales}} </td>
-          </ng-container>
-  
-          <!-- Column Resultado Partido -->
-          <ng-container matColumnDef="total">
-            <th mat-header-cell *matHeaderCellDef> Total </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.total}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocalesTotales}} </td>
-          </ng-container>
-
-          <!-- Column Goles -->
-          <ng-container matColumnDef="goles">
-            <th mat-header-cell *matHeaderCellDef>  </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}>
-              <mat-icon title="Gol" inline="true" *ngIf="jugador.resultado.golesMarcados > 0">sports_soccer</mat-icon> 
-              <mat-icon title="Gol" inline="true" *ngIf="jugador.resultado.golesMarcados > 1">sports_soccer</mat-icon> 
-              <mat-icon title="Gol" inline="true" *ngIf="jugador.resultado.golesMarcados > 2">sports_soccer</mat-icon> 
-            </td>
-            <td mat-footer-cell *matFooterCellDef> </td>
-          </ng-container>
-
-          <!-- Column/Footer Siguiente Gol a tantos puntos -->
-          <ng-container matColumnDef="nextGoal">
-            <td mat-footer-cell *matFooterCellDef class="next-goal" colspan="9">
-              Siguiente gol con {{siguienteGol(resultado.puntosLocalesTotales)}} puntos
-            </td>
-          </ng-container>
-  
-          <tr mat-header-row *matHeaderRowDef="columnsPuntuacionJugador"></tr>
-          <tr mat-row *matRowDef="let row; columns: columnsPuntuacionJugador;"></tr>
-          <tr mat-footer-row *matFooterRowDef="columnsPuntuacionJugador"></tr>
-          <tr mat-footer-row *matFooterRowDef="['nextGoal']" class="next-goal"></tr>
-        </table>
-
-        <mat-divider vertical></mat-divider>
-
-        <table fxFlex mat-table [dataSource]="resultado.puntuacionVisitante">
-          <!-- Column icono posicion Jugador -->
-          <ng-container matColumnDef="demarcacion">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}} title={{jugador.demarcacion}}> 
-              <mat-icon inline="true"> {{getIconPosicion(jugador.demarcacion)}}</mat-icon>
-            </td>
-            <td mat-footer-cell *matFooterCellDef></td>
-          </ng-container>
+            <!-- Column Nombre Jugador -->
+            <ng-container matColumnDef="nombreJugador">
+              <th mat-header-cell *matHeaderCellDef>Jugador</th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}} title={{jugador.equipoLfp}}> {{enfarloparJugador(jugador.nombreJugador)}} </td>
+              <td mat-footer-cell *matFooterCellDef>Total</td>
+            </ng-container>
           
-          <!-- Column Nombre Jugador -->
-          <ng-container matColumnDef="nombreJugador">
-            <th mat-header-cell *matHeaderCellDef>Jugador</th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}} title={{jugador.equipoLfp}}> {{enfarloparJugador(jugador.nombreJugador)}} </td>
-            <td mat-footer-cell *matFooterCellDef>Total</td>
-          </ng-container>
-        
-          <!-- Column Puntos As -->
-          <ng-container matColumnDef="resultado.puntosAs">
-            <th mat-header-cell *matHeaderCellDef> As </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.resultado.puntosAs}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisAsTotales}} </td>
-          </ng-container>
+            <!-- Column Puntos As -->
+            <ng-container matColumnDef="resultado.puntosAs">
+              <th mat-header-cell *matHeaderCellDef> As </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.resultado.puntosAs}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocAsTotales}} </td>
+            </ng-container>
+    
+            <!-- Column Puntos Marca -->
+            <ng-container matColumnDef="resultado.puntosMarca">
+              <th mat-header-cell *matHeaderCellDef> Marca </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.resultado.puntosMarca}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocMarcaTotales}} </td>
+            </ng-container>
+    
+            <!-- Column FM -->
+            <ng-container matColumnDef="puntosCalculados">
+              <th mat-header-cell *matHeaderCellDef> FM </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.puntosCalculados}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocCalculadosTotales}} </td>
+            </ng-container>
+    
+            <!-- Column Jugado -->
+            <ng-container matColumnDef="jugado">
+              <th mat-header-cell *matHeaderCellDef> Jugado </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.jugado}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocJugadoTotales}} </td>
+            </ng-container>
+    
+            <!-- Column Resultado Partido -->
+            <ng-container matColumnDef="resultadoPartido">
+              <th mat-header-cell *matHeaderCellDef> Ganado </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.resultadoPartido}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocResultadoTotales}} </td>
+            </ng-container>
+    
+            <!-- Column Resultado Otros -->
+            <ng-container matColumnDef="otros">
+              <th mat-header-cell *matHeaderCellDef> Otros </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.otros}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocOtrosTotales}} </td>
+            </ng-container>
+    
+            <!-- Column Resultado Partido -->
+            <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef> Total </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.total}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocalesTotales}} </td>
+            </ng-container>
   
-          <!-- Column Puntos Marca -->
-          <ng-container matColumnDef="resultado.puntosMarca">
-            <th mat-header-cell *matHeaderCellDef> Marca </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.resultado.puntosMarca}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisMarcaTotales}} </td>
-          </ng-container>
+            <!-- Column Goles -->
+            <ng-container matColumnDef="goles">
+              <th mat-header-cell *matHeaderCellDef>  </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}>
+                <mat-icon title="Gol" inline="true" *ngIf="jugador.resultado.golesMarcados > 0">sports_soccer</mat-icon> 
+                <mat-icon title="Gol" inline="true" *ngIf="jugador.resultado.golesMarcados > 1">sports_soccer</mat-icon> 
+                <mat-icon title="Gol" inline="true" *ngIf="jugador.resultado.golesMarcados > 2">sports_soccer</mat-icon> 
+              </td>
+              <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
   
-          <!-- Column FM -->
-          <ng-container matColumnDef="puntosCalculados">
-            <th mat-header-cell *matHeaderCellDef> FM </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.puntosCalculados}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisCalculadosTotales}} </td>
-          </ng-container>
+            <!-- Column/Footer Siguiente Gol a tantos puntos -->
+            <ng-container matColumnDef="nextGoal">
+              <td mat-footer-cell *matFooterCellDef class="next-goal" colspan="9">
+                Siguiente gol con {{siguienteGol(resultado.puntosLocalesTotales)}} puntos
+              </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="columnsPuntuacionJugador"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsPuntuacionJugador;"></tr>
+            <tr mat-footer-row *matFooterRowDef="columnsPuntuacionJugador"></tr>
+            <tr mat-footer-row *matFooterRowDef="['nextGoal']" class="next-goal"></tr>
+          </table>
   
-          <!-- Column Jugado -->
-          <ng-container matColumnDef="jugado">
-            <th mat-header-cell *matHeaderCellDef> Jugado </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.jugado}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisJugadoTotales}} </td>
-          </ng-container>
+          <mat-divider vertical></mat-divider>
   
-          <!-- Column Resultado Partido -->
-          <ng-container matColumnDef="resultadoPartido">
-            <th mat-header-cell *matHeaderCellDef> Ganado </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.resultadoPartido}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisResultadoTotales}} </td>
-          </ng-container>
+          <table fxFlex mat-table [dataSource]="resultado.puntuacionVisitante">
+            <!-- Column icono posicion Jugador -->
+            <ng-container matColumnDef="demarcacion">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}} title={{jugador.demarcacion}}> 
+                <mat-icon inline="true"> {{getIconPosicion(jugador.demarcacion)}}</mat-icon>
+              </td>
+              <td mat-footer-cell *matFooterCellDef></td>
+            </ng-container>
+            
+            <!-- Column Nombre Jugador -->
+            <ng-container matColumnDef="nombreJugador">
+              <th mat-header-cell *matHeaderCellDef>Jugador</th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}} title={{jugador.equipoLfp}}> {{enfarloparJugador(jugador.nombreJugador)}} </td>
+              <td mat-footer-cell *matFooterCellDef>Total</td>
+            </ng-container>
+          
+            <!-- Column Puntos As -->
+            <ng-container matColumnDef="resultado.puntosAs">
+              <th mat-header-cell *matHeaderCellDef> As </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.resultado.puntosAs}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisAsTotales}} </td>
+            </ng-container>
+    
+            <!-- Column Puntos Marca -->
+            <ng-container matColumnDef="resultado.puntosMarca">
+              <th mat-header-cell *matHeaderCellDef> Marca </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.resultado.puntosMarca}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisMarcaTotales}} </td>
+            </ng-container>
+    
+            <!-- Column FM -->
+            <ng-container matColumnDef="puntosCalculados">
+              <th mat-header-cell *matHeaderCellDef> FM </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.puntosCalculados}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisCalculadosTotales}} </td>
+            </ng-container>
+    
+            <!-- Column Jugado -->
+            <ng-container matColumnDef="jugado">
+              <th mat-header-cell *matHeaderCellDef> Jugado </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.jugado}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisJugadoTotales}} </td>
+            </ng-container>
+    
+            <!-- Column Resultado Partido -->
+            <ng-container matColumnDef="resultadoPartido">
+              <th mat-header-cell *matHeaderCellDef> Ganado </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.resultadoPartido}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisResultadoTotales}} </td>
+            </ng-container>
+    
+            <!-- Column Resultado Otros -->
+            <ng-container matColumnDef="otros">
+              <th mat-header-cell *matHeaderCellDef> Otros </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.otros}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisOtrosTotales}} </td>
+            </ng-container>
+    
+            <!-- Column Resultado Partido -->
+            <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef> Total </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.total}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisitantesTotales}} </td>
+            </ng-container>
   
-          <!-- Column Resultado Otros -->
-          <ng-container matColumnDef="otros">
-            <th mat-header-cell *matHeaderCellDef> Otros </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.otros}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisOtrosTotales}} </td>
-          </ng-container>
+            <!-- Column Goles -->
+            <ng-container matColumnDef="goles">
+              <th mat-header-cell *matHeaderCellDef>  </th>
+              <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}>
+                <mat-icon title="Gol" inline="true" *ngIf="jugador.resultado.golesMarcados > 0">sports_soccer</mat-icon> 
+                <mat-icon title="Gol" inline="true" *ngIf="jugador.resultado.golesMarcados > 1">sports_soccer</mat-icon> 
+                <mat-icon title="Gol" inline="true" *ngIf="jugador.resultado.golesMarcados > 2">sports_soccer</mat-icon> 
+             </td>
+              <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
   
-          <!-- Column Resultado Partido -->
-          <ng-container matColumnDef="total">
-            <th mat-header-cell *matHeaderCellDef> Total </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}> {{jugador.total}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisitantesTotales}} </td>
-          </ng-container>
-
-          <!-- Column Goles -->
-          <ng-container matColumnDef="goles">
-            <th mat-header-cell *matHeaderCellDef>  </th>
-            <td mat-cell *matCellDef="let jugador" class={{jugador.estado}}>
-              <mat-icon title="Gol" inline="true" *ngIf="jugador.resultado.golesMarcados > 0">sports_soccer</mat-icon> 
-              <mat-icon title="Gol" inline="true" *ngIf="jugador.resultado.golesMarcados > 1">sports_soccer</mat-icon> 
-              <mat-icon title="Gol" inline="true" *ngIf="jugador.resultado.golesMarcados > 2">sports_soccer</mat-icon> 
-           </td>
-            <td mat-footer-cell *matFooterCellDef> </td>
-          </ng-container>
-
-          <!-- Column/Footer Siguiente Gol a tantos puntos -->
-          <ng-container matColumnDef="nextGoal">
-            <td mat-footer-cell *matFooterCellDef class="next-goal" colspan="9">
-              Siguiente gol con {{siguienteGol(resultado.puntosVisitantesTotales)}} puntos
-            </td>
-          </ng-container>
+            <!-- Column/Footer Siguiente Gol a tantos puntos -->
+            <ng-container matColumnDef="nextGoal">
+              <td mat-footer-cell *matFooterCellDef class="next-goal" colspan="9">
+                Siguiente gol con {{siguienteGol(resultado.puntosVisitantesTotales)}} puntos
+              </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="columnsPuntuacionJugador"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsPuntuacionJugador;"></tr>
+            <tr mat-footer-row *matFooterRowDef="columnsPuntuacionJugador"></tr>
+            <tr mat-footer-row *matFooterRowDef="['nextGoal']" class="next-goal"></tr>
+          </table>
+        </div>
   
-          <tr mat-header-row *matHeaderRowDef="columnsPuntuacionJugador"></tr>
-          <tr mat-row *matRowDef="let row; columns: columnsPuntuacionJugador;"></tr>
-          <tr mat-footer-row *matFooterRowDef="columnsPuntuacionJugador"></tr>
-          <tr mat-footer-row *matFooterRowDef="['nextGoal']" class="next-goal"></tr>
-        </table>
-      </div>
-
-    </mat-expansion-panel>
+      </mat-expansion-panel>
+    </mat-accordion>
 
   </div>
 </div>
-
 
 
 <div [hidden]="resultados.length">
