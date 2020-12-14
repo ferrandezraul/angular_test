@@ -1,13 +1,13 @@
-- Continue with Jornada view (Anyadir tooltip equipo LFP)
-- Hacer tablas jornada friendly mobile.
-
-- Crear dialogo que confirma alineacion enviada correctamente.
-- Refactorizar el authService 
-- Esconder el icono de equipo si no hay un usuario logeado, y mostrar opcion Login. 
-  Esconder icono login si usuario entrado y mostrar icono logout.
 - Order table jugadores
+- Refactorizar el authService 
 - Review login and auth service
 - Store token in localStorage to avoid having to log in every time
+
+- Crear dialogo que confirma alineacion enviada correctamente.
+
+- Esconder el icono de equipo si no hay un usuario logeado, y mostrar opcion Login. 
+  Esconder icono login si usuario entrado y mostrar icono logout.
+
 - Create alinear view
 - Style normas view
 - Falta la vista resultados de jugador por jornada.

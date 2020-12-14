@@ -34,12 +34,10 @@ export class PlantillasComponent {
   @ViewChildren('innerTables') innerTables: QueryList<MatTable<Jugador>>;
 
   constructor(private apiService: ApiService,
-    private cd: ChangeDetectorRef ) {
-    this.init();
+              private cd: ChangeDetectorRef ) {
   }
 
-  async init(){
-
+  ngOnInit(){
     this.apiService.getPlantillas().subscribe((data) => {
       console.log("Plantillas ", data);
       for (const [key, value] of Object.entries(data)) {
