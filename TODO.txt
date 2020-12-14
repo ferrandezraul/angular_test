@@ -15,5 +15,3 @@
 - Bug: la primera vez que hago login, no muestra el nombre de usuario en el toolbar porque no hay una subscripcion a un cambio ...
   si hago login y refresco la pagina, si muestra el nombre.
 
-- Poner foto login julio alberto y el pelusa
-

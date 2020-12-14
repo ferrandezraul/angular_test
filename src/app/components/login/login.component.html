@@ -1,35 +1,45 @@
-<mat-card>
-  <mat-card-content>
 
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <h2>Log In</h2>
-          <mat-form-field>
-              <input matInput type="text" formControlName="username" placeholder="Username" required>
-              <mat-error>
-                  Please provide a valid username
-              </mat-error>
-          </mat-form-field>
+        <div fxLayout="row">
+            <div fxFlex="25">
+            </div>
+            <div fxHide fxShow.gt-sm fxFlex="30">
+                <img class="login-image" src="assets/images/login.jpeg">
+            </div>
 
-          <mat-form-field>
-              <input matInput type="password" formControlName="password" placeholder="Password" required>
-              <mat-error>
-                  Please provide a valid password
-              </mat-error>
-          </mat-form-field>
-          
-          <button mat-raised-button color="primary" type="submit">Login</button>
-      </form>
-<!--
-      <div fxFlex *ngIf="errorMessage">
-          <mat-card>
-              <mat-card-title>
-                  Error
-              </mat-card-title>
-              <mat-card-subtitle>
-                  Error received: {{ errorMessage }}
-              </mat-card-subtitle>
-          </mat-card>
-      </div>
--->
-  </mat-card-content>
-</mat-card>
+            <div fxFlex fxLayoutAlign="left left">
+
+                <form fxFlex [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div fxLayout="row" fxLayoutAlign="center">
+                        <h2>Log In</h2>
+                    </div>
+                    
+                    <div fxLayout="row">
+                        <mat-form-field fxFlex>
+                            <input matInput type="text" formControlName="username" placeholder="Username" required>
+                            <mat-error>
+                                Please provide a valid username
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div fxLayout="row">
+                        <mat-form-field fxFlex>
+                            <input matInput type="password" formControlName="password" placeholder="Password" required>
+                            <mat-error>
+                                Please provide a valid password
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                
+                    <div fxLayout="row" fxLayoutAlign="center">
+                        <button mat-raised-button color="primary" type="submit">Login</button>
+                    </div>
+                    
+                </form>
+                
+            </div>
+
+            <div fxFlex="25">
+            </div>
+
+        </div>
