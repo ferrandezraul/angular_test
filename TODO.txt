@@ -1,4 +1,4 @@
-- Order table jugadores
+- Order table jugadores (Probar eliminando primera columna con numero para tener lista con atributos de JuagdorLFP)
 - Refactorizar el authService 
 - Review login and auth service
 - Store token in localStorage to avoid having to log in every time

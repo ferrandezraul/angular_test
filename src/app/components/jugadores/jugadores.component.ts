@@ -3,7 +3,7 @@ import { JugadorLFP } from '../../shared/shared';
 import { ApiService } from '../../service/api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-plantillas',
