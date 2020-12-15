@@ -8,7 +8,7 @@ import { ResultadoPartido } from 'src/app/shared/shared';
   styleUrls: ['./jornada.component.css']
 })
 export class JornadaComponent {
-
+  errorMessage: string;
   nombreJornada: string;
   idJornada: number;
   resultados: ResultadoPartido[] = [];
@@ -39,7 +39,10 @@ export class JornadaComponent {
 	    
 	    this.apiService.getResultadosByJornada(this.idJornada.toString()).subscribe((_resultados) => {
 	      this.resultados = _resultados;
-	    });
+      },
+      err => {
+        this.errorMessage = err;
+      });
 
     });
   }
