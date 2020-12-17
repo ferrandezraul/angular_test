@@ -1,9 +1,13 @@
-- Order table jugadores (Probar eliminando primera columna con numero para tener lista con atributos de JuagdorLFP)
+Test jugador view (NO JUGADORES)
+
+- Anyadir filtro por equipo, demarcacion, fantasclub table jugadores
 - Refactorizar el authService 
 - Review login and auth service
 - Store token in localStorage to avoid having to log in every time
 
 - Crear dialogo que confirma alineacion enviada correctamente.
+
+- Crear clasificacion por puntos en jornada view (especie de moral en jornada)
 
 - Esconder el icono de equipo si no hay un usuario logeado, y mostrar opcion Login. 
   Esconder icono login si usuario entrado y mostrar icono logout.

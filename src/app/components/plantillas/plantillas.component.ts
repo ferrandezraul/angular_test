@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChildren, QueryList, ViewChild } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChildren, QueryList, ViewChild, AfterViewInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { Jugador, Plantilla } from '../../shared/shared';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -17,7 +17,7 @@ import { MatSort } from '@angular/material/sort';
     ]),
   ],
 })
-export class PlantillasComponent {
+export class PlantillasComponent implements AfterViewInit, OnInit {
   plantillas: Plantilla[] = [];
   errorMessage: string;
 
@@ -29,7 +29,7 @@ export class PlantillasComponent {
 
   dataSource = new MatTableDataSource<Plantilla>();
 
-  @ViewChild('outerSort', { static: true }) sort: MatSort;
+  @ViewChild('outerSort') sort: MatSort;
   @ViewChildren('innerSort') innerSort: QueryList<MatSort>;
   @ViewChildren('innerTables') innerTables: QueryList<MatTable<Jugador>>;
 
@@ -45,8 +45,11 @@ export class PlantillasComponent {
       }
 
       this.dataSource.data = this.plantillas;
-      this.dataSource.sort = this.sort;
     });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   toggleRow(plantilla: Plantilla) {

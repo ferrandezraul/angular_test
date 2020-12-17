@@ -69,6 +69,7 @@ export class JornadaComponent {
     if (puntos < 58 ) return 58;
     if (puntos < 61 ) return 61;
     if (puntos < 64 ) return 64;
+    if (puntos < 67 ) return 67;
 
     return puntos + 1;
   }

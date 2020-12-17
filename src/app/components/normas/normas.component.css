@@ -1,0 +1,9 @@
+.app-content {
+    padding: 2.5%;
+    position: absolute;
+}
+
+.normas-img {
+  width: 100%; 
+  object-fit: cover;
+}
