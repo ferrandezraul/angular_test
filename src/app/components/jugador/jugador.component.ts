@@ -13,8 +13,8 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class JugadorComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['Num', 'Nombre', 'Posicion', 'Equipo'];
   dataSource = new MatTableDataSource<JornadaJugador>();
+  name: string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -33,7 +33,9 @@ export class JugadorComponent implements AfterViewInit, OnInit {
     this.apiService.getResultadoByJugadorId(jugadorId).subscribe( (response) => {
       this.jugador_resultados = Object.values<JornadaJugador>(response[jugadorId]);
       this.dataSource.data = this.jugador_resultados;
-      console.log("Resultados jugador", this.jugador_resultados)
+      this.name = this.jugador_resultados[0].nombreJugador;
+      console.log("Resultados de ", this.name);
+      console.log("Resultados jugador", this.jugador_resultados);
     });
   }
 

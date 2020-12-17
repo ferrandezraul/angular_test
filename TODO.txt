@@ -1,5 +1,3 @@
-Test jugador view (NO JUGADORES)
-
 - Anyadir filtro por equipo, demarcacion, fantasclub table jugadores
 - Refactorizar el authService 
 - Review login and auth service
@@ -9,12 +7,12 @@ Test jugador view (NO JUGADORES)
 
 - Crear clasificacion por puntos en jornada view (especie de moral en jornada)
 
+- Anyadir footer, aqui se paga por insultar.
+
 - Esconder el icono de equipo si no hay un usuario logeado, y mostrar opcion Login. 
   Esconder icono login si usuario entrado y mostrar icono logout.
 
 - Create alinear view
-- Style normas view
-- Falta la vista resultados de jugador por jornada.
 
 - Bug: la primera vez que hago login, no muestra el nombre de usuario en el toolbar porque no hay una subscripcion a un cambio ...
   si hago login y refresco la pagina, si muestra el nombre.

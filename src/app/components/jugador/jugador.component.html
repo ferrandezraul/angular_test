@@ -1,65 +1,69 @@
 <div [hidden]="!dataSource?.data.length">
-  
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
-  
-      <!-- Jornada Column -->
-      <ng-container matColumnDef="resultado.idJornada">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Jornada </th>
-        <td mat-cell *matCellDef="let row"> {{ row.resultado?.idJornada }} </td>
-      </ng-container>
-  
-      <!-- Marca Column -->
-      <ng-container matColumnDef="resultado.puntosMarca">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Marca </th>
-        <td mat-cell *matCellDef="let row"> {{ row.resultado?.puntosMarca }} </td>
-      </ng-container>
-  
-      <!-- As Column -->
-      <ng-container matColumnDef="resultado.puntosAs">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> As </th>
-        <td mat-cell *matCellDef="let row"> {{ row.resultado?.puntosAs }} </td>
-      </ng-container>
-  
-      <!--  Column -->
-      <ng-container matColumnDef="puntosCalculados">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> As y Marca </th>
-        <td mat-cell *matCellDef="let row"> {{ row.puntosCalculados }} </td>
-      </ng-container>
 
-      <!--  Column -->
-      <ng-container matColumnDef="jugado">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Jugado </th>
-        <td mat-cell *matCellDef="let row"> {{ row.jugado }} </td>
-      </ng-container>
-
-      <!--  Column -->
-      <ng-container matColumnDef="otros">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Otros </th>
-        <td mat-cell *matCellDef="let row"> {{ row.otros }} </td>
-      </ng-container>
-
-      <!--  Column -->
-      <ng-container matColumnDef="resultadoPartido">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ganado </th>
-        <td mat-cell *matCellDef="let row"> {{ row.resultadoPartido }} </td>
-      </ng-container>
-
-      <!--  Column -->
-      <ng-container matColumnDef="total">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
-        <td mat-cell *matCellDef="let row"> {{ row.total }} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="headers_sortings"></tr>
-      <tr mat-row *matRowDef="let row; columns: headers_sortings;"></tr>
-  
-    </table>
-  
-    <mat-paginator [pageSizeOptions]="[25, 50]"></mat-paginator>
+  <div fxLayoutAlign="center center">
+    <h1 class="top-header mat-h1 mat-typography">Resultados por jornada de {{name}}</h1>
   </div>
+  
+  <table mat-table [dataSource]="dataSource" matSort class="full-width-table">
 
-  <button mat-button (click)="backClicked()">Volver</button>
+    <!-- Jornada Column -->
+    <ng-container matColumnDef="resultado.idJornada">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Jornada </th>
+      <td mat-cell *matCellDef="let row"> {{ row.resultado?.idJornada }} </td>
+    </ng-container>
+
+    <!-- Marca Column -->
+    <ng-container matColumnDef="resultado.puntosMarca">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Marca </th>
+      <td mat-cell *matCellDef="let row"> {{ row.resultado?.puntosMarca }} </td>
+    </ng-container>
+
+    <!-- As Column -->
+    <ng-container matColumnDef="resultado.puntosAs">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> As </th>
+      <td mat-cell *matCellDef="let row"> {{ row.resultado?.puntosAs }} </td>
+    </ng-container>
+
+    <!--  Column -->
+    <ng-container matColumnDef="puntosCalculados">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> As y Marca </th>
+      <td mat-cell *matCellDef="let row"> {{ row.puntosCalculados }} </td>
+    </ng-container>
+
+    <!--  Column -->
+    <ng-container matColumnDef="jugado">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Jugado </th>
+      <td mat-cell *matCellDef="let row"> {{ row.jugado }} </td>
+    </ng-container>
+
+    <!--  Column -->
+    <ng-container matColumnDef="otros">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Otros </th>
+      <td mat-cell *matCellDef="let row"> {{ row.otros }} </td>
+    </ng-container>
+
+    <!--  Column -->
+    <ng-container matColumnDef="resultadoPartido">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ganado </th>
+      <td mat-cell *matCellDef="let row"> {{ row.resultadoPartido }} </td>
+    </ng-container>
+
+    <!--  Column -->
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
+      <td mat-cell *matCellDef="let row"> {{ row.total }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="headers_sortings"></tr>
+    <tr mat-row *matRowDef="let row; columns: headers_sortings;"></tr>
+
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[25, 50]"></mat-paginator>
+
+  <div fxLayoutAlign="center center">
+    <button mat-raised-button (click)="backClicked()" color="primary">Volver</button>
+  </div>
   
 </div>
 
