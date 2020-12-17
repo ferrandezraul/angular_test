@@ -11,10 +11,10 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './jugador.component.html',
   styleUrls: ['./jugador.component.css']
 })
-export class JugadorComponent implements OnInit {
+export class JugadorComponent implements AfterViewInit, OnInit {
 
   displayedColumns: string[] = ['Num', 'Nombre', 'Posicion', 'Equipo'];
-  dataSource: MatTableDataSource<JornadaJugador>;
+  dataSource = new MatTableDataSource<JornadaJugador>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -25,24 +25,21 @@ export class JugadorComponent implements OnInit {
 
   constructor(private apiService: ApiService, 
               private route: ActivatedRoute, 
-              private _location: Location) {
-    this.dataSource = new MatTableDataSource(this.jugador_resultados);
-   }
+              private _location: Location) {}
   
   ngOnInit() {
     var jugadorId = this.route.snapshot.paramMap.get('id');
-    this.fill(jugadorId);
+
+    this.apiService.getResultadoByJugadorId(jugadorId).subscribe( (response) => {
+      this.jugador_resultados = Object.values<JornadaJugador>(response[jugadorId]);
+      this.dataSource.data = this.jugador_resultados;
+      console.log("Resultados jugador", this.jugador_resultados)
+    });
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }
-
-  fill(jugadorId:string){
-    this.apiService.getResultadoByJugadorId(jugadorId).subscribe( (response) => {
-      this.jugador_resultados = Object.values<JornadaJugador>(response[jugadorId]);
-    });
   }
 
   backClicked() {
