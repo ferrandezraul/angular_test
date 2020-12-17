@@ -8,8 +8,8 @@ import { ResultadoPartido } from 'src/app/shared/shared';
   styleUrls: ['./jornada.component.css']
 })
 export class JornadaComponent {
-  errorMessage: string;
-  nombreJornada: string;
+  errorMessage: string = "";
+  nombreJornada: string = "";
   idJornada: number;
   resultados: ResultadoPartido[] = [];
   // columnsPuntuacionJugador = ['nombreJugador', 'demarcacion', 'resultado', 'puntosCalculados', 'resultadoPartido', 'jugado', 'otros', 'total', 'chapeco', 'suplente', 'estado', 'iconoDemarcacion', 'equipoLfp'];
