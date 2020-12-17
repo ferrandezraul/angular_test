@@ -1,5 +1,30 @@
 <div [hidden]="!dataSource?.data.length">
 
+  <div class="row">
+    <form novalidate [formGroup]="optionsSelectedForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Equipo Fantasbeka</mat-label>
+        <mat-select formControlName="equipoSelected" (selectionChange)="onEquipoFantasbekaSelected($event.value)">
+          <mat-option *ngFor="let equipo of nombre_equipos_fb" [value]="equipo">{{equipo}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Demarcacion</mat-label>
+        <mat-select formControlName="demarcacionSelected" (selectionChange)="onDemarcacionSelected($event.value)">
+          <mat-option *ngFor="let demarcacion of demarcaciones" [value]="demarcacion">{{demarcacion}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Equipo LFP</mat-label>
+        <mat-select formControlName="equipoLfpSelected" (selectionChange)="onEquipoLfpSelected($event.value)">
+          <mat-option *ngFor="let equipoLfp of nombre_equipos_lfp" [value]="equipoLfp">{{equipoLfp}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+
   <div class="mat-elevation-z8">
 
     <table mat-table [dataSource]="dataSource" matSort class="full-width-table" aria-label="Elements">
