@@ -15,9 +15,10 @@ export class JugadoresComponent implements AfterViewInit, OnInit {
   nombre_equipos_fb: string[] = [];
   nombre_equipos_lfp: string[] = [];
 
-  selected_equipo: String = String();
-  selected_equipo_lfp: String = String();
-  selected_demarcacion: String = String();
+  selected_equipo: string = "";
+  selected_equipo_lfp: string = "";
+  selected_demarcacion: string = "";
+  searchCriteria = {};
 
   optionsSelectedForm: FormGroup;
 
@@ -63,24 +64,78 @@ export class JugadoresComponent implements AfterViewInit, OnInit {
     this.selected_equipo = "Todos";
     this.selected_equipo_lfp = "Todos";
     this.selected_demarcacion = "Todos";
+
+    this.setFilter();
+  }
+
+  setFilter() {
+    this.dataSource.filterPredicate = ((jugador: JugadorLFP, filter: string) => {
+      let searchAttributes = JSON.parse(filter);
+
+      if(searchAttributes["equipo"]){
+        if(jugador.equipoFb != searchAttributes["equipo"]){
+          return false;
+        }
+      }
+
+      if(searchAttributes["equipoLfp"]){
+        if(jugador.equipoLfp != searchAttributes["equipoLfp"]){
+          return false;
+        }
+      }
+
+      if(searchAttributes["demarcacion"]){
+        if(jugador.demarcacion != searchAttributes["demarcacion"]){
+          return false;
+        }
+      }
+
+      return true;
+    })
   }
 
   onEquipoFantasbekaSelected(equipo: string){
-    this.selected_equipo = equipo;
     console.log("Selected equipo", equipo);
-    // TODO Apply filter
+    this.selected_equipo = equipo;
+    this.setActualSearchString();  
+    this.dataSource.filter = JSON.stringify(this.searchCriteria);
   }
 
   onDemarcacionSelected(demarcacion: string){
-    this.selected_demarcacion = demarcacion;
     console.log("Selected demarcacion", demarcacion);
-    // TODO Apply filter
+    this.selected_demarcacion = demarcacion;
+    this.setActualSearchString();  
+    this.dataSource.filter = JSON.stringify(this.searchCriteria);
   }
 
   onEquipoLfpSelected(equipo: string){
-    this.selected_equipo_lfp = equipo;
     console.log("Selected equipo LFP", equipo);
-    // TODO Apply filter
+    this.selected_equipo_lfp = equipo;
+    this.setActualSearchString();  
+    console.log("Search criteria as string is", JSON.stringify(this.searchCriteria));
+    this.dataSource.filter = JSON.stringify(this.searchCriteria);
+  }
+
+  setActualSearchString(){
+    this.searchCriteria = {};
+
+    if(this.includeInSearch(this.selected_equipo)){
+      this.searchCriteria["equipo"] = this.selected_equipo;
+    }
+
+    if(this.includeInSearch(this.selected_demarcacion)){
+      this.searchCriteria["demarcacion"] = this.selected_demarcacion;
+    }
+
+    if(this.includeInSearch(this.selected_equipo_lfp)){
+      this.searchCriteria["equipoLfp"] = this.selected_equipo_lfp;
+    }
+
+    console.log("Search criteria is", this.searchCriteria);
+  }
+
+  includeInSearch(item:string): boolean {
+    return (item != "Todos" );
   }
 
 }

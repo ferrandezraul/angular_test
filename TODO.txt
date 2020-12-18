@@ -1,4 +1,3 @@
-- Anyadir filtro por equipo, demarcacion, fantasclub table jugadores
 - Refactorizar el authService 
 - Review login and auth service
 - Store token in localStorage to avoid having to log in every time
