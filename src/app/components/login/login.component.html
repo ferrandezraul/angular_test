@@ -1,45 +1,45 @@
 
-        <div fxLayout="row">
-            <div fxFlex="25">
-            </div>
-            <div fxHide fxShow.gt-sm fxFlex="30">
-                <img class="login-image" src="assets/images/login.jpeg">
-            </div>
+<div fxLayout="row">
+    <div fxFlex="20">
+    </div>
+    <div fxHide fxShow.gt-md fxFlex="30">
+        <img class="login-image" src="assets/images/login.jpeg">
+    </div>
 
-            <div fxFlex fxLayoutAlign="left left">
+    <div fxFlex>
 
-                <form fxFlex [formGroup]="form" (ngSubmit)="onSubmit()">
-                    <div fxLayout="row" fxLayoutAlign="center">
-                        <h2>Log In</h2>
-                    </div>
-                    
-                    <div fxLayout="row">
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" formControlName="username" placeholder="Username" required>
-                            <mat-error>
-                                Please provide a valid username
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                    
-                    <div fxLayout="row">
-                        <mat-form-field fxFlex>
-                            <input matInput type="password" formControlName="password" placeholder="Password" required>
-                            <mat-error>
-                                Please provide a valid password
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                
-                    <div fxLayout="row" fxLayoutAlign="center">
-                        <button mat-raised-button color="primary" type="submit">Login</button>
-                    </div>
-                    
-                </form>
-                
+        <form fxFlex [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div fxLayout="row" fxLayoutAlign="center">
+                <h2>Log In</h2>
             </div>
-
-            <div fxFlex="25">
+            
+            <div fxLayout="row">
+                <mat-form-field fxFlex>
+                    <input matInput type="text" formControlName="username" placeholder="Username" required>
+                    <mat-error>
+                        Please provide a valid username
+                    </mat-error>
+                </mat-form-field>
             </div>
+            
+            <div fxLayout="row">
+                <mat-form-field fxFlex>
+                    <input matInput type="password" formControlName="password" placeholder="Password" required>
+                    <mat-error>
+                        Please provide a valid password
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        
+            <div fxLayout="row" fxLayoutAlign="center">
+                <button mat-raised-button color="primary" type="submit">Login</button>
+            </div>
+            
+        </form>
+        
+    </div>
 
-        </div>
+    <div fxFlex="20">
+    </div>
+
+</div>
