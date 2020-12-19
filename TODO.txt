@@ -1,3 +1,8 @@
+- Arreglar paginator en la tabla jugadores 
+- Usar mas matToolTip
+
+- Trata de escribir funcion sort para plantillas. 
+  Similar a funcion filterpredicate de Jugadores
 - Refactorizar el authService 
 - Review login and auth service
 - Store token in localStorage to avoid having to log in every time
