@@ -12,10 +12,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./jugadores.component.css'],
 })
 export class JugadoresComponent implements AfterViewInit, OnInit {
-  selected_equipo: string = "";
-  selected_equipo_lfp: string = "";
-  selected_demarcacion: string = "";
-  searchCriteria = {};
+  selected_equipo: string;
+  selected_equipo_lfp: string;
+  selected_demarcacion: string;
+  filterCriteria = {};
 
   optionsSelectedForm: FormGroup;
   
@@ -34,6 +34,7 @@ export class JugadoresComponent implements AfterViewInit, OnInit {
     });
 
     this.createFormFilters();
+    this.dataSource.filterPredicate = this.customFilter();
   }
 
   ngAfterViewInit() {
@@ -47,30 +48,49 @@ export class JugadoresComponent implements AfterViewInit, OnInit {
       demarcacionSelected: ['Todos', Validators.required],
       equipoLfpSelected: ['Todos', Validators.required]
     });
-
-    this.setFilter();
   }
 
-  nombreEquiposFantasbeka(){
+  nombreEquiposFantasbeka(): string[]{
     let nombre_equipos_fb = sessionStorage.getItem('equiposFb').split(",");
     nombre_equipos_fb.sort();
     nombre_equipos_fb.push('Todos');
     return nombre_equipos_fb;
   }
 
-  nombreEquiposLfP(){
+  nombreEquiposLfP(): string[] {
     let nombre_equipos_lfp = sessionStorage.getItem('equiposLfp').split(",");
     nombre_equipos_lfp.sort();
     nombre_equipos_lfp.push('Todos');
     return nombre_equipos_lfp;
   }
 
-  demarcaciones(){
+  demarcaciones(): string[]{
     return ['Todos', 'Portero', 'Defensa', 'Medio', 'Delantero'];
   }
 
-  setFilter() {
-    this.dataSource.filterPredicate = ((jugador: JugadorLFP, filter: string) => {
+  onEquipoFantasbekaSelected(equipo: string){
+    console.log("Selected equipo", equipo);
+    this.selected_equipo = equipo;
+    this.setActualSearchString();  
+    this.dataSource.filter = JSON.stringify(this.filterCriteria);
+  }
+
+  onDemarcacionSelected(demarcacion: string){
+    console.log("Selected demarcacion", demarcacion);
+    this.selected_demarcacion = demarcacion;
+    this.setActualSearchString();  
+    this.dataSource.filter = JSON.stringify(this.filterCriteria);
+  }
+
+  onEquipoLfpSelected(equipo: string){
+    console.log("Selected equipo LFP", equipo);
+    this.selected_equipo_lfp = equipo;
+    this.setActualSearchString(); 
+    this.dataSource.filter = JSON.stringify(this.filterCriteria);
+  }
+
+  customFilter(){
+    const myFilterPredicate = (jugador: JugadorLFP, filter: string) => {
       let searchAttributes = JSON.parse(filter);
 
       if(searchAttributes["equipo"]){
@@ -92,46 +112,27 @@ export class JugadoresComponent implements AfterViewInit, OnInit {
       }
 
       return true;
-    })
-  }
+    }
 
-  onEquipoFantasbekaSelected(equipo: string){
-    console.log("Selected equipo", equipo);
-    this.selected_equipo = equipo;
-    this.setActualSearchString();  
-    this.dataSource.filter = JSON.stringify(this.searchCriteria);
-  }
-
-  onDemarcacionSelected(demarcacion: string){
-    console.log("Selected demarcacion", demarcacion);
-    this.selected_demarcacion = demarcacion;
-    this.setActualSearchString();  
-    this.dataSource.filter = JSON.stringify(this.searchCriteria);
-  }
-
-  onEquipoLfpSelected(equipo: string){
-    console.log("Selected equipo LFP", equipo);
-    this.selected_equipo_lfp = equipo;
-    this.setActualSearchString(); 
-    this.dataSource.filter = JSON.stringify(this.searchCriteria);
+    return myFilterPredicate;
   }
 
   setActualSearchString(){
-    this.searchCriteria = {};
+    this.filterCriteria = {};
 
     if(this.includeInSearch(this.selected_equipo)){
-      this.searchCriteria["equipo"] = this.selected_equipo;
+      this.filterCriteria["equipo"] = this.selected_equipo;
     }
 
     if(this.includeInSearch(this.selected_demarcacion)){
-      this.searchCriteria["demarcacion"] = this.selected_demarcacion;
+      this.filterCriteria["demarcacion"] = this.selected_demarcacion;
     }
 
     if(this.includeInSearch(this.selected_equipo_lfp)){
-      this.searchCriteria["equipoLfp"] = this.selected_equipo_lfp;
+      this.filterCriteria["equipoLfp"] = this.selected_equipo_lfp;
     }
 
-    console.log("Search criteria is", this.searchCriteria);
+    console.log("Filter criteria is", this.filterCriteria);
   }
 
   includeInSearch(item:string): boolean {
