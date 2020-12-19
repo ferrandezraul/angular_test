@@ -12,17 +12,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./jugadores.component.css'],
 })
 export class JugadoresComponent implements AfterViewInit, OnInit {
-  nombre_equipos_fb: string[] = [];
-  nombre_equipos_lfp: string[] = [];
-
   selected_equipo: string = "";
   selected_equipo_lfp: string = "";
   selected_demarcacion: string = "";
   searchCriteria = {};
 
   optionsSelectedForm: FormGroup;
-
-  readonly demarcaciones = ['Todos', 'Portero', 'Defensa', 'Medio', 'Delantero']
   
   displayedColumns: string[] = ['num', 'nombre', 'demarcacion', 'equipoLfp', 'equipoFb', 'precio', 'puntosJugados', 'puntosGanados', 'puntosMarca', 'puntosAs', 'puntosCalculados', 'puntosOtros', 'puntosTotal'];
 
@@ -53,19 +48,25 @@ export class JugadoresComponent implements AfterViewInit, OnInit {
       equipoLfpSelected: ['Todos', Validators.required]
     });
 
-    this.nombre_equipos_fb = sessionStorage.getItem('equiposFb').split(",");
-    this.nombre_equipos_fb.sort();
-    this.nombre_equipos_fb.push('Todos');
-    
-    this.nombre_equipos_lfp = sessionStorage.getItem('equiposLfp').split(",");
-    this.nombre_equipos_lfp.sort();
-    this.nombre_equipos_lfp.push('Todos');
-
-    this.selected_equipo = "Todos";
-    this.selected_equipo_lfp = "Todos";
-    this.selected_demarcacion = "Todos";
-
     this.setFilter();
+  }
+
+  nombreEquiposFantasbeka(){
+    let nombre_equipos_fb = sessionStorage.getItem('equiposFb').split(",");
+    nombre_equipos_fb.sort();
+    nombre_equipos_fb.push('Todos');
+    return nombre_equipos_fb;
+  }
+
+  nombreEquiposLfP(){
+    let nombre_equipos_lfp = sessionStorage.getItem('equiposLfp').split(",");
+    nombre_equipos_lfp.sort();
+    nombre_equipos_lfp.push('Todos');
+    return nombre_equipos_lfp;
+  }
+
+  demarcaciones(){
+    return ['Todos', 'Portero', 'Defensa', 'Medio', 'Delantero'];
   }
 
   setFilter() {
@@ -111,8 +112,7 @@ export class JugadoresComponent implements AfterViewInit, OnInit {
   onEquipoLfpSelected(equipo: string){
     console.log("Selected equipo LFP", equipo);
     this.selected_equipo_lfp = equipo;
-    this.setActualSearchString();  
-    console.log("Search criteria as string is", JSON.stringify(this.searchCriteria));
+    this.setActualSearchString(); 
     this.dataSource.filter = JSON.stringify(this.searchCriteria);
   }
 
