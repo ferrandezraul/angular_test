@@ -29,12 +29,12 @@ export class AuthenticationService {
     return this.httpClient.get<Token>(`${this.apiURL}/user/login`, {params: params}).pipe(
         map(
           tokenData => {
-          sessionStorage.setItem('token', tokenData.token);
-          sessionStorage.setItem('idEquipoFb', tokenData.idEquipoFb);
-          sessionStorage.setItem('equipoFb', tokenData.equipoFb);
+          localStorage.setItem('token', tokenData.token);
+          localStorage.setItem('idEquipoFb', tokenData.idEquipoFb);
+          localStorage.setItem('equipoFb', tokenData.equipoFb);
           if (tokenData.equiposFb != null && tokenData.equiposLfp != null) {
-            sessionStorage.setItem('equiposFb', tokenData.equiposFb.join());
-            sessionStorage.setItem('equiposLfp', tokenData.equiposLfp.join());
+            localStorage.setItem('equiposFb', tokenData.equiposFb.join());
+            localStorage.setItem('equiposLfp', tokenData.equiposLfp.join());
           }
           return tokenData;
           }
@@ -45,12 +45,12 @@ export class AuthenticationService {
   
 
   isUserLoggedIn() {
-    let token = sessionStorage.getItem('token')
+    let token = localStorage.getItem('token')
     console.log(!(token === null))
     return !(token === null)
   }
 
   logOut() {
-    sessionStorage.removeItem('token')
+    localStorage.removeItem('token')
   }
 }

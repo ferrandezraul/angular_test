@@ -1,25 +1,23 @@
-- Arreglar paginator en la tabla jugadores 
-- Usar mas matToolTip
-
-- Trata de escribir funcion sort para plantillas. 
-  Similar a funcion filterpredicate de Jugadores
-- Refactorizar el authService 
-- Review login and auth service
-- Store token in localStorage to avoid having to log in every time
-
+- Create alinear view
 - Crear dialogo que confirma alineacion enviada correctamente.
+
+- Usar mas matToolTip
 
 - Crear clasificacion por puntos en jornada view (especie de moral en jornada)
 
 - Anyadir footer, aqui se paga por insultar.
 
-- Esconder el icono de equipo si no hay un usuario logeado, y mostrar opcion Login. 
-  Esconder icono login si usuario entrado y mostrar icono logout.
-
-- Create alinear view
-
-- Bug: la primera vez que hago login, no muestra el nombre de usuario en el toolbar porque no hay una subscripcion a un cambio ...
-  si hago login y refresco la pagina, si muestra el nombre.
-
 - Desplegar en heroku
+
+///////////////////////
+//////  HUESOS ////////
+///////////////////////
+
+- Jugadores view: Arreglar paginator en la tabla jugadores 
+
+- Plantillas view: Trata de escribir funcion sort para plantillas. 
+  Similar a funcion filterpredicate de Jugadores
+
+
+
 

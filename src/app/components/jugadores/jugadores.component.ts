@@ -51,14 +51,14 @@ export class JugadoresComponent implements AfterViewInit, OnInit {
   }
 
   nombreEquiposFantasbeka(): string[]{
-    let nombre_equipos_fb = sessionStorage.getItem('equiposFb').split(",");
+    let nombre_equipos_fb = localStorage.getItem('equiposFb').split(",");
     nombre_equipos_fb.sort();
     nombre_equipos_fb.push('Todos');
     return nombre_equipos_fb;
   }
 
   nombreEquiposLfP(): string[] {
-    let nombre_equipos_lfp = sessionStorage.getItem('equiposLfp').split(",");
+    let nombre_equipos_lfp = localStorage.getItem('equiposLfp').split(",");
     nombre_equipos_lfp.sort();
     nombre_equipos_lfp.push('Todos');
     return nombre_equipos_lfp;

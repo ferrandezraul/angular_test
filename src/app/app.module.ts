@@ -15,6 +15,7 @@ import { NormasComponent } from './components/normas/normas.component';
 import { JornadaComponent } from './components/jornada/jornada.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './service/auth-interceptor';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -33,6 +34,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSortModule } from '@angular/material/sort';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { LogOutDialog } from './components/toolbar/log-out-dialog/log-out-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     NormasComponent,
     JornadaComponent,
     ToolbarComponent,
+    LogOutDialog,
   ],
   imports: [
     AppRoutingModule,
@@ -56,6 +59,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     HttpClientModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
     MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
@@ -75,6 +79,9 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
     //{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
+  entryComponents: [
+    LogOutDialog
   ],
   bootstrap: [AppComponent]
 })

@@ -46,12 +46,12 @@ export class ApiService {
   }
 
   getPlantillaFromCurrentUser(): Observable<any> {
-    let id = sessionStorage.getItem('idEquipoFb');
+    let id = localStorage.getItem('idEquipoFb');
     return this.getPlantillaFromEquipoFbWithId(id);
   }
 
   getAlineacionByJornada(jornada: string): Observable<any> {
-    let id = sessionStorage.getItem('idEquipoFb');
+    let id = localStorage.getItem('idEquipoFb');
     let finalUrl = `${this.apiURL}/user/alineacion?equipoId=${id}&jornadaId=${jornada}`;
     console.log("Http get request to ", finalUrl);
 
@@ -71,7 +71,7 @@ export class ApiService {
     var body = new Object();
     body["alineacion"] = alineacion;
     body["jornadaId"] = idJornada;
-    body["equipoId"] = sessionStorage.getItem('idEquipoFb');
+    body["equipoId"] = localStorage.getItem('idEquipoFb');
 
     let finalUrl = `${this.apiURL}/user/alineacion`;
     console.log("Http post request to ", finalUrl);
