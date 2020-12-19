@@ -31,3 +31,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   margin-top: 15px;
   width: 100%;
 }
+
+.progress-bar {
+  margin-top: 30px;
+}
