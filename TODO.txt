@@ -1,13 +1,11 @@
 ///////////////////////
 ////  DEPLOYMENT //////
 ///////////////////////
-- Fix Mixed Content loaded over HTTPS but requested insecure
-  related to express? heroku?
+- ..
 
 ///////////////////////
 ////  UI IMP //////////
 ///////////////////////
-- Name Atletico Tritran no se ve en mobile
 - Falta footer (aqui se paga por insultar.)
 
 ///////////////////////

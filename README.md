@@ -40,3 +40,28 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Deployment in Heroku
+
+It is prepared to be deployed in heroku.
+The file [server.js](server.js) is an express server (nodejs server) that forwards the request to the built angular app.
+Heroku launches the nodejs (express server) through the existing [Procfile](Procfile) containing:
+
+```
+web: node server.js
+```
+
+The file [package.json](package.json) has been modified with the next changes:
+
+```json
+"scripts": {
+    ...
+    "start": "node server.js",
+    ...
+    "heroku-postbuild": "ng build --prod"
+}
+```
+
+Heroku by default, seems to use port 443 (https). 
+If you try to enter the deployed app via https, you will get an error "Mixed http https ..." since the API used by the angular app is not using https.
+To enable your browser to use http, for instance in chrome, go to "Settings", "Privacy and security", select the deployed angular url and set "Allow" in "Insecure Content".
