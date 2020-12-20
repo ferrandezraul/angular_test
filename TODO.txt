@@ -1,7 +1,7 @@
 ///////////////////////
 ////  DEPLOYMENT //////
 ///////////////////////
-- ..
+- Improvement Plantilla view: Anyadir icono triangulo para ver que se puede desplegar.
 
 ///////////////////////
 ////  UI IMP //////////
@@ -30,6 +30,7 @@
 - Plantillas view: Trata de escribir funcion sort para plantillas. 
   Similar a funcion filterpredicate de Jugadores
 
+- Minor: La primera vez que se hace login, no se muestra el nombre de usuario en el top bar
 
 
 

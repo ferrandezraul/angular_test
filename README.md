@@ -60,6 +60,12 @@ The file [package.json](package.json) has been modified with the next changes:
     ...
     "heroku-postbuild": "ng build --prod"
 }
+
+...
+"engines": {
+    "node": "12.19.0", 
+    "npm": "6.14.9"
+  }
 ```
 
 Heroku by default, seems to use port 443 (https). 
