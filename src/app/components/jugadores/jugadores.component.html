@@ -73,37 +73,37 @@
       <!-- Columna Jugados -->
       <ng-container matColumnDef="puntosJugados">
         <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Partidos Jugados">J</th>
-        <td mat-cell *matCellDef="let row">{{row.puntosJugados}}</td>
+        <td mat-cell *matCellDef="let row" matTooltip="Puntos partidos jugados">{{row.puntosJugados}}</td>
       </ng-container>
 
       <!-- Columna Ganados -->
       <ng-container matColumnDef="puntosGanados">
         <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Partidos Ganados">G</th>
-        <td mat-cell *matCellDef="let row">{{row.puntosGanados}}</td>
+        <td mat-cell *matCellDef="let row" matTooltip="Puntos partidos ganados">{{row.puntosGanados}}</td>
       </ng-container>
 
       <!-- Columna Marca -->
       <ng-container matColumnDef="puntosMarca">
         <th fxHide fxShow.gt-sm mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Marca">M</th>
-        <td fxHide fxShow.gt-sm mat-cell *matCellDef="let row">{{row.puntosMarca}}</td>
+        <td fxHide fxShow.gt-sm mat-cell *matCellDef="let row" matTooltip="Puntos Marca">{{row.puntosMarca}}</td>
       </ng-container>
 
       <!-- Columna As -->
       <ng-container matColumnDef="puntosAs">
         <th fxHide fxShow.gt-sm mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="As">A</th>
-        <td fxHide fxShow.gt-sm mat-cell *matCellDef="let row">{{row.puntosAs}}</td>
+        <td fxHide fxShow.gt-sm mat-cell *matCellDef="let row" matTooltip="Puntos As">{{row.puntosAs}}</td>
       </ng-container>
 
       <!-- Columna Marca y As -->
       <ng-container matColumnDef="puntosCalculados">
         <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Media Marca y As">FM</th>
-        <td mat-cell *matCellDef="let row">{{row.puntosCalculados}}</td>
+        <td mat-cell *matCellDef="let row" matTooltip="Media Marca y As">{{row.puntosCalculados}}</td>
       </ng-container>
 
       <!-- Columna Otros -->
       <ng-container matColumnDef="puntosOtros">
         <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Goles, Asistencias y demas">Otros</th>
-        <td mat-cell *matCellDef="let row">{{row.puntosOtros}}</td>
+        <td mat-cell *matCellDef="let row" matTooltip="Puntos por goles, asistencias y demas">{{row.puntosOtros}}</td>
       </ng-container>
 
       <!-- Columna Total -->
