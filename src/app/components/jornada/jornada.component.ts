@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
-import { ResultadoPartido } from 'src/app/shared/shared';
+import { ResultadoPartido, PuntuacionJugador } from 'src/app/shared/shared';
 
 @Component({
   selector: 'app-jornada',
@@ -82,6 +82,22 @@ export class JornadaComponent {
 
     return 'accessible_forward';
 
+  }
+
+  toolTipPartido(puntuacion: PuntuacionJugador){
+    if( puntuacion.jugado == 0){
+      return "Chapeco";
+    }
+    
+    if( puntuacion.resultadoPartido == -1){
+      return "Partdo perdido";
+    }
+
+    if( puntuacion.resultadoPartido == 1){
+      return "Partido ganado";
+    }
+
+    return "";
   }
 
 }
