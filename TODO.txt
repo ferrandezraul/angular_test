@@ -1,11 +1,25 @@
+///////////////////////
+////  DEPLOYMENT //////
+///////////////////////
+- Fix Mixed Content loaded over HTTPS but requested insecure
+  related to express? heroku?
+
+///////////////////////
+////  UI IMP //////////
+///////////////////////
+- Name Atletico Tritran no se ve en mobile
+- Falta footer (aqui se paga por insultar.)
+
+///////////////////////
+//////  UI and UX /////
+///////////////////////
+
 - Create alinear view
 - Crear dialogo que confirma alineacion enviada correctamente.
 
 - Usar mas matToolTip
 
 - Crear clasificacion por puntos en jornada view (especie de moral en jornada)
-
-- Anyadir footer, aqui se paga por insultar.
 
 - Desplegar en heroku
 
