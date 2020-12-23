@@ -35,7 +35,7 @@
       <div fxLayout="row" fxLayoutAlign="center">
         <mat-form-field *ngFor="let d of defensasTactica(); let i = index" appearance="fill">
           <mat-label>Defensa {{i + 1}}</mat-label>
-          <mat-select formControlName="defensaSelected" (selectionChange)="onDefensaSelected($event.value)">
+          <mat-select formControlName="defensaSelected{{i + 1}}" (selectionChange)="onDefensaSelected($event.value)">
             <mat-option *ngFor="let defensa of defensas()" [value]="defensa">{{defensa.nombreJugador}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -45,7 +45,7 @@
       <div fxLayout="row" fxLayoutAlign="center">
         <mat-form-field *ngFor="let d of mediosTactica(); let i = index" appearance="fill">
           <mat-label>Medio {{i + 1}}</mat-label>
-          <mat-select formControlName="medioSelected" (selectionChange)="onMedioSelected($event.value)">
+          <mat-select formControlName="medioSelected{{i + 1}}" (selectionChange)="onMedioSelected($event.value)">
             <mat-option *ngFor="let medio of medios()" [value]="medio">{{medio.nombreJugador}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -55,8 +55,18 @@
       <div fxLayout="row" fxLayoutAlign="center">
         <mat-form-field *ngFor="let d of delanterosTactica(); let i = index" appearance="fill">
           <mat-label>Delantero {{i + 1}}</mat-label>
-          <mat-select formControlName="delanteroSelected" (selectionChange)="onDelanteroSelected($event.value)">
+          <mat-select formControlName="delanteroSelected{{i + 1}}" (selectionChange)="onDelanteroSelected($event.value)">
             <mat-option *ngFor="let delantero of delanteros()" [value]="delantero">{{delantero.nombreJugador}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Select reserva -->
+      <div fxLayout="row" fxLayoutAlign="center">
+        <mat-form-field appearance="fill">
+          <mat-label>Reserva</mat-label>
+          <mat-select formControlName="reservaSelected" (selectionChange)="onReservaSelected($event.value)">
+            <mat-option *ngFor="let jugador of reservas()" [value]="jugador">{{jugador.nombreJugador}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

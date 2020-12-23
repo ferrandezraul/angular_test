@@ -1,3 +1,7 @@
+Alinear view: Si se mete un jugador DEF, eliminarlo de disponibles DEF.
+y demas. Sino, pau y pau, quito un pau, dos paus en reserva.
+
+
 ///////////////////////
 ////  DEPLOYMENT //////
 ///////////////////////
