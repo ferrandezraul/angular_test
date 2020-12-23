@@ -1,143 +1,74 @@
-<ng-template #content let-modal> 
-    <div class="modal-header justify-content-center"> 
-        <h4 class="modal-title" 
-            id="modal-basic-title"> 
-            {{modal_resultado}} 
-        </h4>
-    </div>
-    <div class="modal-footer justify-content-center"> 
-        <button type="button" 
-            class="btn btn-outline-dark" 
-            (click)="modal.close('Save click')"> 
-            Cerrar 
-        </button> 
-    </div> 
-</ng-template>
+<!-- Hidden if idJornada is not null -->
+<!-- Shown if idJornada is null -->
+<div [hidden]="!idJornada">
+  <mat-card fxLayoutAlign="center center">No hay jornada alineable</mat-card>
+</div>
 
-<div class="alinear-template">
+<!-- Shown if idJornada is not null -->
+<!-- <div [hidden]="idJornada"> -->
+<div [hidden]="!idJornada">
+  <div class="row">
 
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-4">
-        <div class="label label-primary label-outlined">{{nombreJornada}}</div>
-      </div>
-    </div>
+    <form novalidate [formGroup]="tacticaForm">
 
-    <div class="row mt-20">
-      <div class="col-md-4">
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary btn-block mb-1" id="jugador1" ngbDropdownToggle>{{selected_jugador[0]}}</button>
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button class="dropdown-item" *ngFor="let jugador of nombres_jugadores" ngbDropdownItem (click)="select_jugador(jugador,0)">{{jugador}}</button>
-            </div>
-          </div>
+      <!-- Select tactica -->
+      <div fxLayout="row" fxLayoutAlign="center">
+        <mat-form-field appearance="fill">
+          <mat-label>Tactica</mat-label>
+          <mat-select formControlName="tacticaSelected" (selectionChange)="onTacticaSelected($event.value)">
+            <mat-option *ngFor="let tactica of tacticas()" [value]="tactica">{{tactica}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-      <div class="col-md-4">
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary btn-block mb-1" id="jugador2" ngbDropdownToggle>{{selected_jugador[1]}}</button>
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button class="dropdown-item" *ngFor="let jugador of nombres_jugadores" ngbDropdownItem (click)="select_jugador(jugador,1)">{{jugador}}</button>
-            </div>
-          </div>
+
+      <!-- Select portero -->
+      <div fxLayout="row" fxLayoutAlign="center">
+        <mat-form-field appearance="fill">
+          <mat-label>Portero</mat-label>
+          <mat-select formControlName="porteroSelected" (selectionChange)="onPorteroSelected($event.value)">
+            <mat-option *ngFor="let portero of porteros()" [value]="portero">{{portero.nombreJugador}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-      <div class="col-md-4">
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary btn-block mb-1" id="jugador3" ngbDropdownToggle>{{selected_jugador[2]}}</button>
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button class="dropdown-item" *ngFor="let jugador of nombres_jugadores" ngbDropdownItem (click)="select_jugador(jugador,2)">{{jugador}}</button>
-            </div>
-          </div>
+
+      <!-- Select defensas -->
+      <div fxLayout="row" fxLayoutAlign="center">
+        <mat-form-field *ngFor="let d of defensasTactica(); let i = index" appearance="fill">
+          <mat-label>Defensa {{i + 1}}</mat-label>
+          <mat-select formControlName="defensaSelected" (selectionChange)="onDefensaSelected($event.value)">
+            <mat-option *ngFor="let defensa of defensas()" [value]="defensa">{{defensa.nombreJugador}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-md-4">
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary mb-1" id="jugador4" ngbDropdownToggle>{{selected_jugador[3]}}</button>
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button class="dropdown-item" *ngFor="let jugador of nombres_jugadores" ngbDropdownItem (click)="select_jugador(jugador,3)">{{jugador}}</button>
-            </div>
-          </div>
+
+      <!-- Select medios -->
+      <div fxLayout="row" fxLayoutAlign="center">
+        <mat-form-field *ngFor="let d of mediosTactica(); let i = index" appearance="fill">
+          <mat-label>Medio {{i + 1}}</mat-label>
+          <mat-select formControlName="medioSelected" (selectionChange)="onMedioSelected($event.value)">
+            <mat-option *ngFor="let medio of medios()" [value]="medio">{{medio.nombreJugador}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-      <div class="col-md-4">
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary mb-1" id="jugador5" ngbDropdownToggle>{{selected_jugador[4]}}</button>
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button class="dropdown-item" *ngFor="let jugador of nombres_jugadores" ngbDropdownItem (click)="select_jugador(jugador,4)">{{jugador}}</button>
-            </div>
-          </div>
+
+      <!-- Select delanteros -->
+      <div fxLayout="row" fxLayoutAlign="center">
+        <mat-form-field *ngFor="let d of delanterosTactica(); let i = index" appearance="fill">
+          <mat-label>Delantero {{i + 1}}</mat-label>
+          <mat-select formControlName="delanteroSelected" (selectionChange)="onDelanteroSelected($event.value)">
+            <mat-option *ngFor="let delantero of delanteros()" [value]="delantero">{{delantero.nombreJugador}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-      <div class="col-md-4">
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary mb-1" id="jugador6" ngbDropdownToggle>{{selected_jugador[5]}}</button>
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button class="dropdown-item" *ngFor="let jugador of nombres_jugadores" ngbDropdownItem (click)="select_jugador(jugador,5)">{{jugador}}</button>
-            </div>
-          </div>
+
+      <!-- Boton enviar -->
+      <div fxLayout="row" fxLayoutAlign="center">
+        <button mat-raised-button (click)="enviarAlineacion()"  color="primary">Enviar</button>
       </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-md-4">
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary mb-1" id="jugador7" ngbDropdownToggle>{{selected_jugador[6]}}</button>
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button class="dropdown-item" *ngFor="let jugador of nombres_jugadores" ngbDropdownItem (click)="select_jugador(jugador,6)">{{jugador}}</button>
-            </div>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary mb-1" id="jugador8" ngbDropdownToggle>{{selected_jugador[7]}}</button>
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button class="dropdown-item" *ngFor="let jugador of nombres_jugadores" ngbDropdownItem (click)="select_jugador(jugador,7)">{{jugador}}</button>
-            </div>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary mb-1" id="jugador9" ngbDropdownToggle>{{selected_jugador[8]}}</button>
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button class="dropdown-item" *ngFor="let jugador of nombres_jugadores" ngbDropdownItem (click)="select_jugador(jugador,8)">{{jugador}}</button>
-            </div>
-          </div>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-md-4">
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary mb-1" id="jugador10" ngbDropdownToggle>{{selected_jugador[9]}}</button>
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button class="dropdown-item" *ngFor="let jugador of nombres_jugadores" ngbDropdownItem (click)="select_jugador(jugador,9)">{{jugador}}</button>
-            </div>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary mb-1" id="jugador11" ngbDropdownToggle>{{selected_jugador[10]}}</button>
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button class="dropdown-item" *ngFor="let jugador of nombres_jugadores" ngbDropdownItem (click)="select_jugador(jugador,10)">{{jugador}}</button>
-            </div>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div ngbDropdown class="d-inline-block">
-            <button class="suplente btn btn-outline-primary mb-1" id="jugador12" ngbDropdownToggle>{{selected_jugador[11]}}</button>
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button class="dropdown-item" *ngFor="let jugador of nombres_jugadores" ngbDropdownItem (click)="select_jugador(jugador,11)">{{jugador}}</button>
-            </div>
-          </div>
-      </div>
-    </div>
-    
-    <div class="row mt-20">
-      <div class="col-md-4">
-          <div>
-            <button class="btn btn-primary" id="enviar" btn-lg (click)="enviar_alineacion(content)">Enviar</button>
-          </div>
-      </div>
-    </div>
+  
+    </form>
+
   </div>
+
 
 </div>
