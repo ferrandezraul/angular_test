@@ -103,160 +103,8 @@ export class AlinearComponent implements OnInit {
       ([old,value])=>{
         console.log("Detectando cambios");
         console.log(old,value);
-
-        // Si el cambio es un reserva, no hacemos nada
-        if(old.tacticaSelected != value.tacticaSelected) {
-          // TODO: Reset 
-          this.tacticaForm.setValue({
-            tacticaSelected: value.tacticaSelected,
-            porteroSelected: null,
-            defensaSelected1: null,
-            defensaSelected2: null,
-            defensaSelected3: null,
-            defensaSelected4: null,
-            defensaSelected5: null,
-            medioSelected1: null,
-            medioSelected2: null,
-            medioSelected3: null,
-            medioSelected4: null,
-            medioSelected5: null,
-            delanteroSelected1: null,
-            delanteroSelected2: null,
-            delanteroSelected3: null,
-            reservaSelected: null
-          });
-
-          this.reservasPlantilla = this.jugadoresPlantilla;
-          return;
-        }    
-
-        // Si el cambio es un reserva, no hacemos nada
-        if(old.reservaSelected != value.reservaSelected) {
-          return;
-        }      
-
-        // Si habia un jugador seleccionado antes, meterlo a lista de reservas 
-        if(old.porteroSelected != value.porteroSelected){
-          console.log("Cambio de portero");
-          // Quitar jugador seleccionado de la lista de reservas
-          this.removeJugadorFromBanquillo(value.porteroSelected);
-          if(old.porteroSelected){
-            console.log("Portero al banquillo", old.porteroSelected);
-            this.reservasPlantilla.push(old.porteroSelected);
-          }
-        }
-
-        if(old.defensaSelected1 != value.defensaSelected1){
-          console.log("Cambio de defensa");
-          // Quitar jugador seleccionado de la lista de reservas
-          this.removeJugadorFromBanquillo(value.defensaSelected1);
-          if(old.defensaSelected1){
-            console.log("Defensa al banquillo", old.defensaSelected1);
-            this.reservasPlantilla.push(old.defensaSelected1);
-          }
-        }
-
-        if(old.defensaSelected2 != value.defensaSelected2){
-          console.log("Cambio de defensa");
-          // Quitar jugador seleccionado de la lista de reservas
-          this.removeJugadorFromBanquillo(value.defensaSelected2);
-          if(old.defensaSelected2){
-            console.log("Defensa al banquillo", old.defensaSelected2);
-            this.reservasPlantilla.push(old.defensaSelected2);
-          }
-        }
-
-        if(old.defensaSelected3 != value.defensaSelected3){
-          console.log("Cambio de defensa");
-          // Quitar jugador seleccionado de la lista de reservas
-          this.removeJugadorFromBanquillo(value.defensaSelected3);
-          if(old.defensaSelected3){
-            console.log("Defensa al banquillo", old.defensaSelected3);
-            this.reservasPlantilla.push(old.defensaSelected3);
-          }
-        }
-
-        if(old.defensaSelected4 != value.defensaSelected4){
-          console.log("Cambio de defensa");
-          // Quitar jugador seleccionado de la lista de reservas
-          this.removeJugadorFromBanquillo(value.defensaSelected4);
-          if(old.defensaSelected4){
-            console.log("Defensa al banquillo", old.defensaSelected4);
-            this.reservasPlantilla.push(old.defensaSelected4);
-          }
-        }
-
-        if(old.defensaSelected5 != value.defensaSelected5){
-          console.log("Cambio de defensa");
-          // Quitar jugador seleccionado de la lista de reservas
-          this.removeJugadorFromBanquillo(value.defensaSelected5);
-          if(old.defensaSelected5){
-            console.log("Defensa al banquillo", old.defensaSelected5);
-            this.reservasPlantilla.push(old.defensaSelected5);
-          }
-        }
-
-        if(old.medioSelected1 != value.medioSelected1){
-          console.log("Cambio de medio");
-          // Quitar jugador seleccionado de la lista de reservas
-          this.removeJugadorFromBanquillo(value.medioSelected1);
-          if(old.medioSelected1){
-            console.log("Medio al banquillo", old.medioSelected1);
-            this.reservasPlantilla.push(old.medioSelected1);
-          }
-        }
-
-        if(old.medioSelected2 != value.medioSelected2){
-          console.log("Cambio de medio");
-          // Quitar jugador seleccionado de la lista de reservas
-          this.removeJugadorFromBanquillo(value.medioSelected2);
-          if(old.medioSelected2){
-            console.log("Medio al banquillo", old.medioSelected2);
-            this.reservasPlantilla.push(old.medioSelected2);
-          }
-        }
-
-        if(old.delanteroSelected1 != value.delanteroSelected1){
-          console.log("Cambio de delantero");
-          // Quitar jugador seleccionado de la lista de reservas
-          this.removeJugadorFromBanquillo(value.delanteroSelected1);
-          if(old.delanteroSelected1){
-            console.log("Delantero al banquillo", old.delanteroSelected1);
-            this.reservasPlantilla.push(old.delanteroSelected1);
-          }
-        }
-
-        if(old.delanteroSelected2 != value.delanteroSelected2){
-          console.log("Cambio de delantero");
-          // Quitar jugador seleccionado de la lista de reservas
-          this.removeJugadorFromBanquillo(value.delanteroSelected2);
-          if(old.delanteroSelected2){
-            console.log("Delantero al banquillo", old.delanteroSelected2);
-            this.reservasPlantilla.push(old.delanteroSelected2);
-          }
-        }
-
-        if(old.delanteroSelected3 != value.delanteroSelected3){
-          console.log("Cambio de delantero");
-          // Quitar jugador seleccionado de la lista de reservas
-          this.removeJugadorFromBanquillo(value.delanteroSelected3);
-          if(old.delanteroSelected3){
-            console.log("Delantero al banquillo", old.delanteroSelected3);
-            this.reservasPlantilla.push(old.delanteroSelected3);
-          }
-        }
-
       }
     )
-  }
-
-  removeJugadorFromBanquillo(jugador: Jugador){
-    // Quitar jugador seleccionado de la lista de reservas
-    const index: number = this.reservasPlantilla.indexOf(jugador);
-    if (index !== -1) {
-        console.log("Eliminando de reservas a ", this.reservasPlantilla[index]);
-        this.reservasPlantilla.splice(index, 1);
-    }   
   }
 
   tacticas() {
@@ -323,32 +171,22 @@ export class AlinearComponent implements OnInit {
 
   onPorteroSelected(portero: Jugador){
     console.log("Selected portero", portero);
-
-    // quitar todos los porteros de reservasPlantilla
-    // obtener lista de porteros menos el selected
-    // anyadir resultado de arriba a reservasPlantilla
-
-    //this.reservasPlantilla = this.reservasPlantilla.filter( (value: Jugador) => value != portero);
   }
 
   onDefensaSelected(defensa: string){
     console.log("Selected defensa", defensa);
-    //this.reservasPlantilla = this.reservasPlantilla.filter( (value: Jugador) => value.nombreJugador != defensa);
   }
 
   onMedioSelected(medio: string){
     console.log("Selected medio", medio);
-    //this.reservasPlantilla = this.reservasPlantilla.filter( (value: Jugador) => value.nombreJugador != medio);
   }
 
   onDelanteroSelected(delantero: string){
     console.log("Selected delantero", delantero);
-    //this.reservasPlantilla = this.reservasPlantilla.filter( (value: Jugador) => value.nombreJugador != delantero);
   }
 
   onReservaSelected(reserva: string){
     console.log("Selected reserva", reserva);
-    //this.reservasPlantilla = this.jugadoresPlantilla.filter( (value: Jugador) => value.nombreJugador != delantero);
   }
 
   readPlantilla(jugadores: Jugador[]){
@@ -358,15 +196,50 @@ export class AlinearComponent implements OnInit {
     this.defensasPlantilla = jugadores.filter( (value: Jugador) => value.idDemarcacion == 2 );
     this.mediosPlantilla = jugadores.filter( (value: Jugador) => value.idDemarcacion == 3 );
     this.delanterosPlantilla = jugadores.filter( (value: Jugador) => value.idDemarcacion == 4 );
+  }
 
-    // console.log("Stored porteros", this.porterosPlantilla);
-    // console.log("Stored defensas", this.defensasPlantilla);
-    // console.log("Stored medios", this.mediosPlantilla);
-    // console.log("Stored delanteros", this.delanterosPlantilla);
+  hasDuplicates(array) {
+    return (new Set(array)).size !== array.length;
+  }
+
+  jugadoresValidos(jugadores: Jugador[]): boolean {
+    let defensasSeleccionados = jugadores.every( (jugador) => jugador != null);
+    let duplicatedDefensa = this.hasDuplicates(jugadores);
+    
+    return (defensasSeleccionados && !duplicatedDefensa);
   }
 
   enviarAlineacion() {
-    // console.log("Enviar alineacion con", alineacion);
+    let defensas: Jugador[] = [];
+    let medios: Jugador[] = [];
+    let delanteros: Jugador[] = [];
+
+    for(let i = 0; i < this.numberOfDefensas.length; i++) {
+      defensas.push(this.tacticaForm.get("defensaSelected" + (i +1)).value);
+    }
+
+    for(let i = 0; i < this.numberOfMedios.length; i++) {
+      medios.push(this.tacticaForm.get("medioSelected" + (i +1)).value);
+    }
+
+    for(let i = 0; i < this.numberOfDelanteros.length; i++) {
+      delanteros.push(this.tacticaForm.get("delanteroSelected" + (i +1)).value);
+    }
+
+    if (this.jugadoresValidos(defensas) == false) {
+      console.log("Defensa invalida. Jugadores vacios o repetidos")
+    }
+
+    if (this.jugadoresValidos(medios) == false) {
+      console.log("Media invalida. Jugadores vacios o repetidos")
+    }
+
+    if (this.jugadoresValidos(delanteros) == false) {
+      console.log("Delantera invalida. Jugadores vacios o repetidos")
+    }
+
+    //  TODO Checkear portero y reserva son validos
+    //  reservaSelected
   }
 
 }
