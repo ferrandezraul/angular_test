@@ -95,6 +95,57 @@
               </td>
               <td mat-footer-cell *matFooterCellDef> </td>
             </ng-container>
+
+            <!-- Row with extra puntos local -->
+            <!-- Row Puntos extra local (icon) -->
+            <ng-container matColumnDef="extra-icon">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo local"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (description) -->
+            <ng-container matColumnDef="extra-description">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo local"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (as) -->
+            <ng-container matColumnDef="extra-as">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo local"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (marca) -->
+            <ng-container matColumnDef="extra-marca">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo local"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (fm) -->
+            <ng-container matColumnDef="extra-fm">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo local"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (jugados) -->
+            <ng-container matColumnDef="extra-jugados">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo local"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (ganados) -->
+            <ng-container matColumnDef="extra-ganados">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo local"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (otros) -->
+            <ng-container matColumnDef="extra-otros">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo local"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (puntos) -->
+            <ng-container matColumnDef="extra-puntos">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo local"> {{resultado.extraLocal}} </th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (goles) -->
+            <ng-container matColumnDef="extra-goles">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo local"></th>
+            </ng-container>
   
             <!-- Column/Footer Siguiente Gol a tantos puntos -->
             <ng-container matColumnDef="nextGoal">
@@ -104,6 +155,7 @@
             </ng-container>
     
             <tr mat-header-row *matHeaderRowDef="columnsPuntuacionJugador"></tr>
+            <tr mat-header-row *matHeaderRowDef="['extra-icon', 'extra-description', 'extra-as', 'extra-marca', 'extra-fm', 'extra-jugados', 'extra-ganados', 'extra-otros', 'extra-puntos', 'extra-goles']"></tr>
             <tr mat-row *matRowDef="let row; columns: columnsPuntuacionJugador;"></tr>
             <tr mat-footer-row *matFooterRowDef="columnsPuntuacionJugador"></tr>
             <tr mat-footer-row *matFooterRowDef="['nextGoal']" class="next-goal"></tr>
@@ -187,6 +239,57 @@
              </td>
               <td mat-footer-cell *matFooterCellDef> </td>
             </ng-container>
+
+            <!-- Row with extra puntos local -->
+            <!-- Row Puntos extra local (icon) -->
+            <ng-container matColumnDef="extra-icon">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo visitante"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (description) -->
+            <ng-container matColumnDef="extra-description">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo visitante"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (as) -->
+            <ng-container matColumnDef="extra-as">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo visitante"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (marca) -->
+            <ng-container matColumnDef="extra-marca">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo visitante"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (fm) -->
+            <ng-container matColumnDef="extra-fm">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo visitante"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (jugados) -->
+            <ng-container matColumnDef="extra-jugados">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo visitante"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (ganados) -->
+            <ng-container matColumnDef="extra-ganados">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo visitante"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (otros) -->
+            <ng-container matColumnDef="extra-otros">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo visitante"></th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (puntos) -->
+            <ng-container matColumnDef="extra-puntos">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo visitante"> {{resultado.extraVisitante}} </th>
+            </ng-container>
+
+            <!-- Row Puntos extra local (goles) -->
+            <ng-container matColumnDef="extra-goles">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Puntos extra equipo visitante"></th>
+            </ng-container>
   
             <!-- Column/Footer Siguiente Gol a tantos puntos -->
             <ng-container matColumnDef="nextGoal">
@@ -196,6 +299,7 @@
             </ng-container>
     
             <tr mat-header-row *matHeaderRowDef="columnsPuntuacionJugador"></tr>
+            <tr mat-header-row *matHeaderRowDef="['extra-icon', 'extra-description', 'extra-as', 'extra-marca', 'extra-fm', 'extra-jugados', 'extra-ganados', 'extra-otros', 'extra-puntos', 'extra-goles']"></tr>
             <tr mat-row *matRowDef="let row; columns: columnsPuntuacionJugador;"></tr>
             <tr mat-footer-row *matFooterRowDef="columnsPuntuacionJugador"></tr>
             <tr mat-footer-row *matFooterRowDef="['nextGoal']" class="next-goal"></tr>
