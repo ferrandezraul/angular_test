@@ -89,6 +89,7 @@
             <ng-container matColumnDef="goles">
               <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}}>
+                <mat-icon matTooltip="Porteria a cero" inline="true" *ngIf="showIconPorteriaACero(puntuacionJugador)">thumb_up</mat-icon>
                 <mat-icon matTooltip="Gol" inline="true" *ngIf="puntuacionJugador.resultado.golesMarcados > 0">sports_soccer</mat-icon> 
                 <mat-icon matTooltip="Gol" inline="true" *ngIf="puntuacionJugador.resultado.golesMarcados > 1">sports_soccer</mat-icon> 
                 <mat-icon matTooltip="Gol" inline="true" *ngIf="puntuacionJugador.resultado.golesMarcados > 2">sports_soccer</mat-icon> 
@@ -241,6 +242,7 @@
             <ng-container matColumnDef="goles">
               <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}}>
+                <mat-icon matTooltip="Porteria a cero" inline="true" *ngIf="showIconPorteriaACero(puntuacionJugador)">thumb_up</mat-icon>
                 <mat-icon matTooltip="Gol" inline="true" *ngIf="puntuacionJugador.resultado.golesMarcados > 0">sports_soccer</mat-icon> 
                 <mat-icon matTooltip="Gol" inline="true" *ngIf="puntuacionJugador.resultado.golesMarcados > 1">sports_soccer</mat-icon> 
                 <mat-icon matTooltip="Gol" inline="true" *ngIf="puntuacionJugador.resultado.golesMarcados > 2">sports_soccer</mat-icon> 

@@ -100,4 +100,10 @@ export class JornadaComponent {
     return "";
   }
 
+  showIconPorteriaACero(puntuacion: PuntuacionJugador){
+    return puntuacion.resultado.golesEncajados == 0 
+      && puntuacion.demarcacion == 'Defensa'
+      && !puntuacion.chapeco;
+  }
+
 }
