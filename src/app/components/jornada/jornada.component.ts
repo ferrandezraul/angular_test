@@ -102,7 +102,7 @@ export class JornadaComponent {
 
   showIconPorteriaACero(puntuacion: PuntuacionJugador){
     return puntuacion.resultado.golesEncajados == 0 
-      && puntuacion.demarcacion == 'Defensa'
+      && ( puntuacion.demarcacion == 'Defensa' || puntuacion.demarcacion == 'Portero' )
       && !puntuacion.chapeco;
   }
 
