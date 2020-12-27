@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { pairwise, startWith } from 'rxjs/operators';
 import { ApiService } from 'src/app/service/api.service';
 import { Jugador } from 'src/app/shared/shared';
+import { AlineacionDialog } from './alineacion-dialog/alineacion-dialog.component';
 
 @Component({
   selector: 'app-plantillas',
@@ -29,7 +31,8 @@ export class AlinearComponent implements OnInit {
     tacticaForm: FormGroup;
 
   constructor(private apiService: ApiService,
-              private formBuilder: FormBuilder ) { }
+              private formBuilder: FormBuilder,
+              public dialog: MatDialog ) { }
 
   ngOnInit() {
     this.apiService.getJornadaAlineable().subscribe((response) => {
@@ -203,16 +206,18 @@ export class AlinearComponent implements OnInit {
   }
 
   jugadoresValidos(jugadores: Jugador[]): boolean {
-    let defensasSeleccionados = jugadores.every( (jugador) => jugador != null);
+    let jugadoresSeleccionados = jugadores.every( (jugador) => jugador != null);
     let duplicatedDefensa = this.hasDuplicates(jugadores);
     
-    return (defensasSeleccionados && !duplicatedDefensa);
+    return (jugadoresSeleccionados && !duplicatedDefensa);
   }
 
   enviarAlineacion() {
+    let portero: Jugador = this.tacticaForm.get("porteroSelected").value;
     let defensas: Jugador[] = [];
     let medios: Jugador[] = [];
     let delanteros: Jugador[] = [];
+    let reserva: Jugador = this.tacticaForm.get("reservaSelected").value;
 
     for(let i = 0; i < this.numberOfDefensas.length; i++) {
       defensas.push(this.tacticaForm.get("defensaSelected" + (i +1)).value);
@@ -226,20 +231,29 @@ export class AlinearComponent implements OnInit {
       delanteros.push(this.tacticaForm.get("delanteroSelected" + (i +1)).value);
     }
 
-    if (this.jugadoresValidos(defensas) == false) {
-      console.log("Defensa invalida. Jugadores vacios o repetidos")
-    }
+    let alineacion = [];
+    alineacion.push(portero);
+    alineacion = alineacion.concat(defensas);
+    alineacion = alineacion.concat(medios);
+    alineacion = alineacion.concat(delanteros);
+    alineacion.push(reserva);
 
-    if (this.jugadoresValidos(medios) == false) {
-      console.log("Media invalida. Jugadores vacios o repetidos")
-    }
+    if (this.jugadoresValidos(alineacion) == false) {
+      console.log("Alineacion invalida. Jugadores vacios o repetidos");
 
-    if (this.jugadoresValidos(delanteros) == false) {
-      console.log("Delantera invalida. Jugadores vacios o repetidos")
-    }
+      const dialogRef = this.dialog.open(AlineacionDialog, {
+        width: '250px',
+        data: { alineacion: alineacion }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog closed with result: ${result}`); 
+      });
+    } else {
+      console.log("Alineacion valida", alineacion);
 
-    //  TODO Checkear portero y reserva son validos
-    //  reservaSelected
+      // TODO: realizar el post con la alineacion
+    }
   }
 
 }

@@ -35,6 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSortModule } from '@angular/material/sort';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { LogOutDialog } from './components/toolbar/log-out-dialog/log-out-dialog.component';
+import { AlineacionDialog } from './components/alinear/alineacion-dialog/alineacion-dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { LogOutDialog } from './components/toolbar/log-out-dialog/log-out-dialog
     JornadaComponent,
     ToolbarComponent,
     LogOutDialog,
+    AlineacionDialog,
   ],
   imports: [
     AppRoutingModule,
@@ -81,7 +83,8 @@ import { LogOutDialog } from './components/toolbar/log-out-dialog/log-out-dialog
     //{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   entryComponents: [
-    LogOutDialog
+    LogOutDialog,
+    AlineacionDialog
   ],
   bootstrap: [AppComponent]
 })
