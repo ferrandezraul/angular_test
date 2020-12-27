@@ -1,3 +1,5 @@
+En jornada, anyadir icono porteria a cero (candado u otro)
+
 Alinear view: Continuar con accion enviar alineacion.
 Que sea mobile friendly.
 

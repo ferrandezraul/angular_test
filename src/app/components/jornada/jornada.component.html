@@ -38,14 +38,14 @@
           
             <!-- Column Puntos As -->
             <ng-container matColumnDef="resultado.puntosAs">
-              <th mat-header-cell *matHeaderCellDef> As </th>
+              <th mat-header-cell *matHeaderCellDef> A </th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}} matTooltip="Puntos As"> {{puntuacionJugador.resultado.puntosAs}} </td>
               <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocAsTotales}} </td>
             </ng-container>
     
             <!-- Column Puntos Marca -->
             <ng-container matColumnDef="resultado.puntosMarca">
-              <th mat-header-cell *matHeaderCellDef> Marca </th>
+              <th mat-header-cell *matHeaderCellDef> M </th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}} matTooltip="Puntos Marca"> {{puntuacionJugador.resultado.puntosMarca}} </td>
               <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocMarcaTotales}} </td>
             </ng-container>
@@ -59,21 +59,21 @@
     
             <!-- Column Jugado -->
             <ng-container matColumnDef="jugado">
-              <th mat-header-cell *matHeaderCellDef> Jugado </th>
+              <th mat-header-cell *matHeaderCellDef> J </th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}} matTooltip="Partido jugado"> {{puntuacionJugador.jugado}} </td>
               <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocJugadoTotales}} </td>
             </ng-container>
     
             <!-- Column Resultado Partido -->
             <ng-container matColumnDef="resultadoPartido">
-              <th mat-header-cell *matHeaderCellDef> Ganado </th>
+              <th mat-header-cell *matHeaderCellDef> G </th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}} matTooltip={{toolTipPartido(puntuacionJugador)}}> {{puntuacionJugador.resultadoPartido}} </td>
               <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocResultadoTotales}} </td>
             </ng-container>
     
             <!-- Column Resultado Otros -->
             <ng-container matColumnDef="otros">
-              <th mat-header-cell *matHeaderCellDef> Otros </th>
+              <th mat-header-cell *matHeaderCellDef> O </th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}} matTooltip="Goles, asistencias y demas"> {{puntuacionJugador.otros}} </td>
               <td mat-footer-cell *matFooterCellDef> {{resultado.puntosLocOtrosTotales}} </td>
             </ng-container>
@@ -87,11 +87,19 @@
   
             <!-- Column Goles -->
             <ng-container matColumnDef="goles">
-              <th mat-header-cell *matHeaderCellDef>  </th>
+              <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}}>
                 <mat-icon matTooltip="Gol" inline="true" *ngIf="puntuacionJugador.resultado.golesMarcados > 0">sports_soccer</mat-icon> 
                 <mat-icon matTooltip="Gol" inline="true" *ngIf="puntuacionJugador.resultado.golesMarcados > 1">sports_soccer</mat-icon> 
                 <mat-icon matTooltip="Gol" inline="true" *ngIf="puntuacionJugador.resultado.golesMarcados > 2">sports_soccer</mat-icon> 
+                <mat-icon matTooltip="Asistencia de gol" inline="true" *ngIf="puntuacionJugador.resultado.asistencias > 0">military_tech</mat-icon>
+                <mat-icon matTooltip="Asistencia de gol" inline="true" *ngIf="puntuacionJugador.resultado.asistencias > 1">military_tech</mat-icon>
+                <mat-icon matTooltip="Asistencia de gol" inline="true" *ngIf="puntuacionJugador.resultado.asistencias > 2">military_tech</mat-icon>
+                <mat-icon matTooltip="Targeta Roja" class="red-icon" inline="true" *ngIf="puntuacionJugador.resultado.tarjetaRoja > 0">book</mat-icon>
+                <mat-icon matTooltip="Penalti Parado" inline="true" *ngIf="puntuacionJugador.resultado.penaltisParados > 0">pan_tool</mat-icon> 
+                <mat-icon matTooltip="Penalti Parado" inline="true" *ngIf="puntuacionJugador.resultado.penaltisParados > 1">pan_tool</mat-icon>
+                <mat-icon matTooltip="Penalti Fallado" inline="true" *ngIf="puntuacionJugador.resultado.penaltisFallados > 0">thumb_down</mat-icon> 
+                <mat-icon matTooltip="Penalti Fallado" inline="true" *ngIf="puntuacionJugador.resultado.penaltisFallados > 1">thumb_down</mat-icon>
               </td>
               <td mat-footer-cell *matFooterCellDef> </td>
             </ng-container>
@@ -182,14 +190,14 @@
           
             <!-- Column Puntos As -->
             <ng-container matColumnDef="resultado.puntosAs">
-              <th mat-header-cell *matHeaderCellDef> As </th>
+              <th mat-header-cell *matHeaderCellDef> A </th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}} matTooltip="Puntos As"> {{puntuacionJugador.resultado.puntosAs}} </td>
               <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisAsTotales}} </td>
             </ng-container>
     
             <!-- Column Puntos Marca -->
             <ng-container matColumnDef="resultado.puntosMarca">
-              <th mat-header-cell *matHeaderCellDef> Marca </th>
+              <th mat-header-cell *matHeaderCellDef> M </th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}} matTooltip="Puntos Marca"> {{puntuacionJugador.resultado.puntosMarca}} </td>
               <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisMarcaTotales}} </td>
             </ng-container>
@@ -203,21 +211,21 @@
     
             <!-- Column Jugado -->
             <ng-container matColumnDef="jugado">
-              <th mat-header-cell *matHeaderCellDef> Jugado </th>
+              <th mat-header-cell *matHeaderCellDef> J </th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}} matTooltip="Partido Jugado"> {{puntuacionJugador.jugado}} </td>
               <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisJugadoTotales}} </td>
             </ng-container>
     
             <!-- Column Resultado Partido -->
             <ng-container matColumnDef="resultadoPartido">
-              <th mat-header-cell *matHeaderCellDef> Ganado </th>
+              <th mat-header-cell *matHeaderCellDef> G </th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}} matTooltip={{toolTipPartido(puntuacionJugador)}}> {{puntuacionJugador.resultadoPartido}} </td>
               <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisResultadoTotales}} </td>
             </ng-container>
     
             <!-- Column Resultado Otros -->
             <ng-container matColumnDef="otros">
-              <th mat-header-cell *matHeaderCellDef> Otros </th>
+              <th mat-header-cell *matHeaderCellDef> O </th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}} matTooltip="Goles, asistencias y demas"> {{puntuacionJugador.otros}} </td>
               <td mat-footer-cell *matFooterCellDef> {{resultado.puntosVisOtrosTotales}} </td>
             </ng-container>
@@ -231,11 +239,19 @@
   
             <!-- Column Goles -->
             <ng-container matColumnDef="goles">
-              <th mat-header-cell *matHeaderCellDef>  </th>
+              <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let puntuacionJugador" class={{puntuacionJugador.estado}}>
                 <mat-icon matTooltip="Gol" inline="true" *ngIf="puntuacionJugador.resultado.golesMarcados > 0">sports_soccer</mat-icon> 
                 <mat-icon matTooltip="Gol" inline="true" *ngIf="puntuacionJugador.resultado.golesMarcados > 1">sports_soccer</mat-icon> 
                 <mat-icon matTooltip="Gol" inline="true" *ngIf="puntuacionJugador.resultado.golesMarcados > 2">sports_soccer</mat-icon> 
+                <mat-icon matTooltip="Asistencia de gol" inline="true" *ngIf="puntuacionJugador.resultado.asistencias > 0">military_tech</mat-icon>
+                <mat-icon matTooltip="Asistencia de gol" inline="true" *ngIf="puntuacionJugador.resultado.asistencias > 1">military_tech</mat-icon>
+                <mat-icon matTooltip="Asistencia de gol" inline="true" *ngIf="puntuacionJugador.resultado.asistencias > 2">military_tech</mat-icon>
+                <mat-icon matTooltip="Targeta Roja" class="red-icon" inline="true" *ngIf="puntuacionJugador.resultado.tarjetaRoja > 0">book</mat-icon>
+                <mat-icon matTooltip="Penalti Parado" inline="true" *ngIf="puntuacionJugador.resultado.penaltisParados > 0">pan_tool</mat-icon> 
+                <mat-icon matTooltip="Penalti Parado" inline="true" *ngIf="puntuacionJugador.resultado.penaltisParados > 1">pan_tool</mat-icon>
+                <mat-icon matTooltip="Penalti Fallado" inline="true" *ngIf="puntuacionJugador.resultado.penaltisFallados > 0">thumb_down</mat-icon> 
+                <mat-icon matTooltip="Penalti Fallado" inline="true" *ngIf="puntuacionJugador.resultado.penaltisFallados > 1">thumb_down</mat-icon>
              </td>
               <td mat-footer-cell *matFooterCellDef> </td>
             </ng-container>

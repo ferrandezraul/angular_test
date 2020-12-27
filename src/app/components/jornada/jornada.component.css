@@ -26,5 +26,9 @@ td.next-goal {
 
 .progress-bar {
     margin-top: 30px;
-  }
+}
+
+.red-icon {
+    color: red;
+}
 
