@@ -152,46 +152,6 @@ export class AlinearComponent implements OnInit {
     })
   }
 
-  porterosTactica(){
-    return 1;
-  }
-
-  defensasTactica(){
-    return this.numberOfDefensas;
-  }
-
-  mediosTactica(){
-    return this.numberOfMedios;
-  }
-
-  delanterosTactica(){
-    return this.numberOfDelanteros;
-  }
-
-  porteros(){
-    return this.porterosPlantilla;
-  }
-
-  defensas(){
-    return this.defensasPlantilla;
-  }
-
-  medios(){
-    return this.mediosPlantilla;
-  }
-
-  delanteros(){
-    return this.delanterosPlantilla;
-  }
-
-  jugadores(){
-    return this.jugadoresPlantilla;
-  }
-
-  reservas(){
-    return this.reservasPlantilla;
-  }
-
   readPlantilla(jugadores: Jugador[]){
     this.jugadoresPlantilla = jugadores;
     this.reservasPlantilla = jugadores;
@@ -284,30 +244,65 @@ export class AlinearComponent implements OnInit {
       }
     }
 
-    // console.log("Defensas", defensasNum);
-    // console.log("Medios", mediosNum);
-    // console.log("Delanteros", delanterosNum);
     this.setTactica(defensasNum, mediosNum, delanterosNum);
   }
 
   alineacionValida(alineacion): boolean {
-    if (this.jugadoresValidos(alineacion) == false) {
-      // console.log("Alineacion invalida. Jugadores vacios o repetidos");
-
-      const dialogRef = this.dialog.open(AlineacionInvalidaDialog, {
-        data: { alineacion: alineacion }
-      });
-
-      return false;
+    if (this.jugadoresValidos(alineacion) == true) {
+      return true;
     }
 
-    return true;
+    this.dialog.open(AlineacionInvalidaDialog, {
+      data: { alineacion: alineacion }
+    });
+
+    return false;
   }
 
   mostrarDialogAlineacionValida(response){
     if (response.result == "OK"){
-      let dialogRef = this.dialog.open(AlineacionValidaDialog);
+      this.dialog.open(AlineacionValidaDialog);
     }
+  }
+
+  porterosTactica(){
+    return 1;
+  }
+
+  defensasTactica(){
+    return this.numberOfDefensas;
+  }
+
+  mediosTactica(){
+    return this.numberOfMedios;
+  }
+
+  delanterosTactica(){
+    return this.numberOfDelanteros;
+  }
+
+  porteros(){
+    return this.porterosPlantilla;
+  }
+
+  defensas(){
+    return this.defensasPlantilla;
+  }
+
+  medios(){
+    return this.mediosPlantilla;
+  }
+
+  delanteros(){
+    return this.delanterosPlantilla;
+  }
+
+  jugadores(){
+    return this.jugadoresPlantilla;
+  }
+
+  reservas(){
+    return this.reservasPlantilla;
   }
 
   onPorteroSelected(portero: Jugador){
