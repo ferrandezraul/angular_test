@@ -2,8 +2,6 @@ Alinear view:
 Tunear el AlineacionDialog con la lista de jugadores y limpira codigo. 
 Reusar dialogo que toma como entrada msg (y borar uno de los 2)
 
-Anyadir enfrentamientos primera division.
-
 ///////////////////////
 ////  DEPLOYMENT //////
 ///////////////////////
@@ -18,14 +16,7 @@ Anyadir enfrentamientos primera division.
 //////  UI and UX /////
 ///////////////////////
 
-- Create alinear view
-- Crear dialogo que confirma alineacion enviada correctamente.
-
-- Usar mas matToolTip
-
 - Crear clasificacion por puntos en jornada view (especie de moral en jornada)
-
-- Desplegar en heroku
 
 ///////////////////////
 //////  HUESOS ////////
