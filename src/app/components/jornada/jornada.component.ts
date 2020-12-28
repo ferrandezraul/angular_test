@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
 import { ResultadoPartido, PuntuacionJugador } from 'src/app/shared/shared';
+import { MediaChange, MediaObserver } from "@angular/flex-layout";
 
 @Component({
   selector: 'app-jornada',
@@ -8,6 +9,7 @@ import { ResultadoPartido, PuntuacionJugador } from 'src/app/shared/shared';
   styleUrls: ['./jornada.component.css']
 })
 export class JornadaComponent {
+  disableTooltip: boolean = false;
   errorMessage: string = "";
   nombreJornada: string = "";
   idJornada: number;
@@ -16,9 +18,12 @@ export class JornadaComponent {
   columnsPuntuacionJugador = ['demarcacion', 'nombreJugador', 'resultado.puntosAs', 'resultado.puntosMarca', 'puntosCalculados', 'jugado', 'resultadoPartido', 'otros', 'total', 'goles'];
   columnsPuntuacionJugadorDisplayed = ['demarcacion', 'Jugador', 'As', 'Marca', 'FM', 'Jugado', 'Ganado', 'Otros', ''];
 
-  constructor(private apiService: ApiService ) {}
+  constructor(private apiService: ApiService,
+              private media: MediaObserver ) {}
 
   ngOnInit(){
+    this.disableTooltip = this.media.isActive("xs");
+
     this.apiService.getJornadaJugandose().subscribe((jornadaJugandose) => {
       if (jornadaJugandose.length == 0) {
         this.apiService.getUltimaJornadaTerminada().subscribe((jornadaTerminada) => {
