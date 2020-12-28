@@ -4,8 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { pairwise, startWith } from 'rxjs/operators';
 import { ApiService } from 'src/app/service/api.service';
 import { Jugador, JugadorAlineado } from 'src/app/shared/shared';
-import { AlineacionDialog } from './alineacion-dialog/alineacion-dialog.component';
-import { AlineacionValidaDialog } from './alineacion-valida/alineacion-valida.component';
+import { AlineacionInvalidaDialog } from './alineacion-invalida/alineacion-invalida-dialog.component';
+import { AlineacionValidaDialog } from './alineacion-valida/alineacion-valida-dialog.component';
 
 @Component({
   selector: 'app-plantillas',
@@ -13,8 +13,8 @@ import { AlineacionValidaDialog } from './alineacion-valida/alineacion-valida.co
   styleUrls: ['./alinear.component.css'],
 })
 export class AlinearComponent implements OnInit {
-  nombreJornada = ""
-  idJornada = "0"
+  nombreJornada: string;
+  idJornada: string;
 
   jugadoresPlantilla: Jugador[];
   porterosPlantilla: Jugador[];
@@ -294,7 +294,7 @@ export class AlinearComponent implements OnInit {
     if (this.jugadoresValidos(alineacion) == false) {
       // console.log("Alineacion invalida. Jugadores vacios o repetidos");
 
-      const dialogRef = this.dialog.open(AlineacionDialog, {
+      const dialogRef = this.dialog.open(AlineacionInvalidaDialog, {
         data: { alineacion: alineacion }
       });
 

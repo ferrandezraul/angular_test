@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlineacionDialog } from './alineacion-dialog.component';
+import { AlineacionValidaDialog } from './alineacion-valida-dialog.component';
 
-describe('AlineacionDialog', () => {
-  let component: AlineacionDialog;
-  let fixture: ComponentFixture<AlineacionDialog>;
+describe('AlineacionValidaDialog', () => {
+  let component: AlineacionValidaDialog;
+  let fixture: ComponentFixture<AlineacionValidaDialog>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlineacionDialog ]
+      declarations: [ AlineacionValidaDialog ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AlineacionDialog);
+    fixture = TestBed.createComponent(AlineacionValidaDialog);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

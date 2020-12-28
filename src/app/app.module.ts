@@ -35,8 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSortModule } from '@angular/material/sort';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { LogOutDialog } from './components/toolbar/log-out-dialog/log-out-dialog.component';
-import { AlineacionDialog } from './components/alinear/alineacion-dialog/alineacion-dialog.component';
-import { AlineacionValidaDialog } from './components/alinear/alineacion-valida/alineacion-valida.component';
+import { AlineacionInvalidaDialog } from './components/alinear/alineacion-invalida/alineacion-invalida-dialog.component';
+import { AlineacionValidaDialog } from './components/alinear/alineacion-valida/alineacion-valida-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,7 @@ import { AlineacionValidaDialog } from './components/alinear/alineacion-valida/a
     JornadaComponent,
     ToolbarComponent,
     LogOutDialog,
-    AlineacionDialog,
+    AlineacionInvalidaDialog,
     AlineacionValidaDialog,
   ],
   imports: [
@@ -86,7 +86,7 @@ import { AlineacionValidaDialog } from './components/alinear/alineacion-valida/a
   ],
   entryComponents: [
     LogOutDialog,
-    AlineacionDialog
+    AlineacionInvalidaDialog
   ],
   bootstrap: [AppComponent]
 })

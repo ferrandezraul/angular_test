@@ -4,12 +4,12 @@ import { Jugador } from 'src/app/shared/shared';
 
 @Component({
   selector: 'app-alineacion-dialog',
-  templateUrl: './alineacion-dialog.component.html',
-  styleUrls: ['./alineacion-dialog.component.css']
+  templateUrl: './alineacion-invalida-dialog.component.html',
+  styleUrls: ['./alineacion-invalida-dialog.component.css']
 })
-export class AlineacionDialog implements OnInit {
+export class AlineacionInvalidaDialog implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<AlineacionDialog>,
+  constructor(public dialogRef: MatDialogRef<AlineacionInvalidaDialog>,
     @Inject(MAT_DIALOG_DATA) public data: { alineacion: Jugador[] }) { }
 
   ngOnInit(): void {
