@@ -2,7 +2,6 @@ Alinear view:
 Tunear el AlineacionDialog con la lista de jugadores y limpira codigo. 
 Reusar dialogo que toma como entrada msg (y borar uno de los 2)
 
-Que sea mobile friendly.
 Anyadir enfrentamientos primera division.
 
 ///////////////////////
