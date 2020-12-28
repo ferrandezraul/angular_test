@@ -5,7 +5,10 @@
     <!-- Column nombre -->
     <ng-container matColumnDef="nombre">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
-      <td mat-cell *matCellDef="let plantilla">{{plantilla.nombre}}</td>
+      <td mat-cell *matCellDef="let plantilla">
+        <mat-icon>arrow_right</mat-icon>
+        {{plantilla.nombre}}
+      </td>
     </ng-container>
 
     <!-- Column creditos -->
