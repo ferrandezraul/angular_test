@@ -129,4 +129,17 @@ export interface Jornada {
     jornadaLfp: number;
     state: string;
 }
+
+export interface Alineacion {
+    jugadores: JugadorAlineado[];
+}
+
+export interface JugadorAlineado {
+    id: number;
+    idCampeonato: number;
+    idEquipoFb: number;
+    idJornada: number;
+    idJugador: number;
+    suplente: boolean;
+}
   

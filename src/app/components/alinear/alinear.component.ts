@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { pairwise, startWith } from 'rxjs/operators';
 import { ApiService } from 'src/app/service/api.service';
-import { Jugador } from 'src/app/shared/shared';
+import { Jugador, JugadorAlineado } from 'src/app/shared/shared';
 import { AlineacionDialog } from './alineacion-dialog/alineacion-dialog.component';
 
 @Component({
@@ -38,40 +38,34 @@ export class AlinearComponent implements OnInit {
     this.apiService.getJornadaAlineable().subscribe((response) => {
       console.log("Response de jornada alineable es ", response);
 
-      // if (response.length == 0) {
-      //   this.nombreJornada = "NO HAY JORNADA ALINEABLE";
-      //   return;
-      // }
+      // {id: 14, idCampeonato: 1, name: "jornada 14", jornadaLfp: 16, state: "alineable"}
 
-      // this.nombreJornada = response[0].name
-      // this.idJornada = response[0].id
+      if (response.length == 0) {
+         return;
+      }
+
+      this.nombreJornada = response[0].name
+      this.idJornada = response[0].id
 
       this.apiService.getPlantillaFromCurrentUser().subscribe((jugadores: Jugador[]) => {
         // console.log("Plantilla es ", jugadores);
         this.readPlantilla(jugadores);
-      });
 
-      return;
-
-      this.apiService.getPlantillaFromCurrentUser().subscribe((response: any[]) => {
-        console.log("Plantilla es ", response);
-        for (var i = 0; i < response.length; i++) {
-          var j = response[i]
-          this.plantilla[j["id"]] = j["nombreJugador"]
-          this.nombres_jugadores.push(j["nombreJugador"])
-        }
-
-        this.apiService.getAlineacionByJornada(this.idJornada).subscribe((ultima_alineacion: any[]) => {
-          if (ultima_alineacion.length == 12) {
+        this.apiService.getAlineacionByJornada(this.idJornada).subscribe((ultimaAlineacion: JugadorAlineado[]) => {
+          if (ultimaAlineacion.length == 12) {
+            console.log("Ultima alineacion", ultimaAlineacion);
+            this.setJugadoresSelected(ultimaAlineacion);
             // TODO: this.cargarAlineacion(ultima_alineacion)
           } else {
             this.apiService.getUltimaJornadaTerminada().subscribe((response) => {
-              this.apiService.getAlineacionByJornada(response.id.toString()).subscribe((ultima_alineacion_ter: any[]) => {
+              this.apiService.getAlineacionByJornada(response.id.toString()).subscribe((ultimaAlineacionTer: JugadorAlineado[]) => {
+                console.log("Ultima alineacion ter", ultimaAlineacionTer);
                 // TODO  this.cargarAlineacion(ultima_alineacion_ter)
               });
             });
           }
         });
+
       });
 
     });
@@ -130,6 +124,30 @@ export class AlinearComponent implements OnInit {
     this.numberOfDefensas = new Array(parseInt(defensas, 10));
     this.numberOfMedios = new Array(parseInt(medios, 10));
     this.numberOfDelanteros = new Array(parseInt(delanteros, 10));
+  }
+
+  setTactica(defensas: number, medios: number, delanteros: number){
+    let tactica: string  = defensas.toString() + '-' + medios.toString() + '-' + delanteros.toString();
+    console.log("Setting tactica ", tactica);
+
+    this.tacticaForm.setValue({
+      tacticaSelected: tactica, 
+      porteroSelected: null,
+      defensaSelected1: null,
+      defensaSelected2: null,
+      defensaSelected3: null,
+      defensaSelected4: null,
+      defensaSelected5: null,
+      medioSelected1: null,
+      medioSelected2: null,
+      medioSelected3: null,
+      medioSelected4: null,
+      medioSelected5: null,
+      delanteroSelected1: null,
+      delanteroSelected2: null,
+      delanteroSelected3: null,
+      reservaSelected: null
+    })
   }
 
   porterosTactica(){
@@ -254,6 +272,43 @@ export class AlinearComponent implements OnInit {
 
       // TODO: realizar el post con la alineacion
     }
+  }
+
+  setJugadoresSelected(jugadores: JugadorAlineado[]){
+    // Detectar tactica y setearla
+    // Detectar jugadores por posicion y setearlos
+
+    let defensasNum: number = 0;
+    let mediosNum: number = 0;
+    let delanterosNum: number = 0;
+
+    for(let jugador of jugadores){
+      if (!jugador.suplente){
+        let pelotero = this.jugadoresPlantilla.find( (player) => { 
+          return player.id === jugador.idJugador
+        });
+
+        if(pelotero){
+          console.log("Se encontro a ", pelotero);
+
+          if (pelotero.demarcacion == "Defensa"){
+            defensasNum += 1;
+          }
+          if (pelotero.demarcacion == "Medio"){
+            mediosNum += 1;
+          }
+          if (pelotero.demarcacion == "Delantero"){
+            delanterosNum += 1;
+          }
+        }
+      }
+    }
+
+    console.log("Defensas", defensasNum);
+    console.log("Medios", mediosNum);
+    console.log("Delanteros", delanterosNum);
+
+    this.setTactica(defensasNum, mediosNum, delanterosNum);
   }
 
 }
