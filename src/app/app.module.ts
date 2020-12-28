@@ -36,6 +36,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { LogOutDialog } from './components/toolbar/log-out-dialog/log-out-dialog.component';
 import { AlineacionDialog } from './components/alinear/alineacion-dialog/alineacion-dialog.component';
+import { AlineacionValidaDialog } from './components/alinear/alineacion-valida/alineacion-valida.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AlineacionDialog } from './components/alinear/alineacion-dialog/alineac
     ToolbarComponent,
     LogOutDialog,
     AlineacionDialog,
+    AlineacionValidaDialog,
   ],
   imports: [
     AppRoutingModule,

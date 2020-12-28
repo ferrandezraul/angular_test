@@ -5,6 +5,7 @@ import { pairwise, startWith } from 'rxjs/operators';
 import { ApiService } from 'src/app/service/api.service';
 import { Jugador, JugadorAlineado } from 'src/app/shared/shared';
 import { AlineacionDialog } from './alineacion-dialog/alineacion-dialog.component';
+import { AlineacionValidaDialog } from './alineacion-valida/alineacion-valida.component';
 
 @Component({
   selector: 'app-plantillas',
@@ -240,9 +241,14 @@ export class AlinearComponent implements OnInit {
     if(!this.alineacionValida(alineacion)) {
       return;
     }
+
+    let alineacionIds = alineacion.map( jugador => jugador.id.toString() );
+    console.log("Alineacion a enviar es ", alineacionIds);
     
-    console.log("Alineacion valida", alineacion);
-    // TODO: realizar el post con la alineacion
+    this.apiService.sendAlineacion(alineacionIds,this.idJornada).subscribe( response => {
+      this.mostrarDialogAlineacionValida(response),
+      (err: any) => console.log("Error enviando alineacion", err)
+    });
   }
 
   setJugadoresSelected(jugadores: JugadorAlineado[]){
@@ -286,21 +292,22 @@ export class AlinearComponent implements OnInit {
 
   alineacionValida(alineacion): boolean {
     if (this.jugadoresValidos(alineacion) == false) {
-      console.log("Alineacion invalida. Jugadores vacios o repetidos");
+      // console.log("Alineacion invalida. Jugadores vacios o repetidos");
 
       const dialogRef = this.dialog.open(AlineacionDialog, {
-        width: '250px',
         data: { alineacion: alineacion }
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog closed with result: ${result}`); 
       });
 
       return false;
     }
 
     return true;
+  }
+
+  mostrarDialogAlineacionValida(response){
+    if (response.result == "OK"){
+      let dialogRef = this.dialog.open(AlineacionValidaDialog);
+    }
   }
 
   onPorteroSelected(portero: Jugador){
