@@ -12,23 +12,26 @@ import { AlineacionDialog } from './alineacion-dialog/alineacion-dialog.componen
   styleUrls: ['./alinear.component.css'],
 })
 export class AlinearComponent implements OnInit {
-    nombreJornada = ""
-    idJornada = "0"
-    plantilla = {}
-    nombres_jugadores = []
-    selected_jugador: String[] = []
+  nombreJornada = ""
+  idJornada = "0"
 
-    jugadoresPlantilla: Jugador[];
-    porterosPlantilla: Jugador[];
-    defensasPlantilla: Jugador[];
-    mediosPlantilla: Jugador[];
-    delanterosPlantilla: Jugador[];
-    reservasPlantilla: Jugador[];
+  jugadoresPlantilla: Jugador[];
+  porterosPlantilla: Jugador[];
+  defensasPlantilla: Jugador[];
+  mediosPlantilla: Jugador[];
+  delanterosPlantilla: Jugador[];
+  reservasPlantilla: Jugador[];
 
-    numberOfDefensas: number[];
-    numberOfMedios: number[];
-    numberOfDelanteros: number[];
-    tacticaForm: FormGroup;
+  porteroSelected: Jugador;
+  defensasSelected: Jugador[] = [];
+  mediosSelected: Jugador[] = [];
+  delanterosSelected: Jugador[] = [];
+  reservaSelected: Jugador;
+
+  numberOfDefensas: number[];
+  numberOfMedios: number[];
+  numberOfDelanteros: number[];
+  tacticaForm: FormGroup;
 
   constructor(private apiService: ApiService,
               private formBuilder: FormBuilder,
@@ -36,9 +39,8 @@ export class AlinearComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.getJornadaAlineable().subscribe((response) => {
-      console.log("Response de jornada alineable es ", response);
-
-      // {id: 14, idCampeonato: 1, name: "jornada 14", jornadaLfp: 16, state: "alineable"}
+      // console.log("Response de jornada alineable es ", response);
+      // i.e.: {id: 14, idCampeonato: 1, name: "jornada 14", jornadaLfp: 16, state: "alineable"}
 
       if (response.length == 0) {
          return;
@@ -48,19 +50,17 @@ export class AlinearComponent implements OnInit {
       this.idJornada = response[0].id
 
       this.apiService.getPlantillaFromCurrentUser().subscribe((jugadores: Jugador[]) => {
-        // console.log("Plantilla es ", jugadores);
         this.readPlantilla(jugadores);
 
         this.apiService.getAlineacionByJornada(this.idJornada).subscribe((ultimaAlineacion: JugadorAlineado[]) => {
           if (ultimaAlineacion.length == 12) {
             console.log("Ultima alineacion", ultimaAlineacion);
             this.setJugadoresSelected(ultimaAlineacion);
-            // TODO: this.cargarAlineacion(ultima_alineacion)
           } else {
             this.apiService.getUltimaJornadaTerminada().subscribe((response) => {
               this.apiService.getAlineacionByJornada(response.id.toString()).subscribe((ultimaAlineacionTer: JugadorAlineado[]) => {
                 console.log("Ultima alineacion ter", ultimaAlineacionTer);
-                // TODO  this.cargarAlineacion(ultima_alineacion_ter)
+                this.setJugadoresSelected(ultimaAlineacionTer);
               });
             });
           }
@@ -98,8 +98,8 @@ export class AlinearComponent implements OnInit {
 
     this.tacticaForm.valueChanges.pipe(startWith(this.tacticaForm.value),pairwise()).subscribe(
       ([old,value])=>{
-        console.log("Detectando cambios");
-        console.log(old,value);
+        //console.log("Detectando cambios");
+        //console.log(old,value);
       }
     )
   }
@@ -129,24 +129,25 @@ export class AlinearComponent implements OnInit {
   setTactica(defensas: number, medios: number, delanteros: number){
     let tactica: string  = defensas.toString() + '-' + medios.toString() + '-' + delanteros.toString();
     console.log("Setting tactica ", tactica);
+    this.onTacticaSelected(tactica);
 
     this.tacticaForm.setValue({
       tacticaSelected: tactica, 
-      porteroSelected: null,
-      defensaSelected1: null,
-      defensaSelected2: null,
-      defensaSelected3: null,
-      defensaSelected4: null,
-      defensaSelected5: null,
-      medioSelected1: null,
-      medioSelected2: null,
-      medioSelected3: null,
-      medioSelected4: null,
-      medioSelected5: null,
-      delanteroSelected1: null,
-      delanteroSelected2: null,
-      delanteroSelected3: null,
-      reservaSelected: null
+      porteroSelected: this.porteroSelected,
+      defensaSelected1: this.defensasSelected[0],
+      defensaSelected2: this.defensasSelected[1],
+      defensaSelected3: this.defensasSelected[2],
+      defensaSelected4: this.defensasSelected[3] || null,
+      defensaSelected5: this.defensasSelected[4] || null,
+      medioSelected1: this.mediosSelected[0],
+      medioSelected2: this.mediosSelected[1],
+      medioSelected3: this.mediosSelected[2],
+      medioSelected4: this.mediosSelected[3] || null,
+      medioSelected5: this.mediosSelected[4] || null,
+      delanteroSelected1: this.delanterosSelected[0],
+      delanteroSelected2: this.delanterosSelected[1] || null,
+      delanteroSelected3: this.delanterosSelected[2] || null,
+      reservaSelected: this.reservaSelected || null
     })
   }
 
@@ -188,26 +189,6 @@ export class AlinearComponent implements OnInit {
 
   reservas(){
     return this.reservasPlantilla;
-  }
-
-  onPorteroSelected(portero: Jugador){
-    console.log("Selected portero", portero);
-  }
-
-  onDefensaSelected(defensa: string){
-    console.log("Selected defensa", defensa);
-  }
-
-  onMedioSelected(medio: string){
-    console.log("Selected medio", medio);
-  }
-
-  onDelanteroSelected(delantero: string){
-    console.log("Selected delantero", delantero);
-  }
-
-  onReservaSelected(reserva: string){
-    console.log("Selected reserva", reserva);
   }
 
   readPlantilla(jugadores: Jugador[]){
@@ -256,6 +237,54 @@ export class AlinearComponent implements OnInit {
     alineacion = alineacion.concat(delanteros);
     alineacion.push(reserva);
 
+    if(!this.alineacionValida(alineacion)) {
+      return;
+    }
+    
+    console.log("Alineacion valida", alineacion);
+    // TODO: realizar el post con la alineacion
+  }
+
+  setJugadoresSelected(jugadores: JugadorAlineado[]){
+    let defensasNum: number = 0;
+    let mediosNum: number = 0;
+    let delanterosNum: number = 0;
+
+    for(let jugador of jugadores){
+      let pelotero = this.jugadoresPlantilla.find( (player) => { 
+        return player.id === jugador.idJugador
+      });
+
+      if (!jugador.suplente){
+        if(pelotero){
+          if (pelotero.demarcacion == "Portero"){
+            this.porteroSelected = pelotero;
+          }
+          if (pelotero.demarcacion == "Defensa"){
+            this.defensasSelected.push(pelotero);
+            defensasNum += 1;
+          }
+          if (pelotero.demarcacion == "Medio"){
+            this.mediosSelected.push(pelotero);
+            mediosNum += 1;
+          }
+          if (pelotero.demarcacion == "Delantero"){
+            this.delanterosSelected.push(pelotero);
+            delanterosNum += 1;
+          }
+        }
+      } else {
+        this.reservaSelected = pelotero;
+      }
+    }
+
+    // console.log("Defensas", defensasNum);
+    // console.log("Medios", mediosNum);
+    // console.log("Delanteros", delanterosNum);
+    this.setTactica(defensasNum, mediosNum, delanterosNum);
+  }
+
+  alineacionValida(alineacion): boolean {
     if (this.jugadoresValidos(alineacion) == false) {
       console.log("Alineacion invalida. Jugadores vacios o repetidos");
 
@@ -267,48 +296,31 @@ export class AlinearComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog closed with result: ${result}`); 
       });
-    } else {
-      console.log("Alineacion valida", alineacion);
 
-      // TODO: realizar el post con la alineacion
+      return false;
     }
+
+    return true;
   }
 
-  setJugadoresSelected(jugadores: JugadorAlineado[]){
-    // Detectar tactica y setearla
-    // Detectar jugadores por posicion y setearlos
+  onPorteroSelected(portero: Jugador){
+    //console.log("Selected portero", portero);
+  }
 
-    let defensasNum: number = 0;
-    let mediosNum: number = 0;
-    let delanterosNum: number = 0;
+  onDefensaSelected(defensa: string){
+    //console.log("Selected defensa", defensa);
+  }
 
-    for(let jugador of jugadores){
-      if (!jugador.suplente){
-        let pelotero = this.jugadoresPlantilla.find( (player) => { 
-          return player.id === jugador.idJugador
-        });
+  onMedioSelected(medio: string){
+    //console.log("Selected medio", medio);
+  }
 
-        if(pelotero){
-          console.log("Se encontro a ", pelotero);
+  onDelanteroSelected(delantero: string){
+    //console.log("Selected delantero", delantero);
+  }
 
-          if (pelotero.demarcacion == "Defensa"){
-            defensasNum += 1;
-          }
-          if (pelotero.demarcacion == "Medio"){
-            mediosNum += 1;
-          }
-          if (pelotero.demarcacion == "Delantero"){
-            delanterosNum += 1;
-          }
-        }
-      }
-    }
-
-    console.log("Defensas", defensasNum);
-    console.log("Medios", mediosNum);
-    console.log("Delanteros", delanterosNum);
-
-    this.setTactica(defensasNum, mediosNum, delanterosNum);
+  onReservaSelected(reserva: string){
+    //console.log("Selected reserva", reserva);
   }
 
 }

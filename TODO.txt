@@ -1,17 +1,8 @@
 Alinear view: 
-Continuar con accion leer ultima alineacion y setearla en la form.
-Estamos leyendo la tactica en setJugadoresSelected
-Parece que tengo un problema de string/number comparison.
-
-
 Continuar con accion enviar alineacion.
-Ver el  TODO: realizar el post con la alineacion
-
 Tunear el AlineacionDialog con la lista de jugadores
-
 Limpiar codigo en alinear component
 Que sea mobile friendly.
-
 Anyadir enfrentamientos primera division.
 
 ///////////////////////
