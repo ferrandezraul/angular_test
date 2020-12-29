@@ -5,7 +5,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MediaObserver } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-plantillas',
@@ -28,12 +27,9 @@ export class JugadoresComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<JugadorLFP>();
 
   constructor(private apiService: ApiService,
-              private formBuilder: FormBuilder,
-              private media: MediaObserver ) {}
+              private formBuilder: FormBuilder) {}
   
   ngOnInit(){
-    this.disableTooltip = this.media.isActive("xs");
-
     this.apiService.getJugadores().subscribe((jugadores) => {
       this.dataSource.data = jugadores;
     });
