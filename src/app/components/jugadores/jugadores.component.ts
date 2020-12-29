@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MediaObserver } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-plantillas',
@@ -12,6 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./jugadores.component.css'],
 })
 export class JugadoresComponent implements AfterViewInit, OnInit {
+  disableTooltip: boolean = false;
   selected_equipo: string;
   selected_equipo_lfp: string;
   selected_demarcacion: string;
@@ -26,9 +28,12 @@ export class JugadoresComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<JugadorLFP>();
 
   constructor(private apiService: ApiService,
-              private formBuilder: FormBuilder ) {}
+              private formBuilder: FormBuilder,
+              private media: MediaObserver ) {}
   
   ngOnInit(){
+    this.disableTooltip = this.media.isActive("xs");
+
     this.apiService.getJugadores().subscribe((jugadores) => {
       this.dataSource.data = jugadores;
     });
