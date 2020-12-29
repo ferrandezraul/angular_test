@@ -1,16 +1,8 @@
-Alinear view: 
-Tunear el AlineacionDialog con la lista de jugadores y limpira codigo. 
-Reusar dialogo que toma como entrada msg (y borar uno de los 2)
+Error 403 forbidden cuando se accede a cualquier recurso, deberia hacer logout y redireccionar a login.
+Falta footer (aqui se paga por insultar.)
+Crear branch sin TODO, vigilar angular.json y package.json
+Actualizar readme con angular flex layout.
 
-///////////////////////
-////  DEPLOYMENT //////
-///////////////////////
-- Improvement Plantilla view: Anyadir icono triangulo para ver que se puede desplegar.
-
-///////////////////////
-////  UI IMP //////////
-///////////////////////
-- Falta footer (aqui se paga por insultar.)
 
 ///////////////////////
 //////  UI and UX /////

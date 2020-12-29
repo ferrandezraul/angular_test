@@ -1,35 +1,51 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import {tap} from 'rxjs/operators';
-import {Router} from '@angular/router';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router) {}
+  constructor(private router: Router) {}
 
-    intercept(req: HttpRequest<any>,
-              next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>,
+            next: HttpHandler): Observable<HttpEvent<any>> {
 
-        const token = localStorage.getItem('token')
-        var cloned = req;
-        if (token) {
-            cloned = req.clone({
-                headers: req.headers.set("Authorization",
-                    "Bearer " + token)
-            });
+    const token = localStorage.getItem('token')
+    var cloned = req;
+    if (token) {
+      cloned = req.clone({
+        headers: req.headers.set("Authorization", "Bearer " + token)
+      });
+    }
+
+    return next.handle(cloned).pipe( 
+      catchError( (error) => {
+        console.log('error is intercept', error);
+
+        if (error instanceof HttpErrorResponse) {
+          if (error.error instanceof ErrorEvent) {
+            console.error("Error Event");
+          } else {
+            console.log(`error status : ${error.status} ${error.statusText}`);
+            switch (error.status) {
+              case 401:  // Unauthorized
+              case 403:  // Forbidden
+                console.log("Redirecting to login");
+                this.router.navigate(['login']);
+                break;
+              default: 
+                break;
+            }
+          } 
+        } else {
+            console.error("something else happened");
         }
 
-        return next.handle(cloned).pipe( tap(() => {},
-          (err: any) => {
-          if (err instanceof HttpErrorResponse) {
-            if (err.status === 200) {
-             return;
-            }
-            this.router.navigate(['login']);
-          }
-        }));
-    }
+        return throwError(error);
+      })
+    );
+  }
 }
