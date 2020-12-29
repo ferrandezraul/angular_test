@@ -33,7 +33,8 @@ export class AuthInterceptor implements HttpInterceptor {
             switch (error.status) {
               case 401:  // Unauthorized
               case 403:  // Forbidden
-                console.log("Redirecting to login");
+                console.log("Removing old token and redirecting to login");
+                localStorage.removeItem('token');
                 this.router.navigate(['login']);
                 break;
               default: 
