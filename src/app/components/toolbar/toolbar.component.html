@@ -47,6 +47,7 @@
     </mat-toolbar>
   
     <mat-sidenav-container fxFlexFill>
+
       <mat-sidenav #sidenav>
         <mat-nav-list>
           <a mat-list-item [routerLink]="'/jornada'">
@@ -78,10 +79,19 @@
           </a>
         </mat-nav-list>
       </mat-sidenav>
-      <mat-sidenav-content fxFlexFill>
-        <!-- Begin Page Content -->
-        <router-outlet></router-outlet>
+
+      <mat-sidenav-content fxLayout="column" fxFlexFill>
+        
+        <div fxFlex>
+          <!-- Begin Page Content -->
+          <router-outlet></router-outlet>
+        </div>
+
+        <!-- Footer -->
+        <app-footer></app-footer>
+
       </mat-sidenav-content>
+
     </mat-sidenav-container>
   </div>
   
