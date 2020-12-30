@@ -1,6 +1,6 @@
 # FantasAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.12.
 
 # Dependencies
 
@@ -17,13 +17,14 @@ Install dependencies listed in package.json with:
 
     npm install
 
+## Development notes
+
+It uses [Angular Material](https://material.angular.io/)
+It uses [Angular Flex Layout](https://github.com/angular/flex-layout)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
