@@ -32,6 +32,10 @@ td.next-goal {
     color: red;
 }
 
+.yellow-icon {
+    color: goldenrod;
+}
+
 /* Fix scrolling in matTable with matTooltip in mobile */
 .tooltip-item {
     touch-action: auto !important;
