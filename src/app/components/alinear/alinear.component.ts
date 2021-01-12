@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { pairwise, startWith } from 'rxjs/operators';
 import { ApiService } from 'src/app/service/api.service';
-import { Jugador, JugadorAlineado } from 'src/app/shared/shared';
+import { PartidoLFP, PartidoFB, Jugador, JugadorAlineado } from 'src/app/shared/shared';
 import { AlineacionInvalidaDialog } from './alineacion-invalida/alineacion-invalida-dialog.component';
 import { AlineacionValidaDialog } from './alineacion-valida/alineacion-valida-dialog.component';
 
@@ -15,6 +15,85 @@ import { AlineacionValidaDialog } from './alineacion-valida/alineacion-valida-di
 export class AlinearComponent implements OnInit {
   nombreJornada: string;
   idJornada: string;
+
+  partidosFB: PartidoFB[];
+  partidosFB2: PartidoFB[] = [
+    {
+        "equipoLocal": "Golguen",
+        "equipoVisitante": "Birrarreal"
+    },
+    {
+        "equipoLocal": "Atletico Tritrankilos",
+        "equipoVisitante": "Beka Digital"
+    },
+    {
+        "equipoLocal": "Real Balonpedica Macutense",
+        "equipoVisitante": "Sankt Putin"
+    },
+    {
+        "equipoLocal": "Roland Guarros",
+        "equipoVisitante": "Crema Catalana"
+    },
+    {
+        "equipoLocal": "Chicharro SV",
+        "equipoVisitante": "Rivertide jaja"
+    }
+  ];
+
+
+  partidosLFP: PartidoLFP[];
+  partidosLFP2: PartidoLFP[] = [
+    {
+        "equipoLocal": "Celta",
+        "equipoVisitante": "Villarreal",
+        "horaPartido": "Vie 08/01  21:00h"
+    },
+    {
+        "equipoLocal": "Sevilla",
+        "equipoVisitante": "Real Sociedad",
+        "horaPartido": "Sab 09/01  14:00h"
+    },
+    {
+        "equipoLocal": "Atletico",
+        "equipoVisitante": "Athletic",
+        "horaPartido": "Sab 09/01  16:15h"
+    },
+    {
+        "equipoLocal": "Granada",
+        "equipoVisitante": "Barcelona",
+        "horaPartido": "Sab 09/01  18:30h"
+    },
+    {
+        "equipoLocal": "Osasuna",
+        "equipoVisitante": "Real Madrid",
+        "horaPartido": "Sab 09/01  21:00h"
+    },
+    {
+        "equipoLocal": "Levante",
+        "equipoVisitante": "Eibar",
+        "horaPartido": "Dom 10/01  14:00h"
+    },
+    {
+        "equipoLocal": "Cadiz",
+        "equipoVisitante": "Alaves",
+        "horaPartido": "Dom 10/01  16:15h"
+    },
+    {
+        "equipoLocal": "Elche",
+        "equipoVisitante": "Getafe",
+        "horaPartido": "Dom 10/01  18:30h"
+    },
+    {
+        "equipoLocal": "Valladolid",
+        "equipoVisitante": "Valencia",
+        "horaPartido": "Dom 10/01  21:00h"
+    },
+    {
+        "equipoLocal": "Huesca",
+        "equipoVisitante": "Betis",
+        "horaPartido": "Lun 11/01  21:00h"
+    }
+  ]
 
   jugadoresPlantilla: Jugador[];
   porterosPlantilla: Jugador[];
@@ -67,6 +146,16 @@ export class AlinearComponent implements OnInit {
           }
         });
 
+      });
+
+      this.apiService.getJornadaLFP(this.idJornada).subscribe( (response) => {
+        console.log("Jornada LFP", response);
+        this.partidosLFP = response;
+      });
+
+      this.apiService.getJornadaFB(this.idJornada).subscribe( (response) => {
+        console.log("Jornada FP", response);
+        this.partidosFB = response;
       });
 
     });

@@ -130,6 +130,17 @@ export interface Jornada {
     state: string;
 }
 
+export interface PartidoLFP {
+    equipoLocal: string;
+    equipoVisitante: string;
+    horaPartido: string;
+}
+
+export interface PartidoFB {
+    equipoLocal: string;
+    equipoVisitante: string;
+}
+
 export interface Alineacion {
     jugadores: JugadorAlineado[];
 }
@@ -142,4 +153,57 @@ export interface JugadorAlineado {
     idJugador: number;
     suplente: boolean;
 }
-  
+
+// Ejemplo Jornada 16 LFP/FB
+// [
+//     {
+//         "equipoLocal": "Celta",
+//         "equipoVisitante": "Villarreal",
+//         "horaPartido": "Vie 08/01  21:00h"
+//     },
+//     {
+//         "equipoLocal": "Sevilla",
+//         "equipoVisitante": "Real Sociedad",
+//         "horaPartido": "Sab 09/01  14:00h"
+//     },
+//     {
+//         "equipoLocal": "Atletico",
+//         "equipoVisitante": "Athletic",
+//         "horaPartido": "Sab 09/01  16:15h"
+//     },
+//     {
+//         "equipoLocal": "Granada",
+//         "equipoVisitante": "Barcelona",
+//         "horaPartido": "Sab 09/01  18:30h"
+//     },
+//     {
+//         "equipoLocal": "Osasuna",
+//         "equipoVisitante": "Real Madrid",
+//         "horaPartido": "Sab 09/01  21:00h"
+//     },
+//     {
+//         "equipoLocal": "Levante",
+//         "equipoVisitante": "Eibar",
+//         "horaPartido": "Dom 10/01  14:00h"
+//     },
+//     {
+//         "equipoLocal": "Cadiz",
+//         "equipoVisitante": "Alaves",
+//         "horaPartido": "Dom 10/01  16:15h"
+//     },
+//     {
+//         "equipoLocal": "Elche",
+//         "equipoVisitante": "Getafe",
+//         "horaPartido": "Dom 10/01  18:30h"
+//     },
+//     {
+//         "equipoLocal": "Valladolid",
+//         "equipoVisitante": "Valencia",
+//         "horaPartido": "Dom 10/01  21:00h"
+//     },
+//     {
+//         "equipoLocal": "Huesca",
+//         "equipoVisitante": "Betis",
+//         "horaPartido": "Lun 11/01  21:00h"
+//     }
+// ]

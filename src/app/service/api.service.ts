@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Jornada, JugadorLFP, Plantilla, ResultadoPartido } from '../shared/shared';
+import { Jornada, PartidoLFP, JugadorLFP, Plantilla, ResultadoPartido } from '../shared/shared';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +61,22 @@ export class ApiService {
 
   getJornadaAlineable(): Observable<any> {
     let finalUrl = `${this.apiURL}/user/jornadas/alineable`;
+    console.log("Http get request to ", finalUrl);
+
+    return this.http.get<any>(finalUrl)
+              .pipe(catchError(err => { return this.handleError(err) }));
+  }
+
+  getJornadaLFP( jornadaFb: string): Observable<PartidoLFP[]> {
+    let finalUrl = `${this.apiURL}/user/partidoslfp?jornadaId=${jornadaFb}`;
+    console.log("Http get request to ", finalUrl);
+
+    return this.http.get<any>(finalUrl)
+              .pipe(catchError(err => { return this.handleError(err) }));
+  }
+
+  getJornadaFB( jornadaFb: string): Observable<PartidoLFP[]> {
+    let finalUrl = `${this.apiURL}/user/partidosfb?jornadaId=${jornadaFb}`;
     console.log("Http get request to ", finalUrl);
 
     return this.http.get<any>(finalUrl)
