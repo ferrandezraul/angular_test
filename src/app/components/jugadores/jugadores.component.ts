@@ -12,7 +12,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./jugadores.component.css'],
 })
 export class JugadoresComponent implements AfterViewInit, OnInit {
-  disableTooltip: boolean = false;
   selected_equipo: string;
   selected_equipo_lfp: string;
   selected_demarcacion: string;

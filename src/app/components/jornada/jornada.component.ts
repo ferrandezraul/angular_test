@@ -8,7 +8,6 @@ import { ResultadoPartido, PuntuacionJugador } from 'src/app/shared/shared';
   styleUrls: ['./jornada.component.css']
 })
 export class JornadaComponent {
-  disableTooltip: boolean = false;
   errorMessage: string = "";
   nombreJornada: string = "";
   idJornada: number;
