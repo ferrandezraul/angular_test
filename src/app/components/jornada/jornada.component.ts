@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
-import { ResultadoPartido, PuntuacionJugador } from 'src/app/shared/shared';
+import { ResultadoPartido, PuntuacionJugador, Jornada } from 'src/app/shared/shared';
 
 @Component({
   selector: 'app-jornada',
@@ -8,7 +8,8 @@ import { ResultadoPartido, PuntuacionJugador } from 'src/app/shared/shared';
   styleUrls: ['./jornada.component.css']
 })
 export class JornadaComponent {
-  errorMessage: string = "";
+  @Input() jornada: Jornada;
+
   nombreJornada: string = "";
   idJornada: number;
   resultados: ResultadoPartido[] = [];
@@ -19,32 +20,15 @@ export class JornadaComponent {
   constructor(private apiService: ApiService ) {}
 
   ngOnInit(){
-    this.apiService.getJornadaJugandose().subscribe((jornadaJugandose) => {
-      if (jornadaJugandose.length == 0) {
-        this.apiService.getUltimaJornadaTerminada().subscribe((jornadaTerminada) => {
-          this.nombreJornada = jornadaTerminada.name;
-          this.idJornada = jornadaTerminada.id;
-  
-          this.apiService.getResultadosByJornada(this.idJornada.toString()).subscribe((_resultados) => {
-            console.log("Resultado ultima jornada terminada es ", _resultados);
-            this.resultados = _resultados;
-          });
-        });
+    console.log("Jornada es ", this.jornada);
+    this.nombreJornada = this.jornada.name;
+    this.idJornada = this.jornada.id;
 
-        return;
-      }
-
-      this.nombreJornada = jornadaJugandose[0].name;
-      this.idJornada = jornadaJugandose[0].id;
-	    
-	    this.apiService.getResultadosByJornada(this.idJornada.toString()).subscribe((_resultados) => {
-	      this.resultados = _resultados;
-      },
-      err => {
-        this.errorMessage = err;
-      });
-
+    this.apiService.getResultadosByJornada(this.idJornada.toString()).subscribe((_resultados) => {
+      console.log("Resultado ultima jornada terminada es ", _resultados);
+      this.resultados = _resultados;
     });
+
   }
 
   enfarloparJugador(jugador: String) {

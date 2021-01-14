@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { JugadorComponent } from './components/jugador/jugador.component';
 import { NormasComponent } from './components/normas/normas.component';
-import { JornadaComponent } from './components/jornada/jornada.component';
+import { JornadasComponent } from './components/jornadas/jornadas.component';
 
 
 const routes: Routes = [
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/plantillas', pathMatch: 'full' },
   { path: 'jugador/:id', component: JugadorComponent },
   { path: 'normas', component: NormasComponent },
-  { path: 'jornada', component: JornadaComponent },
+  { path: 'jornadas', component: JornadasComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

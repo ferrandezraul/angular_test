@@ -38,6 +38,7 @@ import { LogOutDialog } from './components/toolbar/log-out-dialog/log-out-dialog
 import { AlineacionInvalidaDialog } from './components/alinear/alineacion-invalida/alineacion-invalida-dialog.component';
 import { AlineacionValidaDialog } from './components/alinear/alineacion-valida/alineacion-valida-dialog.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { JornadasComponent } from './components/jornadas/jornadas.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { FooterComponent } from './components/footer/footer.component';
     AlineacionInvalidaDialog,
     AlineacionValidaDialog,
     FooterComponent,
+    JornadasComponent,
   ],
   imports: [
     AppRoutingModule,

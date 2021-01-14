@@ -346,17 +346,11 @@
   </div>
 </div>
 
-<div *ngIf="resultados.length == 0 && errorMessage?.length == 0" class="progress-bar">
+<div *ngIf="resultados.length == 0" class="progress-bar">
   <div fxLayoutAlign="center center">
     <mat-spinner></mat-spinner>
   </div>
   <div fxLayoutAlign="center center">
     <h4>Cargando . . . </h4>
-  </div>
-</div>
-
-<div *ngIf="errorMessage?.length > 0">
-  <div fxLayoutAlign="center center">
-    <h4> {{ errorMessage }} </h4>
   </div>
 </div>

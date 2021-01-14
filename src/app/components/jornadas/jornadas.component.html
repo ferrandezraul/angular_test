@@ -1,0 +1,5 @@
+<!-- <div *ngIf="jornadaJugandose"> -->
+    <h1 fxLayoutAlign="center"> Jornadas Terminadas </h1>
+    <div *ngFor="let jornada of jornadasTerminadas; let indice=index">
+        <app-jornada [jornada]="jornada"></app-jornada>
+    </div>
