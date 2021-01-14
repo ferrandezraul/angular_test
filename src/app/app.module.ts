@@ -39,6 +39,7 @@ import { AlineacionInvalidaDialog } from './components/alinear/alineacion-invali
 import { AlineacionValidaDialog } from './components/alinear/alineacion-valida/alineacion-valida-dialog.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { JornadasComponent } from './components/jornadas/jornadas.component';
+import { JornadaActualComponent } from './components/jornada-actual/jornada-actual.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { JornadasComponent } from './components/jornadas/jornadas.component';
     AlineacionValidaDialog,
     FooterComponent,
     JornadasComponent,
+    JornadaActualComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -1,3 +1,4 @@
+import { OnInit } from '@angular/core';
 import { Component, Input } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
 import { ResultadoPartido, PuntuacionJugador, Jornada } from 'src/app/shared/shared';
@@ -7,7 +8,7 @@ import { ResultadoPartido, PuntuacionJugador, Jornada } from 'src/app/shared/sha
   templateUrl: './jornada.component.html',
   styleUrls: ['./jornada.component.css']
 })
-export class JornadaComponent {
+export class JornadaComponent implements OnInit {
   @Input() jornada: Jornada;
 
   nombreJornada: string = "";

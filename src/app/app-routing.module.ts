@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { JugadorComponent } from './components/jugador/jugador.component';
 import { NormasComponent } from './components/normas/normas.component';
 import { JornadasComponent } from './components/jornadas/jornadas.component';
+import { JornadaActualComponent } from './components/jornada-actual/jornada-actual.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'jugador/:id', component: JugadorComponent },
   { path: 'normas', component: NormasComponent },
   { path: 'jornadas', component: JornadasComponent },
+  { path: 'jornada-actual', component: JornadaActualComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

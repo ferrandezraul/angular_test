@@ -1,3 +1,6 @@
+Anyade ngif en los html de los parent components para que no se llame al hijo si la llamada asyncrona del padre no rellena el data que pasamos al hijo.
+
+
 Crear branch sin TODO, vigilar angular.json y package.json
 Actualizar readme con angular flex layout.
 
