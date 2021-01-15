@@ -1,5 +1,12 @@
 
-    <h1 fxLayoutAlign="center"> Resultados </h1>
+<mat-card>
+    <!-- <mat-card-header fxLayoutAlign="center">Resultados</mat-card-header> -->
+    <mat-card-title fxLayoutAlign="center">Resultados</mat-card-title>
+    <!--  <mat-card-subtitle fxLayoutAlign="center">Resultados</mat-card-subtitle> -->
+</mat-card>
+
+<div *ngIf="jornadasTerminadas">
     <div *ngFor="let jornada of jornadasTerminadas; let indice=index">
         <app-jornada [jornada]="jornada"></app-jornada>
     </div>
+</div>
