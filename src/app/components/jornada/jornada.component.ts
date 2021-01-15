@@ -14,7 +14,7 @@ export class JornadaComponent implements OnInit {
   nombreJornada: string = "";
   idJornada: number;
   resultados: ResultadoPartido[] = [];
-  // columnsPuntuacionJugador = ['nombreJugador', 'demarcacion', 'resultado', 'puntosCalculados', 'resultadoPartido', 'jugado', 'otros', 'total', 'chapeco', 'suplente', 'estado', 'iconoDemarcacion', 'equipoLfp'];
+  
   columnsPuntuacionJugador = ['demarcacion', 'nombreJugador', 'resultado.puntosAs', 'resultado.puntosMarca', 'puntosCalculados', 'jugado', 'resultadoPartido', 'otros', 'total', 'goles'];
   columnsPuntuacionJugadorDisplayed = ['demarcacion', 'Jugador', 'As', 'Marca', 'FM', 'Jugado', 'Ganado', 'Otros', ''];
 
