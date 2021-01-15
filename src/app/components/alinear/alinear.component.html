@@ -79,87 +79,80 @@
 
 
   <!-- Partidos de la LFP correspondientes a la jornada FB -->
-  <div *ngFor="let partido of partidosLFP">
-    <mat-card>
-      <mat-card-title> {{ partido.equipoLocal }} - {{ partido.equipoVisitante }} </mat-card-title>
-    </mat-card>
-  </div>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <div fxLayout>
+          <mat-panel-title>
+            Jornada LFP
+          </mat-panel-title>
+        </div>
+        <div fxLayout>
+          <mat-panel-description></mat-panel-description>
+        </div>
+      </mat-expansion-panel-header>
+      
+      <div *ngFor="let partido of partidosLFP"> 
+        <mat-card>
+          <mat-card-title>  </mat-card-title>
+          <mat-card-content>
+            <div fxLayout="row">
+              <div fxFlex="30" fxLayoutAlign="end">
+                {{ partido.equipoLocal }}
+              </div>
+              <div fxFlex="5" fxLayoutAlign="center">
+                -
+              </div>
+              <div fxFlex="30">
+                {{ partido.equipoVisitante }}
+              </div>
+              <div fxFlex>
+                {{ partido.horaPartido }}
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-footer></mat-card-footer>
+        </mat-card>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <!-- Partidos equipos FB -->
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <div fxLayout>
+          <mat-panel-title>
+            Jornada Fantasbeka
+          </mat-panel-title>
+        </div>
+        <div fxLayout>
+          <mat-panel-description></mat-panel-description>
+        </div>
+      </mat-expansion-panel-header>
+      
+      <div *ngFor="let partido of partidosFB"> 
+        <mat-card>
+          <mat-card-title>  </mat-card-title>
+          <mat-card-content>
+            <div fxLayout="row">
+              <div fxFlex="30" fxLayoutAlign="end">
+                {{ partido.equipoLocal }}
+              </div>
+              <div fxFlex="5" fxLayoutAlign="center">
+                -
+              </div>
+              <div fxFlex="30">
+                {{ partido.equipoVisitante }}
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-footer></mat-card-footer>
+        </mat-card>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
 
 </div>
-
-<!-- Partidos de la LFP correspondientes a la jornada FB -->
-<mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <div fxLayout>
-        <mat-panel-title>
-          Jornada LFP
-        </mat-panel-title>
-      </div>
-      <div fxLayout>
-        <mat-panel-description></mat-panel-description>
-      </div>
-    </mat-expansion-panel-header>
-    
-    <div *ngFor="let partido of partidosLFP2"> 
-      <mat-card>
-        <mat-card-title>  </mat-card-title>
-        <mat-card-content>
-          <div fxLayout="row">
-            <div fxFlex="30" fxLayoutAlign="end">
-              {{ partido.equipoLocal }}
-            </div>
-            <div fxFlex="5" fxLayoutAlign="center">
-              -
-            </div>
-            <div fxFlex="30">
-              {{ partido.equipoVisitante }}
-            </div>
-            <div fxFlex>
-              {{ partido.horaPartido }}
-            </div>
-          </div>
-        </mat-card-content>
-        <mat-card-footer></mat-card-footer>
-      </mat-card>
-    </div>
-
-  </mat-expansion-panel>
-</mat-accordion>
-
-<!-- Partidos equipos FB -->
-<mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <div fxLayout>
-        <mat-panel-title>
-          Jornada Fantasbeka
-        </mat-panel-title>
-      </div>
-      <div fxLayout>
-        <mat-panel-description></mat-panel-description>
-      </div>
-    </mat-expansion-panel-header>
-    
-    <div *ngFor="let partido of partidosFB2"> 
-      <mat-card>
-        <mat-card-title>  </mat-card-title>
-        <mat-card-content>
-          <div fxLayout="row">
-            <div fxFlex="30" fxLayoutAlign="end">
-              {{ partido.equipoLocal }}
-            </div>
-            <div fxFlex="5" fxLayoutAlign="center">
-              -
-            </div>
-            <div fxFlex="30">
-              {{ partido.equipoVisitante }}
-            </div>
-          </div>
-        </mat-card-content>
-        <mat-card-footer></mat-card-footer>
-      </mat-card>
-    </div>
-
-  </mat-expansion-panel>
-</mat-accordion>
