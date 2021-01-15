@@ -1,9 +1,12 @@
-<div *ngIf="resultados.length">
+<div *ngIf="nombreJornada">
   <mat-card>
     <!-- <mat-card-header fxLayoutAlign="center">{{ nombreJornada | titlecase }}</mat-card-header> -->
     <mat-card-title fxLayoutAlign="center">{{ nombreJornada | titlecase }}</mat-card-title>
     <!--  <mat-card-subtitle fxLayoutAlign="center">{{ nombreJornada | titlecase }}</mat-card-subtitle> -->
   </mat-card>
+</div>
+
+<div *ngIf="resultados.length">
   
   <div *ngFor="let resultado of resultados; let indice=index">
 
