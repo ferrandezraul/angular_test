@@ -17,7 +17,7 @@ export class Token{
 })
 export class AuthenticationService {
 
-  apiURL: string = 'http://fantasbeka.ddns.net:8888';
+  apiURL: string = 'https://fantasbeka.ddns.net';
 
   constructor(private httpClient:HttpClient) {}
 

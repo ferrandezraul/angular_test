@@ -9,7 +9,7 @@ import { Jornada, PartidoLFP, JugadorLFP, Plantilla, ResultadoPartido } from '..
 })
 export class ApiService {
 
-  private apiURL: string = 'http://fantasbeka.ddns.net:8888';
+  private apiURL: string = 'https://fantasbeka.ddns.net';
 
   constructor(private http: HttpClient) { }
 
