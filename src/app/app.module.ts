@@ -90,10 +90,6 @@ import { JornadaActualComponent } from './components/jornada-actual/jornada-actu
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
     //{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  entryComponents: [
-    LogOutDialog,
-    AlineacionInvalidaDialog
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
