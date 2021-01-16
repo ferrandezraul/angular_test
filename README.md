@@ -72,3 +72,14 @@ The file [package.json](package.json) has been modified with the next changes:
 Heroku by default, seems to use port 443 (https). 
 If you try to enter the deployed app via https, you will get an error "Mixed http https ..." since the API used by the angular app is not using https.
 To enable your browser to use http, for instance in chrome, go to "Settings", "Privacy and security", select the deployed angular url and set "Allow" in "Insecure Content".
+
+If you want to run the app locally in your pc, as it is run in Heroku, execute:
+
+```bash
+ng build --prod
+```
+
+and then:
+```bash
+node server.js
+```
